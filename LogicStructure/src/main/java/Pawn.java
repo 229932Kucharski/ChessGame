@@ -1,8 +1,8 @@
 
-
 public class Pawn extends Piece {
 
-    public Pawn() {
+    public Pawn(int x, int y, PieceColor color, int value) {
+        super(x, y, color, value);
     }
 
     @Override

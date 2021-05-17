@@ -1,6 +1,10 @@
 
 public class Knight extends Piece {
 
+    public Knight(int x, int y, PieceColor color, int value) {
+        super(x, y, color, value);
+    }
+
     public Move[] getPossibleMoves() {
         Move[] possibleMoves = new Move[8];
         int counter = 0;

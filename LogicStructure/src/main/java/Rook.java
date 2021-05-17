@@ -3,6 +3,10 @@ public class Rook extends Piece {
 
     boolean wasMove = false;
 
+    public Rook(int x, int y, PieceColor color, int value) {
+        super(x, y, color, value);
+    }
+
     @Override
     public Move[] getPossibleMoves() {
         Move[] possibleMoves = new Move[0];
