@@ -7,7 +7,7 @@ import player.enums.BoardDesign;
 import player.enums.PieceColor;
 import player.enums.PieceDesign;
 
-public class Player {
+public abstract class Player {
 
     PieceColor pieceColor;
     PieceDesign pieceDesign;
