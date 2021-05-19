@@ -42,10 +42,6 @@ public class Guest extends Player {
     public String toString() {
         return new ToStringBuilder(this)
                 .append("name", name)
-                .append("pieceColor", pieceColor)
-                .append("pieceDesign", pieceDesign)
-                .append("boardDesign", boardDesign)
-                .append("score", score)
                 .toString();
     }
 }

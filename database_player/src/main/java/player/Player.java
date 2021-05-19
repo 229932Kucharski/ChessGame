@@ -9,10 +9,10 @@ import player.enums.PieceDesign;
 
 public abstract class Player {
 
-    PieceColor pieceColor;
-    PieceDesign pieceDesign;
-    BoardDesign boardDesign;
-    int score;
+    private PieceColor pieceColor;
+    private PieceDesign pieceDesign;
+    private BoardDesign boardDesign;
+    private int score;
 
     public Player(PieceColor pieceColor, PieceDesign pieceDesign, BoardDesign boardDesign, int score) {
         this.pieceColor = pieceColor;

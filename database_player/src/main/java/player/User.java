@@ -6,18 +6,19 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import player.enums.BoardDesign;
 import player.enums.PieceColor;
 import player.enums.PieceDesign;
+import player.password.PasswordHashing;
 
 public class User extends Player {
 
-    String name;
-    String login;
-    byte[] password;
+    private String name;
+    private final String login;
+    private byte[] password;
 
-    public User(PieceColor pieceColor, PieceDesign pieceDesign, BoardDesign boardDesign, int score, String name, String login, byte[] password) {
+    public User(PieceColor pieceColor, PieceDesign pieceDesign, BoardDesign boardDesign, int score, String name, String login, String password) {
         super(pieceColor, pieceDesign, boardDesign, score);
         this.name = name;
         this.login = login;
-        this.password = password;
+        setPassword(password);
     }
 
     public String getName() {
@@ -34,6 +35,10 @@ public class User extends Player {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setPassword(String password) {
+        this.password = PasswordHashing.hashPassword(password);
     }
 
     @Override
@@ -68,10 +73,6 @@ public class User extends Player {
                 .append("name", name)
                 .append("login", login)
                 .append("password", password)
-                .append("pieceColor", pieceColor)
-                .append("pieceDesign", pieceDesign)
-                .append("boardDesign", boardDesign)
-                .append("score", score)
                 .toString();
     }
 }
