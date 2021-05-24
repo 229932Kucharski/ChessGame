@@ -28,7 +28,7 @@
                     </input></ColorAdjust>
             </effect>
         </ImageView>
-        <GridPane layoutX="132.0" layoutY="143.0" prefHeight="538.0" prefWidth="539.0">
+        <GridPane fx:id="chessboardGridPane" layoutX="132.0" layoutY="143.0" prefHeight="538.0" prefWidth="539.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -52,7 +52,7 @@
             <children>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;">
                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="200.0" layoutX="16.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="57.0" fitWidth="200.0" layoutX="16.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/rook.png" />
                             </image>
@@ -62,18 +62,18 @@
                         </ImageView>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" fillHeight="false" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: black;" GridPane.rowIndex="7">
+                <HBox id="black" alignment="CENTER" fillHeight="false" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: black;" GridPane.rowIndex="7">
                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="200.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="57.0" fitWidth="200.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/rook.png" />
                             </image>
                         </ImageView>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.rowIndex="6">
+                <HBox id="white" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.rowIndex="6">
                     <children>
-                        <ImageView fitHeight="65.0" fitWidth="200.0" layoutX="20.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="57.0" fitWidth="200.0" layoutX="20.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/pawn.png" />
                             </image>
@@ -83,12 +83,12 @@
                         </ImageView>
                     </children>
                 </HBox>
-                <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.rowIndex="5" />
-                <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.rowIndex="4" />
-                <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.rowIndex="2" />
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.rowIndex="1">
+                <HBox id="black" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.rowIndex="5" />
+                <HBox id="white" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.rowIndex="4" />
+                <HBox id="white" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.rowIndex="2" />
+                <HBox id="black" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.rowIndex="1">
                     <children>
-                        <ImageView fitHeight="65.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/pawn.png" />
                             </image>
@@ -98,10 +98,10 @@
                         </ImageView>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" layoutX="10.0" layoutY="75.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.rowIndex="3" />
-                <HBox alignment="CENTER" layoutX="10.0" layoutY="75.0" maxHeight="80.0" maxWidth="80.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="1">
+                <HBox id="black" alignment="CENTER" layoutX="10.0" layoutY="75.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.rowIndex="3" />
+                <HBox id="black" alignment="CENTER" layoutX="10.0" layoutY="75.0" maxHeight="80.0" maxWidth="80.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="1">
                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="200.0" layoutX="22.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="57.0" fitWidth="200.0" layoutX="22.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/knight.png" />
                             </image>
@@ -111,20 +111,20 @@
                         </ImageView>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" layoutX="77.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <HBox alignment="CENTER" layoutX="77.0" layoutY="140.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <HBox alignment="CENTER" layoutX="77.0" layoutY="270.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                <HBox id="black" alignment="CENTER" layoutX="77.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <HBox id="black" alignment="CENTER" layoutX="77.0" layoutY="140.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <HBox id="black" alignment="CENTER" layoutX="77.0" layoutY="270.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="6">
                     <children>
-                        <ImageView fitHeight="65.0" fitWidth="200.0" layoutX="17.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="57.0" fitWidth="200.0" layoutX="17.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/pawn.png" />
                             </image>
                         </ImageView>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" layoutX="10.0" layoutY="400.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <HBox id="white" alignment="CENTER" layoutX="10.0" layoutY="400.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <children>
-                        <ImageView fitHeight="65.0" fitWidth="200.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="60.0" fitWidth="200.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/pawn.png" />
                             </image>
@@ -134,20 +134,20 @@
                         </ImageView>
                     </children>
                 </HBox>
-                <HBox layoutX="77.0" layoutY="75.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <HBox layoutX="77.0" layoutY="205.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                <HBox alignment="CENTER" layoutX="77.0" layoutY="335.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                <HBox id="white" layoutX="77.0" layoutY="75.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <HBox id="white" layoutX="77.0" layoutY="205.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <HBox id="white" alignment="CENTER" layoutX="77.0" layoutY="335.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="7">
                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="200.0" layoutX="22.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="57.0" fitWidth="200.0" layoutX="22.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/knight.png" />
                             </image>
                         </ImageView>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" layoutX="77.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <HBox id="black" alignment="CENTER" layoutX="77.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <children>
-                        <ImageView fitHeight="65.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/pawn.png" />
                             </image>
@@ -157,20 +157,20 @@
                         </ImageView>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" layoutX="144.0" layoutY="75.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                <HBox alignment="CENTER" layoutX="144.0" layoutY="205.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                <HBox alignment="CENTER" layoutX="144.0" layoutY="335.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                <HBox id="black" alignment="CENTER" layoutX="144.0" layoutY="75.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                <HBox id="black" alignment="CENTER" layoutX="144.0" layoutY="205.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                <HBox id="black" alignment="CENTER" layoutX="144.0" layoutY="335.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="7">
                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="200.0" layoutX="22.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="60.0" fitWidth="200.0" layoutX="22.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/bishop.png" />
                             </image>
                         </ImageView>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" layoutX="144.0" layoutY="464.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="3">
+                <HBox id="black" alignment="CENTER" layoutX="144.0" layoutY="464.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="3">
                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="57.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/queen.png" />
                             </image>
@@ -180,11 +180,11 @@
                         </ImageView>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" layoutX="211.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                <HBox alignment="CENTER" layoutX="211.0" layoutY="140.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                <HBox alignment="CENTER" layoutX="211.0" layoutY="270.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                <HBox id="black" alignment="CENTER" layoutX="211.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                <HBox id="black" alignment="CENTER" layoutX="211.0" layoutY="140.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                <HBox id="black" alignment="CENTER" layoutX="211.0" layoutY="270.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="6">
                     <children>
-                        <ImageView fitHeight="65.0" fitWidth="200.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="60.0" fitWidth="200.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/pawn.png" />
                             </image>
@@ -193,7 +193,7 @@
                 </HBox>
                 <HBox alignment="CENTER" layoutX="211.0" layoutY="400.0" prefHeight="59.0" prefWidth="67.0" style="-fx-background-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="7">
                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="57.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/king.png" />
                             </image>
@@ -204,7 +204,7 @@
                     <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <ImageView fitHeight="65.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../images/pawn.png" />
                                     </image>
@@ -223,7 +223,7 @@
                     </children></HBox>
                 <HBox alignment="CENTER" layoutX="278.0" layoutY="335.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="5">
                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="57.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/bishop.png" />
                             </image>
@@ -237,7 +237,7 @@
                 <HBox alignment="CENTER" layoutX="345.0" layoutY="140.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: black;" GridPane.columnIndex="5" GridPane.rowIndex="4" />
                 <HBox alignment="CENTER" layoutX="345.0" layoutY="270.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="5" GridPane.rowIndex="6">
                     <children>
-                        <ImageView fitHeight="65.0" fitWidth="200.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="60.0" fitWidth="200.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/pawn.png" />
                             </image>
@@ -247,7 +247,7 @@
                 <HBox alignment="CENTER" layoutX="345.0" layoutY="400.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="5" />
                 <HBox alignment="CENTER" layoutX="413.0" layoutY="335.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="7">
                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="57.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/knight.png" />
                             </image>
@@ -257,7 +257,7 @@
                 <HBox alignment="CENTER" layoutX="413.0" layoutY="464.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="3" />
                 <HBox alignment="CENTER" layoutX="413.0" layoutY="205.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="1">
                     <children>
-                        <ImageView fitHeight="65.0" fitWidth="200.0" layoutX="64.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="60.0" fitWidth="200.0" layoutX="64.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/pawn.png" />
                             </image>
@@ -273,7 +273,7 @@
                 </HBox>
                 <HBox alignment="CENTER" fillHeight="false" layoutX="413.0" layoutY="75.0" maxHeight="70.0" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="7">
                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="57.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/rook.png" />
                             </image>
@@ -287,7 +287,7 @@
                 <HBox layoutX="481.0" layoutY="140.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="7" GridPane.rowIndex="4" />
                 <HBox alignment="CENTER" layoutX="481.0" layoutY="270.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="7" GridPane.rowIndex="6">
                     <children>
-                        <ImageView fitHeight="65.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/pawn.png" />
                             </image>
@@ -296,7 +296,7 @@
                 </HBox>
                 <HBox alignment="CENTER" layoutX="77.0" layoutY="205.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="2">
                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="200.0" layoutX="22.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="57.0" fitWidth="200.0" layoutX="22.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/bishop.png" />
                             </image>
@@ -310,7 +310,7 @@
                 <HBox layoutX="144.0" layoutY="140.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                 <HBox alignment="CENTER" layoutX="144.0" layoutY="270.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="2" GridPane.rowIndex="6">
                     <children>
-                        <ImageView fitHeight="65.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/pawn.png" />
                             </image>
@@ -322,7 +322,7 @@
                 </HBox>
                 <HBox alignment="CENTER" layoutX="144.0" layoutY="400.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="3" GridPane.rowIndex="1">
                     <children>
-                        <ImageView fitHeight="65.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/pawn.png" />
                             </image>
@@ -336,7 +336,7 @@
                 <HBox alignment="CENTER" layoutX="211.0" layoutY="205.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                 <HBox alignment="CENTER" layoutX="211.0" layoutY="335.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="3" GridPane.rowIndex="7">
                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="200.0" layoutX="22.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="57.0" fitWidth="200.0" layoutX="22.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/queen.png" />
                             </image>
@@ -345,7 +345,7 @@
                 </HBox>
                 <HBox alignment="CENTER" layoutX="211.0" layoutY="464.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="4">
                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="200.0" layoutX="22.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="57.0" fitWidth="200.0" layoutX="22.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/king.png" />
                             </image>
@@ -364,7 +364,7 @@
                     <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: rgba(255,255,0,0.6);">
                             <children>
-                                <ImageView fitHeight="65.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../images/pawn.png" />
                                     </image>
@@ -375,7 +375,7 @@
                 </HBox>
                 <HBox alignment="CENTER" layoutX="278.0" layoutY="400.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="5" GridPane.rowIndex="1">
                     <children>
-                        <ImageView fitHeight="65.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/pawn.png" />
                             </image>
@@ -389,7 +389,7 @@
                 <HBox alignment="CENTER" layoutX="345.0" layoutY="205.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="5" GridPane.rowIndex="5" />
                 <HBox alignment="CENTER" layoutX="345.0" layoutY="335.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="5" GridPane.rowIndex="7">
                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="200.0" layoutX="23.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="60.0" fitWidth="200.0" layoutX="23.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/bishop.png" />
                             </image>
@@ -398,7 +398,7 @@
                 </HBox>
                 <HBox alignment="CENTER" layoutX="345.0" layoutY="464.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="6">
                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="57.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/knight.png" />
                             </image>
@@ -409,10 +409,9 @@
                     </children>
                 </HBox>
                 <HBox alignment="CENTER" layoutX="413.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-                <HBox alignment="CENTER" layoutX="413.0" layoutY="140.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="6" GridPane.rowIndex="4" />
                 <HBox alignment="CENTER" layoutX="413.0" layoutY="270.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="6" GridPane.rowIndex="6">
                     <children>
-                        <ImageView fitHeight="65.0" fitWidth="200.0" layoutX="17.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="60.0" fitWidth="200.0" layoutX="17.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/pawn.png" />
                             </image>
@@ -423,7 +422,7 @@
                 <HBox alignment="CENTER" layoutX="481.0" layoutY="205.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="7" GridPane.rowIndex="5" />
                 <HBox alignment="CENTER" layoutX="481.0" layoutY="335.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="7" GridPane.rowIndex="7">
                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="57.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/rook.png" />
                             </image>
@@ -432,7 +431,7 @@
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="7" GridPane.rowIndex="1">
                     <children>
-                        <ImageView fitHeight="65.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/pawn.png" />
                             </image>
@@ -442,19 +441,20 @@
                         </ImageView>
                     </children>
                 </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="6" GridPane.rowIndex="4" />
             </children>
         </GridPane>
         <Text fill="WHITE" layoutX="160.0" layoutY="752.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USERNAME">
             <font>
                 <Font name="Times New Roman" size="14.0" />
             </font></Text>
-        <Text fill="WHITE" layoutX="160.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GUEST102938">
+        <Text fill="WHITE" layoutX="158.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GUEST102938">
             <font>
                 <Font name="Times New Roman" size="14.0" />
             </font></Text>
-        <Circle fill="WHITE" layoutX="132.0" layoutY="67.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+        <Circle fill="WHITE" layoutX="130.0" layoutY="72.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
         <Circle fill="WHITE" layoutX="132.0" layoutY="747.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-        <ImageView fitHeight="40.0" fitWidth="200.0" layoutX="112.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="40.0" fitWidth="200.0" layoutX="110.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../images/avatar.png" />
             </image>
@@ -464,11 +464,11 @@
                 <Image url="@../images/avatar.png" />
             </image>
         </ImageView>
-        <Text fill="WHITE" layoutX="654.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10:00">
+        <Text fill="WHITE" layoutX="652.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10:00">
             <font>
                 <Font name="Times New Roman" size="18.0" />
             </font></Text>
-        <Text fill="WHITE" layoutX="534.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pozostały czas:">
+        <Text fill="WHITE" layoutX="532.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pozostały czas:">
             <font>
                 <Font name="Times New Roman" size="18.0" />
             </font></Text>
