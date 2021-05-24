@@ -1,0 +1,23 @@
+#bg {
+    -fx-background-image: url("../images/chessbg.png");
+    -fx-background-size: 110% 100%;
+}
+
+.text-field {
+    -fx-font-family: "Times New Roman";
+    -fx-prompt-text-fill: gray;
+    -fx-base:  rgba(0,0,0,0.6);
+    -fx-border-color: grey;
+    -fx-text-fill: white;
+    -fx-accent: brown;
+    -fx-focus-color: brown;
+}
+.toggle-button {
+    -fx-base: #562837;
+    -fx-font-family: "Times New Roman";
+}
+.choice-box {
+    -fx-font-family: "Times New Roman";
+    -fx-base: #562837;
+    -fx-font-size: 20px;
+}
