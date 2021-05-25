@@ -1,7 +1,7 @@
 
 public class Rook extends Piece {
 
-    boolean wasMove = false;
+    boolean wasMoved = false;
 
     public Rook(int x, int y, PieceColor color, int value) {
         super(x, y, color, value);
