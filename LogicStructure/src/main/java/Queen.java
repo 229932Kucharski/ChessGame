@@ -12,7 +12,7 @@ public class Queen extends Piece {
         int tempX = 0;
         int tempY = 0;
 
-        for (int direction = 0; direction < 8; direction++) {
+        for (int direction = 0; direction < 4; direction++) {
             tempX = currentX;
             tempY = currentY;
             counter = 0;
@@ -41,30 +41,6 @@ public class Queen extends Piece {
             } else if (direction == 3) {
                 while (tempX > 0 && tempY > 0) {
                     tempX--;
-                    tempY--;
-                    tmp[counter] = new Move(currentX, currentY, tempX, tempY);
-                    counter++;
-                }
-            } else if(direction == 4) {
-                while(tempX < 7) {
-                    tempX++;
-                    tmp[counter] = new Move(currentX, currentY, tempX, tempY);
-                    counter++;
-                }
-            } else if(direction == 5) {
-                while(tempX > 0) {
-                    tempX--;
-                    tmp[counter] = new Move(currentX, currentY, tempX, tempY);
-                    counter++;
-                }
-            } else if(direction == 6) {
-                while(tempY < 7) {
-                    tempY++;
-                    tmp[counter] = new Move(currentX, currentY, tempX, tempY);
-                    counter++;
-                }
-            } else if(direction == 7) {
-                while(tempY > 0) {
                     tempY--;
                     tmp[counter] = new Move(currentX, currentY, tempX, tempY);
                     counter++;

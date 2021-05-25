@@ -5,9 +5,10 @@ import java.util.List;
 public class PieceSet {
 
     private PieceColor pieceColor;
-    private List<Piece> pieces = new ArrayList<>();
+    protected List<Piece> pieces = new ArrayList<>();
+    protected List<Move[]> possibleMoves = new ArrayList<Move[]>();
 
-    public PieceSet(PieceColor pieceColor) {
+    public PieceSet(PieceColor pieceColor) throws NullPointerException{
         this.pieceColor = pieceColor;
         int id = 0;
         int pawnY = 0;
@@ -50,6 +51,7 @@ public class PieceSet {
 
                 if(possibleMove.equals(move)) {
                     piece.move(move.getNextX(), move.getNextY());
+                    possibleMoves.add(piece.getPossibleMoves());
                     return true;
                 }
 
