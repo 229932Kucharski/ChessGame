@@ -1,4 +1,6 @@
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+
 public class Move {
 
     private final int currentX;
@@ -28,6 +30,24 @@ public class Move {
 
     public int getNextY() {
         return nextY;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if(!(obj instanceof Move)) {
+            return false;
+        }
+        Move move = (Move)obj;
+
+        return new EqualsBuilder()
+                .append(currentX, move.currentX)
+                .append(currentY, move.currentY)
+                .append(nextX, move.nextX)
+                .append(nextY, move.nextY)
+                .isEquals();
     }
 
 }
