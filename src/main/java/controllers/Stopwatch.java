@@ -126,7 +126,7 @@ public class Stopwatch implements ActionListener {
     public int getIncrement() {
         return Increment;
     }
-
-    public static void main(String[] args) { Stopwatch sp = new Stopwatch(); }
+//
+//    public static void main(String[] args) { Stopwatch sp = new Stopwatch(); }
 
 }

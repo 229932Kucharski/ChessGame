@@ -1,6 +1,7 @@
 package controllers;
 
 import app.App;
+import code.Game;
 import enums.ChessboardStyle;
 import enums.FiguresStyle;
 import javafx.beans.value.ChangeListener;
@@ -20,6 +21,7 @@ public class StyleController {
     public ImageView figureImage;
     public ImageView chessImage;
     public AnchorPane styleAnchorPane;
+    public static String colorBoard = "rgba(0,0,0)";
 
     public void initialize() {
         ObservableList<FiguresStyle> figures = FXCollections.observableArrayList(FiguresStyle.values());
@@ -28,7 +30,12 @@ public class StyleController {
 
         ObservableList<ChessboardStyle> cbs = FXCollections.observableArrayList(ChessboardStyle.values());
         chessboardChoiceBox.setItems(cbs);
-        chessboardChoiceBox.setValue(ChessboardStyle.menu);
+        if(colorBoard.equals("rgba(0,0,0)"))
+            chessboardChoiceBox.setValue(ChessboardStyle.classic);
+        if(colorBoard.equals("rgba(120,50,35)"))
+            chessboardChoiceBox.setValue(ChessboardStyle.wooden);
+        if(colorBoard.equals("rgba(128,128,128)"))
+            chessboardChoiceBox.setValue(ChessboardStyle.marble);
 
         figuresChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 
@@ -58,20 +65,24 @@ public class StyleController {
                    if (t1.equals(1)) {
                        Image image = new Image("/images/classicChess.jpg");
                        chessImage.setImage(image);
+                       colorBoard = "rgba(0,0,0)";
+
                    }
                    else if (t1.equals(2)) {
                        Image image = new Image("/images/woodenChess.jpg");
                        chessImage.setImage(image);
+                       colorBoard = "rgba(120,50,35)";
+
                    }
                    else if (t1.equals(3)) {
                        Image image = new Image("/images/marbleChess.jpg");
                        chessImage.setImage(image);
+                       colorBoard = "rgba(128,128,128)";
+
                    }
                }
            }
         );
-
-
 
 }
 
