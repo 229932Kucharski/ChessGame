@@ -47,11 +47,11 @@ public class UserDao implements Dao<User> {
         preparedStatement.setString(1, loginn);
         ResultSet resultSet = preparedStatement.executeQuery();
         if(resultSet.next()) {
-            String name = resultSet.getString(1);
-            String login = resultSet.getString(2);
-            byte[] pass = resultSet.getBytes(3);
-            String boardDesign = resultSet.getString(4);
-            String pieceDesign = resultSet.getString(5);
+            String name = resultSet.getString(2);
+            String login = resultSet.getString(3);
+            byte[] pass = resultSet.getBytes(4);
+            String boardDesign = resultSet.getString(5);
+            String pieceDesign = resultSet.getString(6);
             user = new User(null, PieceDesign.valueOf(pieceDesign), BoardDesign.valueOf(boardDesign), 0, name, login, password);
         }
         return user;
@@ -65,11 +65,11 @@ public class UserDao implements Dao<User> {
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
         if(resultSet.next()) {
-            String name = resultSet.getString(1);
-            String login = resultSet.getString(2);
-            byte[] pass = resultSet.getBytes(3);
-            String boardDesign = resultSet.getString(4);
-            String pieceDesign = resultSet.getString(5);
+            String name = resultSet.getString(2);
+            String login = resultSet.getString(3);
+            byte[] pass = resultSet.getBytes(4);
+            String boardDesign = resultSet.getString(5);
+            String pieceDesign = resultSet.getString(6);
             user = new User(null, PieceDesign.valueOf(pieceDesign), BoardDesign.valueOf(boardDesign), 0, name, login, password);
         }
         return user;
@@ -82,11 +82,11 @@ public class UserDao implements Dao<User> {
         PreparedStatement preparedStatement = connection.prepareStatement(getAllUsers);
         ResultSet resultSet = preparedStatement.executeQuery();
         while(resultSet.next()) {
-            String name = resultSet.getString(1);
-            String login = resultSet.getString(2);
-            byte[] pass = resultSet.getBytes(3);
-            String boardDesign = resultSet.getString(4);
-            String pieceDesign = resultSet.getString(5);
+            String name = resultSet.getString(2);
+            String login = resultSet.getString(3);
+            byte[] pass = resultSet.getBytes(4);
+            String boardDesign = resultSet.getString(5);
+            String pieceDesign = resultSet.getString(6);
             User user = new User(null, PieceDesign.valueOf(pieceDesign), BoardDesign.valueOf(boardDesign), 0, name, login, password);
             users.add(user);
         }
