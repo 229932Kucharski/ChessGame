@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import static java.lang.StrictMath.abs;
+
 public class Stopwatch implements ActionListener {
 
     JFrame frame = new JFrame();
@@ -11,6 +13,8 @@ public class Stopwatch implements ActionListener {
     JButton resetButton = new JButton("RESET");
     JLabel timeLabel = new JLabel();
 
+    int Time = 1;
+    int Increment = 0;
     int elapsedTime = 0;
     int seconds = 0;
     int minutes = 0;
@@ -20,13 +24,16 @@ public class Stopwatch implements ActionListener {
     String minutes_string = String.format("%02d", minutes);
     String hours_string = String.format("%02d", hours);
 
-    Timer timer = new Timer(1000, new ActionListener() {
+    Timer timer = new Timer(100, new ActionListener() {
 
         public void actionPerformed(ActionEvent e) {
             elapsedTime = elapsedTime + 1000;
             hours = (elapsedTime / 3600000);
-            minutes = (elapsedTime / 60000) % 60;
-            seconds = (elapsedTime / 1000) % 60;
+            minutes = (getTime()-1-elapsedTime / 60000) % 60;
+                if(minutes < 0){
+                    reset();
+                }
+            seconds = (abs(59-((elapsedTime / 1000)) % 60));
             seconds_string = String.format("%02d", seconds);
             minutes_string = String.format("%02d", minutes);
             hours_string = String.format("%02d", hours);
@@ -69,7 +76,7 @@ public class Stopwatch implements ActionListener {
 
             if (!started) {
                 started = true;
-                startButton.setText("STOP");
+                startButton.setText("INC");
                 start();
             } else {
                 started = false;
@@ -89,7 +96,9 @@ public class Stopwatch implements ActionListener {
     }
 
     void stop() {
-        timer.stop();
+
+        elapsedTime = elapsedTime-getIncrement()*1000;
+
     }
 
     void reset() {
@@ -103,7 +112,21 @@ public class Stopwatch implements ActionListener {
         hours_string = String.format("%02d", hours);
         timeLabel.setText(hours_string + ":" + minutes_string + ":" + seconds_string);
     }
-    public static void main(String[] args) {
-        Stopwatch sp = new Stopwatch();
+
+    public void setTime(int time) {
+        Time = time;
     }
+    public void setIncrement(int increment) {
+        Increment = increment;
+    }
+    public int getTime() {
+        return Time;
+    }
+
+    public int getIncrement() {
+        return Increment;
+    }
+
+    public static void main(String[] args) { Stopwatch sp = new Stopwatch(); }
+
 }
