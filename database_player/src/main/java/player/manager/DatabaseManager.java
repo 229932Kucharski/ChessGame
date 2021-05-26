@@ -35,7 +35,11 @@ public class DatabaseManager implements AutoCloseable{
                 "login varchar(50) NOT NULL," +
                 "password binary(100) NOT NULL," +
                 "boardDesign varchar(50) NOT NULL," +
-                "pieceDesign varchar(50) NOT NULL" +
+                "pieceDesign varchar(50) NOT NULL," +
+                "checkMate int NOT NULL," +
+                "staleMate int NOT NULL," +
+                "loses int NOT NULL," +
+                "played int NOT NULL," +
                 ");";
         Statement s = connection.createStatement();
         s.executeUpdate(createUser);

@@ -14,7 +14,11 @@ public class LoginManager {
 
     private static User loggedUser;
 
-
+    /**
+     * Login user
+     * @param login login of user that want to login
+     * @param password password of user that want to login
+     */
     public static void login(String login, String password) throws SQLException {
         UserDao userDao = new UserDao();
         User user = userDao.findByLogin(login);
@@ -24,6 +28,9 @@ public class LoginManager {
         setLoggedUser(user);
     }
 
+    /**
+     * Logout current user
+     */
     public static void logout() {
         setLoggedUser(null);
     }

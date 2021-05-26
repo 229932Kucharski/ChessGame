@@ -8,6 +8,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for user database operation, add, delete, update, fin
+ */
 public class UserDao implements Dao<User> {
 
     private final String url = "jdbc:sqlserver://localhost;databaseName=chessGameDB";
@@ -27,8 +30,8 @@ public class UserDao implements Dao<User> {
 
     @Override
     public void add(User obj) throws SQLException {
-        String addUser ="insert into player(name, login, password, boardDesign, pieceDesign) VALUES "
-                + "(?, ?, ?, ?, ?)";
+        String addUser ="insert into player(name, login, password, boardDesign, pieceDesign, checkMate, " +
+                "staleMate, loses, played) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement preparedStatement = connection.prepareStatement(addUser);
         preparedStatement.setString(1, obj.getName());
@@ -36,6 +39,10 @@ public class UserDao implements Dao<User> {
         preparedStatement.setBytes(3, obj.getPassword());
         preparedStatement.setString(4, obj.getBoardDesign().toString());
         preparedStatement.setString(5, obj.getPieceDesign().toString());
+        preparedStatement.setInt(6, obj.getStatistic().getCheckMate());
+        preparedStatement.setInt(7, obj.getStatistic().getStaleMate());
+        preparedStatement.setInt(8, obj.getStatistic().getLoses());
+        preparedStatement.setInt(9, obj.getStatistic().getPlayed());
         preparedStatement.executeUpdate();
 
     }
@@ -52,7 +59,12 @@ public class UserDao implements Dao<User> {
             byte[] pass = resultSet.getBytes(4);
             String boardDesign = resultSet.getString(5);
             String pieceDesign = resultSet.getString(6);
-            user = new User(null, PieceDesign.valueOf(pieceDesign), BoardDesign.valueOf(boardDesign), 0, name, login, password);
+            int checkMate = resultSet.getInt(7);
+            int staleMate = resultSet.getInt(8);
+            int loses = resultSet.getInt(9);
+            int played = resultSet.getInt(10);
+            user = new User(null, PieceDesign.valueOf(pieceDesign), BoardDesign.valueOf(boardDesign),
+                    0, name, login, password, checkMate, staleMate, loses, played);
         }
         return user;
     }
@@ -70,7 +82,12 @@ public class UserDao implements Dao<User> {
             byte[] pass = resultSet.getBytes(4);
             String boardDesign = resultSet.getString(5);
             String pieceDesign = resultSet.getString(6);
-            user = new User(null, PieceDesign.valueOf(pieceDesign), BoardDesign.valueOf(boardDesign), 0, name, login, password);
+            int checkMate = resultSet.getInt(7);
+            int staleMate = resultSet.getInt(8);
+            int loses = resultSet.getInt(9);
+            int played = resultSet.getInt(10);
+            user = new User(null, PieceDesign.valueOf(pieceDesign), BoardDesign.valueOf(boardDesign),
+                    0, name, login, password, checkMate, staleMate, loses, played);
         }
         return user;
     }
@@ -87,7 +104,12 @@ public class UserDao implements Dao<User> {
             byte[] pass = resultSet.getBytes(4);
             String boardDesign = resultSet.getString(5);
             String pieceDesign = resultSet.getString(6);
-            User user = new User(null, PieceDesign.valueOf(pieceDesign), BoardDesign.valueOf(boardDesign), 0, name, login, password);
+            int checkMate = resultSet.getInt(7);
+            int staleMate = resultSet.getInt(8);
+            int loses = resultSet.getInt(9);
+            int played = resultSet.getInt(10);
+            User user = new User(null, PieceDesign.valueOf(pieceDesign), BoardDesign.valueOf(boardDesign),
+                    0, name, login, password, checkMate, staleMate, loses, played);
             users.add(user);
         }
         return users;

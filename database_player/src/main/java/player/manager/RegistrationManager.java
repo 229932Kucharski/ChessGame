@@ -33,7 +33,7 @@ public class RegistrationManager {
         if (!isLoginFree(login)) {
             throw new IllegalArgumentException("Login is already in use");
         }
-        User user = new User(null, PieceDesign.DEFAULT, BoardDesign.DEFAULT, 0, name, login, pass);
+        User user = new User(null, PieceDesign.DEFAULT, BoardDesign.DEFAULT, 0, name, login, pass, 0, 0, 0, 0);
         UserDao userDao = new UserDao();
         userDao.add(user);
     }

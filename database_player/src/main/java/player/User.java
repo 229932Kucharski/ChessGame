@@ -13,12 +13,15 @@ public class User extends Player {
     private String name;
     private final String login;
     private byte[] password;
+    private Statistic statistic;
 
-    public User(PieceColor pieceColor, PieceDesign pieceDesign, BoardDesign boardDesign, int score, String name, String login, String password) {
+    public User(PieceColor pieceColor, PieceDesign pieceDesign, BoardDesign boardDesign, int score, String name, String login, String password,
+                int checkMate, int staleMate, int loses, int played) {
         super(pieceColor, pieceDesign, boardDesign, score);
         this.name = name;
         this.login = login;
         setPassword(password);
+        statistic = new Statistic(checkMate, staleMate, loses, played);
     }
 
     public String getName() {
@@ -31,6 +34,10 @@ public class User extends Player {
 
     public byte[] getPassword() {
         return password;
+    }
+
+    public Statistic getStatistic() {
+        return statistic;
     }
 
     public void setName(String name) {
