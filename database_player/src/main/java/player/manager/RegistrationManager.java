@@ -18,8 +18,12 @@ public class RegistrationManager {
      * @return true if login is free, false if login is in use
      */
     private static boolean isLoginFree(String login) throws SQLException {
-        UserDao userDao = new UserDao();
-        User user = userDao.findByLogin(login);
+        User user = null;
+        try(UserDao userDao = new UserDao()) {
+            user = userDao.findByLogin(login);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return user == null;
     }
 
@@ -34,8 +38,12 @@ public class RegistrationManager {
             throw new IllegalArgumentException("Login is already in use");
         }
         User user = new User(null, PieceDesign.DEFAULT, BoardDesign.DEFAULT, 0, name, login, pass, 0, 0, 0, 0);
-        UserDao userDao = new UserDao();
-        userDao.add(user);
+        try(UserDao userDao = new UserDao()) {
+            userDao.add(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

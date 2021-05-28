@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -7,7 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <AnchorPane fx:id="signUpAnchorPane" prefHeight="497.0" prefWidth="428.0" style="-fx-background-color: rgb(40,40,40);" stylesheets="@../style/menustyl.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignUpController">
    <children>
@@ -18,19 +18,20 @@
                   <Font name="Times New Roman" size="12.0" />
                </font>
             </Text>
-            <TextField />
+            <TextField fx:id="loginTextField" />
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Podaj hasło:">
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font>
             </Text>
-            <TextField />
+            <TextField fx:id="passwordTextField" />
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Podaj nick:">
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font>
             </Text>
-            <TextField />
+            <TextField fx:id="nickTextField" />
+            <Label fx:id="warningLabel" prefHeight="26.0" prefWidth="220.0" textFill="WHITE" />
          </children>
       </VBox>
       <HBox alignment="CENTER" prefHeight="69.0" prefWidth="428.0" style="-fx-background-color: #562837; -fx-border-color: rgba(255,255,255,0.4); -fx-border-style: solid inside; -fx-border-radius: 20;">
@@ -42,7 +43,7 @@
             </Text>
          </children>
       </HBox>
-      <ToggleButton layoutX="163.0" layoutY="360.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="102.0" text="Zarejestruj mnie" />
+      <ToggleButton layoutX="163.0" layoutY="360.0" mnemonicParsing="false" onAction="#signUp" prefHeight="35.0" prefWidth="102.0" text="Zarejestruj mnie" />
       <ToggleButton layoutX="40.0" layoutY="438.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="65.0" text="Powrót" />
    </children>
 </AnchorPane>

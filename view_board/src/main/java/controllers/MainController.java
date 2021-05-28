@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.AnchorPane;
+import player.manager.LoginManager;
 
 import java.io.IOException;
 
@@ -18,6 +19,7 @@ public class MainController {
     public ChoiceBox<Pace> paceChoiceBox;
     public ChoiceBox<GameMode> modeChoiceBox;
     public Button showProfileButton;
+    public Button logInButton;
 
     public void initialize() {
         //showProfileButton.setDisable(true);
@@ -30,10 +32,27 @@ public class MainController {
         ObservableList<Pace> pace = FXCollections.observableArrayList(Pace.values());
         paceChoiceBox.setItems(pace);
         paceChoiceBox.setValue(Pace.menu);
+
+        setLoginButton();
+    }
+
+    public void setLoginButton() {
+        if(LoginManager.getLoggedUser() == null) {
+            logInButton.setOnAction(this::logIn);
+            logInButton.setText("Zaloguj sie");
+        } else {
+            logInButton.setOnAction(this::logOut);
+            logInButton.setText("Wyloguj sie");
+        }
     }
 
     public void logIn(ActionEvent actionEvent) {
         App.changeScene(mainAnchorPane,"loginWindow");
+    }
+
+    public void logOut(ActionEvent actionEvent) {
+        LoginManager.logout();
+        setLoginButton();
     }
 
     public void showProfile(ActionEvent actionEvent) throws IOException {
