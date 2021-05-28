@@ -1,5 +1,7 @@
 package controllers;
 
+import javafx.scene.layout.AnchorPane;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -8,23 +10,25 @@ import static java.lang.StrictMath.abs;
 
 public class Stopwatch implements ActionListener {
 
+
+   // public Label timeLabel;
     JFrame frame = new JFrame();
     JButton startButton = new JButton("START");
     JButton resetButton = new JButton("RESET");
     JLabel timeLabel = new JLabel();
 
-    int Time = 1;
+    int Time = 0;
     int Increment = 0;
     int elapsedTime = 0;
     int seconds = 0;
     int minutes = 0;
     int hours = 0;
-    boolean started = false;
+    boolean started = true;
     String seconds_string = String.format("%02d", seconds);
     String minutes_string = String.format("%02d", minutes);
     String hours_string = String.format("%02d", hours);
 
-    Timer timer = new Timer(100, new ActionListener() {
+    Timer timer = new Timer(1000, new ActionListener() {
 
         public void actionPerformed(ActionEvent e) {
             elapsedTime = elapsedTime + 1000;
@@ -33,7 +37,11 @@ public class Stopwatch implements ActionListener {
                 if(minutes < 0){
                     reset();
                 }
-            seconds = (abs(59-((elapsedTime / 1000)) % 60));
+            seconds = (abs(59-(elapsedTime / 1000) % 60));
+                if(seconds >= 60 ){
+                    minutes++;
+                    seconds = seconds%60;
+                }
             seconds_string = String.format("%02d", seconds);
             minutes_string = String.format("%02d", minutes);
             hours_string = String.format("%02d", hours);
@@ -126,7 +134,7 @@ public class Stopwatch implements ActionListener {
     public int getIncrement() {
         return Increment;
     }
-//
-//    public static void main(String[] args) { Stopwatch sp = new Stopwatch(); }
+
+    //public static void main(String[] args) { Stopwatch sp = new Stopwatch(); }
 
 }
