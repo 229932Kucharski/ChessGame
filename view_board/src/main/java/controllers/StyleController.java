@@ -1,7 +1,6 @@
 package controllers;
 
 import app.App;
-import code.Game;
 import enums.ChessboardStyle;
 import enums.FiguresStyle;
 import javafx.beans.value.ChangeListener;
