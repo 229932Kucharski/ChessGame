@@ -1,6 +1,7 @@
 package controllers;
 
 import app.App;
+import code.Statistic;
 import javafx.event.ActionEvent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -18,15 +19,20 @@ public class ProfileController {
 
         XYChart.Series series1 = new XYChart.Series();
         series1.setName("2003");
-        final XYChart.Data<String, Number> dataPrzegr = new XYChart.Data("Przegrane", 5);
-        final XYChart.Data<String, Number> dataRem = new XYChart.Data("Remisy", 4);
-        final XYChart.Data<String, Number> dataWygr = new XYChart.Data("Wygrane", 15);
+
+        Statistic st = new Statistic(3,4,5);
+        final XYChart.Data<String, Number> dataPrzegr = new XYChart.Data("Przegrane", st.getLoses());
+        final XYChart.Data<String, Number> dataRem = new XYChart.Data("Remisy", st.getStalemate());
+        final XYChart.Data<String, Number> dataWygr = new XYChart.Data("Wygrane", st.getCheckmate());
         series1.getData().add(dataPrzegr);
         series1.getData().add(dataRem);
         series1.getData().add(dataWygr);
         chart.getData().addAll(series1);
 
-        chart.setStyle("-fx-background-color: rgba(255,255,255,0.6); -fx-font-size: 16; -fx-font-family: 'Times New Roman'; -fx-text-fill: white; -fx-background-size: 200px ,500px");
+        chart.setStyle("-fx-background-color: rgba(255,255,255,0.6);" +
+                " -fx-font-size: 16; -fx-font-family: 'Times New Roman';" +
+                " -fx-text-fill: white; -fx-background-size: 200px ,500px");
+
         dataPrzegr.getNode().setStyle("-fx-bar-fill: CHART_COLOR_1;");
         dataRem.getNode().setStyle("-fx-bar-fill: CHART_COLOR_2;");
         dataWygr.getNode().setStyle("-fx-bar-fill: CHART_COLOR_3;");
