@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="MainController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane id="bg" fx:id="mainAnchorPane" prefHeight="800.0" prefWidth="980.0" stylesheets="@../style/menustyl.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
+    <children>
+        <VBox layoutX="309.0" layoutY="198.0" prefHeight="517.0" prefWidth="368.0" spacing="30.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#newGame" prefHeight="55.0" prefWidth="360.0" style="-fx-base: #562837;" text="Nowa Gra">
+                    <font>
+                        <Font name="Times New Roman" size="24.0" />
+                    </font>
+                    <effect>
+                        <ColorAdjust brightness="-0.05" />
+                    </effect>
+                </Button>
+            <ChoiceBox fx:id="modeChoiceBox" prefHeight="40.0" prefWidth="355.0" style="-fx-base: #562837;" />
+            <ChoiceBox fx:id="paceChoiceBox" layoutX="10.0" layoutY="95.0" prefHeight="40.0" prefWidth="356.0" onAction="#setPace" style="-fx-base: #562837;" />
+                <Button mnemonicParsing="false" onAction="#logIn" prefHeight="55.0" prefWidth="360.0" style="-fx-base: #562837;" text="Zaloguj">
+                    <font>
+                        <Font name="Times New Roman" size="24.0" />
+                    </font>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#showProfile" prefHeight="55.0" prefWidth="360.0" style="-fx-base: #562837;" text="Pokaż profil">
+                    <font>
+                        <Font name="Times New Roman" size="24.0" />
+                    </font>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#closeApp" prefHeight="55.0" prefWidth="360.0" style="-fx-base: #562837;" text="Zakończ">
+                    <font>
+                        <Font name="Times New Roman" size="24.0" />
+                    </font>
+                </Button>
+            </children>
+        </VBox>
+        <Text fill="WHITE" layoutX="340.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SZACHY">
+            <font>
+                <Font name="Times New Roman Bold" size="72.0" />
+            </font>
+        </Text>
+    </children>
+    <effect>
+        <ColorAdjust saturation="-0.02" />
+    </effect>
 </AnchorPane>
