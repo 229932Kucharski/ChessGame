@@ -66,13 +66,11 @@ public class StyleController {
                        Image image = new Image("/images/classicChess.jpg");
                        chessImage.setImage(image);
                        colorBoard = "rgba(0,0,0)";
-
                    }
                    else if (t1.equals(2)) {
                        Image image = new Image("/images/woodenChess.jpg");
                        chessImage.setImage(image);
                        colorBoard = "rgba(120,50,35)";
-
                    }
                    else if (t1.equals(3)) {
                        Image image = new Image("/images/marbleChess.jpg");

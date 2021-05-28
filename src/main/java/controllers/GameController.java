@@ -35,7 +35,7 @@ public class GameController {
                 hb.setMinSize(38, 38);
                 hb.setAlignment(Pos.CENTER);
                 //odwrocono kolejnosc bo gridpane zamienia wiersze z kolumnami
-                SetPieces.setPieces(hb,j,i);
+                SetPiecesOnBoard.setPieces(hb,j,i);
 
                 hBoxList.add(hb);
                 chessboardGridPane.add(hb, i, j);
