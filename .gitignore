@@ -9,7 +9,6 @@ view_board/*.iml
 
 # Node artifact files
 node_modules/
-dist/
 
 # Compiled Java class files
 *.class

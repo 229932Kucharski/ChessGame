@@ -126,10 +126,17 @@ public class UserDao implements Dao<User> {
 
     @Override
     public void update(User obj) throws SQLException {
-        String updateUser ="UPDATE player SET name = ? WHERE login = ?";
+        String updateUser ="UPDATE player SET name = ?, boardDesign = ?, pieceDesign = ?, checkMate = ?," +
+                "staleMate = ?, loses = ?, played = ? WHERE login = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(updateUser);
         preparedStatement.setString(1, obj.getName());
-        preparedStatement.setString(2, obj.getLogin());
+        preparedStatement.setString(2, obj.getBoardDesign().toString());
+        preparedStatement.setString(3, obj.getPieceDesign().toString());
+        preparedStatement.setInt(4, obj.getStatistic().getCheckMate());
+        preparedStatement.setInt(5, obj.getStatistic().getStaleMate());
+        preparedStatement.setInt(6, obj.getStatistic().getLoses());
+        preparedStatement.setInt(7, obj.getStatistic().getPlayed());
+        preparedStatement.setString(8, obj.getLogin());
         preparedStatement.executeUpdate();
 
     }
