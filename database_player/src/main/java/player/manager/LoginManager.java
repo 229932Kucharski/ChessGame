@@ -28,6 +28,15 @@ public class LoginManager {
         setLoggedUser(user);
     }
 
+    public static void updateLoggedUser() {
+        try(UserDao userDao = new UserDao()) {
+            userDao.update(loggedUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     /**
      * Logout current user
      */
