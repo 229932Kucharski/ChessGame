@@ -1,13 +1,13 @@
 package player;
 
-import player.enums.BoardDesign;
+import player.enums.ChessboardStyle;
 import player.enums.PieceColor;
-import player.enums.PieceDesign;
+import player.enums.FiguresStyle;
 
 public class AI extends Player{
 
-    public AI(PieceColor pieceColor, PieceDesign pieceDesign, BoardDesign boardDesign, int score) {
-        super(pieceColor, pieceDesign, boardDesign, score);
+    public AI(PieceColor pieceColor, FiguresStyle figuresStyle, ChessboardStyle chessboardStyle, int score) {
+        super(pieceColor, figuresStyle, chessboardStyle, score);
     }
 
     public void play() {

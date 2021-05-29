@@ -1,8 +1,8 @@
 package controllers;
 
 import app.App;
-import enums.GameMode;
-import enums.Pace;
+import player.enums.GameMode;
+import player.enums.Pace;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,7 +22,7 @@ public class MainController {
     public Button logInButton;
 
     public void initialize() {
-        //showProfileButton.setDisable(true);
+        showProfileButton.setDisable(LoginManager.getLoggedUser() == null);
         //choice box do rodzaju gry
         ObservableList<GameMode> mode = FXCollections.observableArrayList(GameMode.values());
         modeChoiceBox.setItems(mode);

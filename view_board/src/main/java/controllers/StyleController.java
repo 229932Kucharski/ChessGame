@@ -1,8 +1,9 @@
 package controllers;
 
 import app.App;
-import enums.ChessboardStyle;
-import enums.FiguresStyle;
+import player.User;
+import player.enums.ChessboardStyle;
+import player.enums.FiguresStyle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -12,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import player.manager.LoginManager;
 
 
 public class StyleController {
@@ -20,7 +22,7 @@ public class StyleController {
     public ImageView figureImage;
     public ImageView chessImage;
     public AnchorPane styleAnchorPane;
-    public static String colorBoard = "rgba(0,0,0)";
+    public static String colorBoard = "rgba(50,50,50)";
 
     public void initialize() {
         ObservableList<FiguresStyle> figures = FXCollections.observableArrayList(FiguresStyle.values());
@@ -29,12 +31,8 @@ public class StyleController {
 
         ObservableList<ChessboardStyle> cbs = FXCollections.observableArrayList(ChessboardStyle.values());
         chessboardChoiceBox.setItems(cbs);
-        if(colorBoard.equals("rgba(0,0,0)"))
-            chessboardChoiceBox.setValue(ChessboardStyle.classic);
-        if(colorBoard.equals("rgba(120,50,35)"))
-            chessboardChoiceBox.setValue(ChessboardStyle.wooden);
-        if(colorBoard.equals("rgba(128,128,128)"))
-            chessboardChoiceBox.setValue(ChessboardStyle.marble);
+        User user = LoginManager.getLoggedUser();
+        chessboardChoiceBox.setValue(user.getBoardDesign());
 
         figuresChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 
@@ -57,26 +55,30 @@ public class StyleController {
             }
         );
         chessboardChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-
                @Override
                public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
 
                    if (t1.equals(1)) {
                        Image image = new Image("/images/classicChess.jpg");
                        chessImage.setImage(image);
-                       colorBoard = "rgba(0,0,0)";
+                       colorBoard = "rgba(50,50,50)";
+                       LoginManager.getLoggedUser().setBoardDesign(ChessboardStyle.classic);
                    }
                    else if (t1.equals(2)) {
                        Image image = new Image("/images/woodenChess.jpg");
                        chessImage.setImage(image);
                        colorBoard = "rgba(120,50,35)";
+                       LoginManager.getLoggedUser().setBoardDesign(ChessboardStyle.wooden);
                    }
                    else if (t1.equals(3)) {
                        Image image = new Image("/images/marbleChess.jpg");
                        chessImage.setImage(image);
                        colorBoard = "rgba(128,128,128)";
+                       LoginManager.getLoggedUser().setBoardDesign(ChessboardStyle.marble);
 
                    }
+                   LoginManager.updateLoggedUser();
+
                }
            }
         );

@@ -3,16 +3,16 @@ package player;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import player.enums.BoardDesign;
+import player.enums.ChessboardStyle;
 import player.enums.PieceColor;
-import player.enums.PieceDesign;
+import player.enums.FiguresStyle;
 
 public class Guest extends Player {
 
     String name;
 
-    public Guest(PieceColor pieceColor, PieceDesign pieceDesign, BoardDesign boardDesign, int score, String name) {
-        super(pieceColor, pieceDesign, boardDesign, score);
+    public Guest(PieceColor pieceColor, FiguresStyle figuresStyle, ChessboardStyle chessboardStyle, int score, String name) {
+        super(pieceColor, figuresStyle, chessboardStyle, score);
         this.name = name;
     }
 

@@ -1,8 +1,8 @@
 package dao;
 
 import player.User;
-import player.enums.BoardDesign;
-import player.enums.PieceDesign;
+import player.enums.ChessboardStyle;
+import player.enums.FiguresStyle;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -63,7 +63,7 @@ public class UserDao implements Dao<User> {
             int staleMate = resultSet.getInt(8);
             int loses = resultSet.getInt(9);
             int played = resultSet.getInt(10);
-            user = new User(null, PieceDesign.valueOf(pieceDesign), BoardDesign.valueOf(boardDesign),
+            user = new User(null, FiguresStyle.fromString(pieceDesign), ChessboardStyle.fromString(boardDesign),
                     0, name, login, password, checkMate, staleMate, loses, played);
         }
         return user;
@@ -86,7 +86,7 @@ public class UserDao implements Dao<User> {
             int staleMate = resultSet.getInt(8);
             int loses = resultSet.getInt(9);
             int played = resultSet.getInt(10);
-            user = new User(null, PieceDesign.valueOf(pieceDesign), BoardDesign.valueOf(boardDesign),
+            user = new User(null, FiguresStyle.fromString(pieceDesign), ChessboardStyle.fromString(boardDesign),
                     0, name, login, password, checkMate, staleMate, loses, played);
         }
         return user;
@@ -108,7 +108,7 @@ public class UserDao implements Dao<User> {
             int staleMate = resultSet.getInt(8);
             int loses = resultSet.getInt(9);
             int played = resultSet.getInt(10);
-            User user = new User(null, PieceDesign.valueOf(pieceDesign), BoardDesign.valueOf(boardDesign),
+            User user = new User(null, FiguresStyle.fromString(pieceDesign), ChessboardStyle.fromString(boardDesign),
                     0, name, login, password, checkMate, staleMate, loses, played);
             users.add(user);
         }

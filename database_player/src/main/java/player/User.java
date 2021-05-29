@@ -3,9 +3,9 @@ package player;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import player.enums.BoardDesign;
+import player.enums.ChessboardStyle;
 import player.enums.PieceColor;
-import player.enums.PieceDesign;
+import player.enums.FiguresStyle;
 import player.password.PasswordHashing;
 
 public class User extends Player {
@@ -15,9 +15,9 @@ public class User extends Player {
     private byte[] password;
     private Statistic statistic;
 
-    public User(PieceColor pieceColor, PieceDesign pieceDesign, BoardDesign boardDesign, int score, String name, String login, String password,
+    public User(PieceColor pieceColor, FiguresStyle figuresStyle, ChessboardStyle chessboardStyle, int score, String name, String login, String password,
                 int checkMate, int staleMate, int loses, int played) {
-        super(pieceColor, pieceDesign, boardDesign, score);
+        super(pieceColor, figuresStyle, chessboardStyle, score);
         this.name = name;
         this.login = login;
         setPassword(password);

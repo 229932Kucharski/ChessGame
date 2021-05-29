@@ -3,21 +3,21 @@ package player;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import player.enums.BoardDesign;
+import player.enums.ChessboardStyle;
 import player.enums.PieceColor;
-import player.enums.PieceDesign;
+import player.enums.FiguresStyle;
 
 public abstract class Player {
 
     private PieceColor pieceColor;
-    private PieceDesign pieceDesign;
-    private BoardDesign boardDesign;
+    private FiguresStyle figuresStyle;
+    private ChessboardStyle chessboardStyle;
     private int score;
 
-    public Player(PieceColor pieceColor, PieceDesign pieceDesign, BoardDesign boardDesign, int score) {
+    public Player(PieceColor pieceColor, FiguresStyle figuresStyle, ChessboardStyle chessboardStyle, int score) {
         this.pieceColor = pieceColor;
-        this.pieceDesign = pieceDesign;
-        this.boardDesign = boardDesign;
+        this.figuresStyle = figuresStyle;
+        this.chessboardStyle = chessboardStyle;
         this.score = score;
     }
 
@@ -29,20 +29,20 @@ public abstract class Player {
         this.pieceColor = pieceColor;
     }
 
-    public PieceDesign getPieceDesign() {
-        return pieceDesign;
+    public FiguresStyle getPieceDesign() {
+        return figuresStyle;
     }
 
-    public void setPieceDesign(PieceDesign pieceDesign) {
-        this.pieceDesign = pieceDesign;
+    public void setPieceDesign(FiguresStyle figuresStyle) {
+        this.figuresStyle = figuresStyle;
     }
 
-    public BoardDesign getBoardDesign() {
-        return boardDesign;
+    public ChessboardStyle getBoardDesign() {
+        return chessboardStyle;
     }
 
-    public void setBoardDesign(BoardDesign boardDesign) {
-        this.boardDesign = boardDesign;
+    public void setBoardDesign(ChessboardStyle chessboardStyle) {
+        this.chessboardStyle = chessboardStyle;
     }
 
     public int getScore() {
@@ -64,8 +64,8 @@ public abstract class Player {
         return new EqualsBuilder()
                 .append(score, player.score)
                 .append(pieceColor, player.pieceColor)
-                .append(pieceDesign, player.pieceDesign)
-                .append(boardDesign, player.boardDesign)
+                .append(figuresStyle, player.figuresStyle)
+                .append(chessboardStyle, player.chessboardStyle)
                 .isEquals();
     }
 
@@ -73,8 +73,8 @@ public abstract class Player {
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
                 .append(pieceColor)
-                .append(pieceDesign)
-                .append(boardDesign)
+                .append(figuresStyle)
+                .append(chessboardStyle)
                 .append(score)
                 .toHashCode();
     }
@@ -83,8 +83,8 @@ public abstract class Player {
     public String toString() {
         return new ToStringBuilder(this)
                 .append("pieceColor", pieceColor)
-                .append("pieceDesign", pieceDesign)
-                .append("boardDesign", boardDesign)
+                .append("pieceDesign", figuresStyle)
+                .append("boardDesign", chessboardStyle)
                 .append("score", score)
                 .toString();
     }

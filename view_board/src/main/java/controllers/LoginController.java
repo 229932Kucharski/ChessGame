@@ -27,6 +27,7 @@ public class LoginController {
             LoginManager.login(login, password);
         } catch (IllegalArgumentException e) {
             setWarning("Nieprawidlowy login lub haslo");
+            e.printStackTrace();
             return;
         } catch (SQLException e) {
             setWarning("Nie udalo sie zalogowac");

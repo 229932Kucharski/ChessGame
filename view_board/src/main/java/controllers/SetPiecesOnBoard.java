@@ -6,9 +6,9 @@ import javafx.scene.layout.HBox;
 
 public class SetPiecesOnBoard {
     public static void setPieces(HBox hb, int i, int j) {
-        if(i == 0 && j == 0 || i == 7 && j == 0) {
+        if(i == 0 && j == 0 || i == 0 && j == 7) {
             //tu powinna byc czarna wieza
-            Image image = new Image("/images/rook.png");
+            Image image = new Image("/images/rookBlack.png");
             ImageView imageView = new ImageView(image);
             imageView.setId("blackImage");
             imageView.setFitHeight(60);
@@ -16,7 +16,7 @@ public class SetPiecesOnBoard {
             hb.getChildren().add(imageView);
         }
 
-        if(i == 7 && j == 7 || i == 0 && j == 7) {
+        if(i == 7 && j == 7 || i == 7 && j == 0) {
             Image image = new Image("/images/rook.png");
             ImageView imageView = new ImageView(image);
             imageView.setId("whiteImage");
@@ -27,7 +27,7 @@ public class SetPiecesOnBoard {
 
         if(i == 0 && (j == 1 || j == 6)) {
             //tu powinien byc czarny skoczek
-            Image image = new Image("/images/knight.png");
+            Image image = new Image("/images/knightBlack.png");
             ImageView imageView = new ImageView(image);
             imageView.setId("blackImage");
             imageView.setFitHeight(60);
@@ -46,7 +46,7 @@ public class SetPiecesOnBoard {
 
         if(i == 0 && (j == 2 ||  j == 5)) {
             //tu powinien byc czarny bishop
-            Image image = new Image("/images/bishop.png");
+            Image image = new Image("/images/bishopBlack.png");
             ImageView imageView = new ImageView(image);
             imageView.setId("blackImage");
             imageView.setFitHeight(60);
@@ -65,7 +65,7 @@ public class SetPiecesOnBoard {
 
         if(i==0 && j == 3) {
             //tu powinna byc czarna krolowa
-            Image image = new Image("/images/queen.png");
+            Image image = new Image("/images/queenBlack.png");
             ImageView imageView = new ImageView(image);
             imageView.setId("blackImage");
             imageView.setFitHeight(60);
@@ -84,7 +84,7 @@ public class SetPiecesOnBoard {
 
         if (i == 0 && j == 4) {
             //tu powinien byc czarny krol
-            Image image = new Image("/images/king.png");
+            Image image = new Image("/images/kingBlack.png");
             ImageView imageView = new ImageView(image);
             imageView.setId("blackImage");
             imageView.setFitHeight(60);
@@ -104,7 +104,7 @@ public class SetPiecesOnBoard {
         for(int x = 0; x < 8 ; x++) {
             if (i == 1 && j == x) {
                 //blackImage pawns
-                Image image = new Image("/images/pawn.png");
+                Image image = new Image("/images/pawnBlack.png");
                 ImageView imageView = new ImageView(image);
                 imageView.setId("blackImage");
                 imageView.setFitHeight(60);

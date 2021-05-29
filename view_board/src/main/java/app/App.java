@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import player.manager.DatabaseManager;
 
 import java.io.IOException;
 
@@ -19,7 +20,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
+//        DatabaseManager dbm = new DatabaseManager();
+//        dbm.createDatabase();
+//        dbm.createUser();
         FXMLLoader loader = new FXMLLoader();
         stage.getIcons().add(new Image("/images/icon.png"));
         loader.setLocation(this.getClass().getResource("/fxml/mainWindow.fxml"));
@@ -30,7 +33,6 @@ public class App extends Application {
         stage.setTitle("Chess game");
         stage.show();
     }
-
     /**
      * Method for changing scene
      * @param old   current pane

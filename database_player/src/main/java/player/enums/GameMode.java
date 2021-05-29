@@ -1,4 +1,4 @@
-package enums;
+package player.enums;
 
 public enum GameMode {
     GraczKomputer("Graj z komputerem"),

@@ -2,8 +2,8 @@ package player.manager;
 
 import dao.UserDao;
 import player.User;
-import player.enums.BoardDesign;
-import player.enums.PieceDesign;
+import player.enums.ChessboardStyle;
+import player.enums.FiguresStyle;
 
 import java.sql.SQLException;
 
@@ -37,7 +37,7 @@ public class RegistrationManager {
         if (!isLoginFree(login)) {
             throw new IllegalArgumentException("Login is already in use");
         }
-        User user = new User(null, PieceDesign.DEFAULT, BoardDesign.DEFAULT, 0, name, login, pass, 0, 0, 0, 0);
+        User user = new User(null, FiguresStyle.classic, ChessboardStyle.classic, 0, name, login, pass, 0, 0, 0, 0);
         try(UserDao userDao = new UserDao()) {
             userDao.add(user);
         } catch (Exception e) {

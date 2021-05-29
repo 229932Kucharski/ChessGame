@@ -9,6 +9,8 @@ import javafx.scene.layout.*;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import player.manager.LoginManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +21,12 @@ public class GameController {
     public AnchorPane gameAnchorPane;
     public boolean isHighlighted;
     public GridPane chessboardGridPane;
+    public Text username;
 
     public void initialize() {
+        if(LoginManager.getLoggedUser()!=null) {
+            username.setText(LoginManager.getLoggedUser().getName());
+        }
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 HBox hb = new HBox();
@@ -74,7 +80,6 @@ public class GameController {
         for (HBox hbox : hBoxList) {
             hbox.setBorder(new Border(new BorderStroke(Color.YELLOW,
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(0))));
-
         }
     }
     public Node getNodeByXY(GridPane gp, int x, int y) {
@@ -90,7 +95,6 @@ public class GameController {
             if(column == null) {
                 column = 0;
             }
-
             if(row == x && column == y) {
                 result = node;
                 break;
@@ -106,4 +110,11 @@ public class GameController {
         return hBoxList;
     }
 
+    public void giveUp(ActionEvent actionEvent) {
+        if(LoginManager.getLoggedUser() != null) {
+            LoginManager.getLoggedUser().getStatistic().setLoses(LoginManager.getLoggedUser().getStatistic().getLoses() + 1);
+            LoginManager.updateLoggedUser();
+        }
+        App.changeScene(gameAnchorPane, "mainWindow");
+    }
 }

@@ -1,4 +1,4 @@
-package enums;
+package player.enums;
 
 public enum ChessboardStyle {
     menu("Wybierz styl szachownicy"),
@@ -12,7 +12,14 @@ public enum ChessboardStyle {
     public String getFig(){
         return cb;
     }
-
+    public static ChessboardStyle fromString(String txt) {
+        for (ChessboardStyle cs: ChessboardStyle.values()) {
+            if(cs.cb.equals(txt)){
+                return cs;
+            }
+        }
+        return null;
+    }
     @Override
     public String toString() {
         return cb;

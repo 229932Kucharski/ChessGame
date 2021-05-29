@@ -39,10 +39,7 @@ public class Statistic {
     }
 
     public int getPlayed() {
-        return played;
+        return checkMate + staleMate + loses;
     }
 
-    public void setPlayed(int played) {
-        this.played = played;
-    }
 }

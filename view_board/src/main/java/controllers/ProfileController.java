@@ -8,6 +8,8 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.AnchorPane;
+import player.User;
+import player.manager.LoginManager;
 
 public class ProfileController {
     final CategoryAxis xAxis = new CategoryAxis();
@@ -20,10 +22,13 @@ public class ProfileController {
         XYChart.Series series1 = new XYChart.Series();
         series1.setName("2003");
 
-        Statistic st = new Statistic(3,4,5);
-        final XYChart.Data<String, Number> dataPrzegr = new XYChart.Data("Przegrane", st.getLoses());
-        final XYChart.Data<String, Number> dataRem = new XYChart.Data("Remisy", st.getStalemate());
-        final XYChart.Data<String, Number> dataWygr = new XYChart.Data("Wygrane", st.getCheckmate());
+        int loses = LoginManager.getLoggedUser().getStatistic().getLoses();
+        int wins = LoginManager.getLoggedUser().getStatistic().getCheckMate();
+        int draws = LoginManager.getLoggedUser().getStatistic().getStaleMate();
+
+        final XYChart.Data<String, Number> dataPrzegr = new XYChart.Data("Przegrane", loses);
+        final XYChart.Data<String, Number> dataRem = new XYChart.Data("Remisy", draws);
+        final XYChart.Data<String, Number> dataWygr = new XYChart.Data("Wygrane", wins);
         series1.getData().add(dataPrzegr);
         series1.getData().add(dataRem);
         series1.getData().add(dataWygr);

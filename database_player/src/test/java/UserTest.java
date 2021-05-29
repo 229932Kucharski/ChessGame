@@ -1,33 +1,27 @@
-import dao.UserDao;
 import org.junit.Assert;
 import org.junit.Test;
 import player.User;
-import player.enums.BoardDesign;
-import player.enums.PieceDesign;
-import player.manager.DatabaseManager;
-import player.manager.LoginManager;
-import player.manager.RegistrationManager;
+import player.enums.ChessboardStyle;
+import player.enums.FiguresStyle;
 import player.password.PasswordHashing;
-
-import java.sql.SQLException;
 
 public class UserTest {
 
     @Test
     public void createUserTest() {
-        User user = new User(null , PieceDesign.DEFAULT, BoardDesign.DEFAULT,
+        User user = new User(null , FiguresStyle.classic, ChessboardStyle.classic,
                 0, "Gelo", "gelo2424", "qwerty", 0, 0, 0 ,5);
         Assert.assertEquals(user.getLogin(), "gelo2424");
         Assert.assertEquals(user.getName(), "Gelo");
         Assert.assertArrayEquals(user.getPassword(), PasswordHashing.hashPassword("qwerty"));
-        Assert.assertEquals(user.getBoardDesign(), BoardDesign.DEFAULT);
-        Assert.assertEquals(user.getPieceDesign(), PieceDesign.DEFAULT);
+        Assert.assertEquals(user.getBoardDesign(), ChessboardStyle.classic);
+        Assert.assertEquals(user.getPieceDesign(), FiguresStyle.classic);
         Assert.assertNull(user.getPieceColor());
     }
 
     @Test
     public void userSetterTest() {
-        User user = new User(null , PieceDesign.DEFAULT, BoardDesign.DEFAULT,
+        User user = new User(null , FiguresStyle.classic, ChessboardStyle.classic,
                 0, "Gelo", "gelo2424", "qwerty", 0, 0, 0 ,5);
         user.setPassword("alamakota");
         user.setName("NewName");
