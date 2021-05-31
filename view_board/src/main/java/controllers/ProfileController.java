@@ -8,6 +8,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import player.User;
 import player.manager.LoginManager;
 
@@ -16,9 +17,10 @@ public class ProfileController {
     final NumberAxis yAxis = new NumberAxis();
     public BarChart<?, ?> chart = new BarChart<>(xAxis, yAxis);;
     public AnchorPane profileAnchorPane;
+    public Text username;
 
     public void initialize() {
-
+        username.setText(LoginManager.getLoggedUser().getName());
         XYChart.Series series1 = new XYChart.Series();
         series1.setName("2003");
 
