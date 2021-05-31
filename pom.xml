@@ -9,6 +9,8 @@
     <packaging>pom</packaging>
     <version>1.0</version>
     <modules>
+        <module>view_board</module>
+        <module>database_player</module>
         <module>LogicStructure</module>
     </modules>
 
