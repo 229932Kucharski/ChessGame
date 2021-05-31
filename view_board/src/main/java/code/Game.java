@@ -1,10 +1,6 @@
 package code;
 
-import controllers.Stopwatch;
-
 public class Game {
-    private Stopwatch whitePlayerTime;
-    private Stopwatch blackPlayTime;
     public void initGame() {
 
     }

@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.event.EventHandler;
@@ -23,8 +24,16 @@ public class GameController extends GridPane{
     public boolean isHighlighted;
     public GridPane chessboardGridPane;
     public Text username;
+    public Label sPlayerLabel;
+    public Label fPlayerLabel;
+
+    public static ThreadStopwatch wts = new ThreadStopwatch();
+    public static ThreadStopwatch bts = new ThreadStopwatch();
+
+
     ImageView temp;
     HBox tempHb;
+
     public void initialize() {
         if(LoginManager.getLoggedUser()!=null) {
             username.setText(LoginManager.getLoggedUser().getName());
@@ -48,6 +57,10 @@ public class GameController extends GridPane{
 
                 hBoxList.add(hb);
                 chessboardGridPane.add(hb, i, j);
+
+                wts.setLabel(fPlayerLabel);
+                bts.setLabel(sPlayerLabel);
+
             }
         }
         addGridEvent();
