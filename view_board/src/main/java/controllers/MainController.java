@@ -68,46 +68,45 @@ public class MainController {
     }
 
     public void setPace(ActionEvent actionEvent) {
-        Stopwatch whitewatch = new Stopwatch();
-        Stopwatch blackwatch = new Stopwatch();
-        switch (paceChoiceBox.getValue().getPace()) {
-            case "bullet 1 | 0" -> {
-                whitewatch.setTime(1);
-                whitewatch.setIncrement(0);
-                blackwatch.setTime(1);
-                blackwatch.setIncrement(0);
-            }
-            case "bullet 1 | 1" -> {
-                whitewatch.setTime(1);
-                whitewatch.setIncrement(1);
-                blackwatch.setTime(1);
-                blackwatch.setIncrement(1);
-            }
-            case "blitz 3 | 0" -> {
-                whitewatch.setTime(3);
-                whitewatch.setIncrement(0);
-                blackwatch.setTime(3);
-                blackwatch.setIncrement(0);
-            }
-            case "blitz 5 | 0" -> {
-                whitewatch.setTime(5);
-                whitewatch.setIncrement(0);
-                blackwatch.setTime(5);
-                blackwatch.setIncrement(0);
-            }
-            case "blitz 5 | 5" -> {
-                whitewatch.setTime(5);
-                whitewatch.setIncrement(5);
-                blackwatch.setTime(5);
-                blackwatch.setIncrement(5);
-            }
-            case "szybkie 10 | 0" -> {
-                whitewatch.setTime(10);
-                whitewatch.setIncrement(0);
-                blackwatch.setTime(10);
-                blackwatch.setIncrement(0);
-            }
-        }
-
-    }
+//        Stopwatch whitewatch = new Stopwatch();
+//        Stopwatch blackwatch = new Stopwatch();
+//        switch (paceChoiceBox.getValue().getPace()) {
+//            case "bullet 1 | 0" -> {
+//                whitewatch.setTime(1);
+//                whitewatch.setIncrement(0);
+//                blackwatch.setTime(1);
+//                blackwatch.setIncrement(0);
+//            }
+//            case "bullet 1 | 1" -> {
+//                whitewatch.setTime(1);
+//                whitewatch.setIncrement(1);
+//                blackwatch.setTime(1);
+//                blackwatch.setIncrement(1);
+//            }
+//            case "blitz 3 | 0" -> {
+//                whitewatch.setTime(3);
+//                whitewatch.setIncrement(0);
+//                blackwatch.setTime(3);
+//                blackwatch.setIncrement(0);
+//            }
+//            case "blitz 5 | 0" -> {
+//                whitewatch.setTime(5);
+//                whitewatch.setIncrement(0);
+//                blackwatch.setTime(5);
+//                blackwatch.setIncrement(0);
+//            }
+//            case "blitz 5 | 5" -> {
+//                whitewatch.setTime(5);
+//                whitewatch.setIncrement(5);
+//                blackwatch.setTime(5);
+//                blackwatch.setIncrement(5);
+//            }
+//            case "szybkie 10 | 0" -> {
+//                whitewatch.setTime(10);
+//                whitewatch.setIncrement(0);
+//                blackwatch.setTime(10);
+//                blackwatch.setIncrement(0);
+//            }
+//        }
+  }
 }

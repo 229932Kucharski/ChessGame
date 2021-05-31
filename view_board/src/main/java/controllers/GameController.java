@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
@@ -16,17 +17,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class GameController {
+public class GameController extends GridPane{
     private static List<HBox> hBoxList = new ArrayList<>();
     public AnchorPane gameAnchorPane;
     public boolean isHighlighted;
     public GridPane chessboardGridPane;
     public Text username;
-
+    ImageView temp;
+    HBox tempHb;
     public void initialize() {
         if(LoginManager.getLoggedUser()!=null) {
             username.setText(LoginManager.getLoggedUser().getName());
         }
+        //inicjalizacja hboxów na planszy
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 HBox hb = new HBox();
@@ -56,6 +59,7 @@ public class GameController {
                 public void handle(MouseEvent event) {
                     if (event.getClickCount() == 1) {
                         clearHBox();
+                        //pobranie źródła z gridpane (x,y)
                         Node source = (Node) event.getSource();
                         Integer colIndex = GridPane.getColumnIndex(source);
                         Integer rowIndex = GridPane.getRowIndex(source);
@@ -66,16 +70,37 @@ public class GameController {
                             rowIndex = 0;
                         }
                         System.out.printf("Mouse entered cell [%d, %d]%n", colIndex, rowIndex);
+                        //pobranie hboxa z gridpane
                         HBox hb = (HBox) getNodeByXY(chessboardGridPane, rowIndex, colIndex);
-                        if(!hb.getChildren().isEmpty())
-                        hb.setBorder(new Border(new BorderStroke(Color.YELLOW,
-                                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(4))));
-                        System.out.println(hb);
+
+                        //sprawdzenie czy kliknięte pole ma w sobie figure i podkreślenie jej
+                        if(!hb.getChildren().isEmpty()) {
+                            hb.setBorder(new Border(new BorderStroke(Color.YELLOW,
+                                    BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(4))));
+                            tempHb = hb;
+                            temp = (ImageView) hb.getChildren().get(0);
+                        }
+                        //przenoszenie pionka w inne miejsce
+                        moveFigure(hb);
                     }
                 }
             });
         });
     }
+    public void moveFigure(HBox hb) {
+        if(tempHb != null) {
+            if (tempHb.getChildren().get(0) == temp) {
+                if (hb.getChildren().isEmpty()) {
+                    hb.setBorder(new Border(new BorderStroke(Color.YELLOW,
+                            BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(0))));
+                    tempHb.getChildren().clear();
+                    hb.getChildren().add(temp);
+                    tempHb = null;
+                }
+            }
+        }
+    }
+
     public void clearHBox() {
         for (HBox hbox : hBoxList) {
             hbox.setBorder(new Border(new BorderStroke(Color.YELLOW,
@@ -102,6 +127,7 @@ public class GameController {
         }
         return result;
     }
+
     public void back(ActionEvent actionEvent) {
         App.changeScene(gameAnchorPane,"mainWindow");
     }
