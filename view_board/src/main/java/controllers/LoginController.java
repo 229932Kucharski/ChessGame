@@ -33,7 +33,7 @@ public class LoginController {
             setWarning("Nie udalo sie zalogowac");
             return;
         }
-        System.out.println(LoginManager.getLoggedUser());
+        StyleManager.setBoardColor(LoginManager.getLoggedUser().getBoardDesign());
         App.changeScene(loginAnchorPane, "mainWindow");
     }
 

@@ -50,7 +50,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
         </GridPane>
-        <Text fx:id="username" fill="WHITE" layoutX="160.0" layoutY="752.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USERNAME">
+        <Text fx:id="username" fill="WHITE" layoutX="160.0" layoutY="752.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GUEST">
             <font>
                 <Font name="Times New Roman" size="14.0" />
             </font></Text>

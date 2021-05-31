@@ -22,7 +22,6 @@ public class StyleController {
     public ImageView figureImage;
     public ImageView chessImage;
     public AnchorPane styleAnchorPane;
-    public static String colorBoard = "rgba(50,50,50)";
 
     public void initialize() {
         ObservableList<FiguresStyle> figures = FXCollections.observableArrayList(FiguresStyle.values());
@@ -61,29 +60,25 @@ public class StyleController {
                    if (t1.equals(1)) {
                        Image image = new Image("/images/classicChess.jpg");
                        chessImage.setImage(image);
-                       colorBoard = "rgba(50,50,50)";
-                       LoginManager.getLoggedUser().setBoardDesign(ChessboardStyle.classic);
+                       StyleManager.setBoardColor(ChessboardStyle.classic);
                    }
                    else if (t1.equals(2)) {
                        Image image = new Image("/images/woodenChess.jpg");
                        chessImage.setImage(image);
-                       colorBoard = "rgba(120,50,35)";
-                       LoginManager.getLoggedUser().setBoardDesign(ChessboardStyle.wooden);
+                       StyleManager.setBoardColor(ChessboardStyle.wooden);
                    }
                    else if (t1.equals(3)) {
                        Image image = new Image("/images/marbleChess.jpg");
                        chessImage.setImage(image);
-                       colorBoard = "rgba(128,128,128)";
-                       LoginManager.getLoggedUser().setBoardDesign(ChessboardStyle.marble);
-
+                       StyleManager.setBoardColor(ChessboardStyle.marble);
                    }
                    LoginManager.updateLoggedUser();
 
                }
            }
         );
+    }
 
-}
 
     public void back(ActionEvent actionEvent) {
         App.changeScene(styleAnchorPane, "profileWindow");

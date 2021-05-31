@@ -35,7 +35,7 @@ public class GameController extends GridPane{
                 HBox hb = new HBox();
                 if((i+j)%2 != 0) {
                     hb.setId("black");
-                    hb.setStyle("-fx-background-color: " + StyleController.colorBoard);
+                    hb.setStyle("-fx-background-color: " + StyleManager.getColorBoard());
                 }
                 else {
                     hb.setId("white");

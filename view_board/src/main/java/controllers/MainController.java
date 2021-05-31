@@ -1,6 +1,7 @@
 package controllers;
 
 import app.App;
+import player.enums.ChessboardStyle;
 import player.enums.GameMode;
 import player.enums.Pace;
 import javafx.application.Platform;
@@ -53,6 +54,7 @@ public class MainController {
     public void logOut(ActionEvent actionEvent) {
         LoginManager.logout();
         setLoginButton();
+        StyleManager.setBoardColor(ChessboardStyle.classic);
     }
 
     public void showProfile(ActionEvent actionEvent) throws IOException {
