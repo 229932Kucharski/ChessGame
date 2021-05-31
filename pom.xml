@@ -11,6 +11,7 @@
     <modules>
         <module>database_player</module>
         <module>view_board</module>
+        <module>LogicStructure</module>
     </modules>
 
     <properties>

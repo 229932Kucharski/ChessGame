@@ -6,6 +6,7 @@
 
 # Modules
 view_board/*.iml
+LogicStructure/*.iml
 
 # Node artifact files
 node_modules/
@@ -29,6 +30,7 @@ dist/
 # JetBrains IDE
 .idea/
 chessgame.iml
+*.iml
 
 # Unit test reports
 TEST*.xml
