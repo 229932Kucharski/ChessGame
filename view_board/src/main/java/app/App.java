@@ -20,7 +20,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-//        DatabaseManager dbm = new DatabaseManager();
+        DatabaseManager dbm = new DatabaseManager();
 //        dbm.createDatabase();
 //        dbm.createUser();
         FXMLLoader loader = new FXMLLoader();

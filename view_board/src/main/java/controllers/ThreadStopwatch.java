@@ -3,6 +3,7 @@ package controllers;
 
 import javafx.application.Platform;
 import javafx.scene.control.Label;
+import player.manager.LoginManager;
 
 import static java.lang.StrictMath.abs;
 
@@ -27,6 +28,10 @@ public class ThreadStopwatch extends Thread{
     public int getIncrement() { return Increment; }
     public void setIncrement(int increment) { Increment = increment; }
 
+    public int getElapsedTime() { return elapsedTime; }
+    public void setElapsedTime(int elapsedTime) { this.elapsedTime = elapsedTime; }
+
+
     public int getSeconds() {return seconds; }
     public int getMinutes() {return minutes; }
     public int getHours() {return hours; }
@@ -47,16 +52,26 @@ public class ThreadStopwatch extends Thread{
             elapsedTime++;
             hours   = abs((0));
             minutes = abs((getTime()-1 - (elapsedTime / 60)) % 60);
-            seconds = (abs((59 - elapsedTime%60) % 60));
+            seconds = (abs(59 - elapsedTime%60));
+            if(seconds >=60){
+                minutes++;
+                seconds = seconds%60;
+            }
             //System.out.println(hours+ ":"+ minutes + ":" + seconds);
 
             Platform.runLater(new Runnable(){
                 @Override
                 public void run() {
-                    timelabel.setText(hours + ":" + minutes + ":" + seconds);
+                    timelabel.setText(minutes + ":" + seconds);
                 }
             });
             if (hours == 0 && minutes == 0 && seconds == 0){
+
+                if(LoginManager.getLoggedUser() != null) {
+                    LoginManager.getLoggedUser().getStatistic().setLoses(LoginManager.getLoggedUser().getStatistic().getLoses() + 1);
+                    LoginManager.updateLoggedUser();
+                }
+
                 return;
             }
         }
@@ -70,4 +85,14 @@ public class ThreadStopwatch extends Thread{
     public void setLabel(Label lab){
         timelabel = lab;
     }
+
+    public void setNot(ThreadStopwatch ts){
+            setElapsedTime(getElapsedTime() - getIncrement());
+            ts.suspend();
+    }
+
+    public void setYes(ThreadStopwatch ts){
+            ts.resume();
+    }
+
 }

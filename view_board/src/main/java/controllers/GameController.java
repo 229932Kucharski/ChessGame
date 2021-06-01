@@ -62,6 +62,7 @@ public class GameController extends GridPane{
 
                 wts.setLabel(fPlayerLabel);
                 bts.setLabel(sPlayerLabel);
+
             }
         }
             addGridEvent();
@@ -89,11 +90,12 @@ public class GameController extends GridPane{
                         HBox hb = (HBox) getNodeByXY(chessboardGridPane, rowIndex, colIndex);
                         isHighlighted = false;
                         //przenoszenie pionka w inne miejsce
-                        if(move_counter %2 == 0)
-                            moveFigure(hb,"whiteImage");
-
-                        else
-                            moveFigure(hb,"blackImage");
+                        if(move_counter %2 == 0) {
+                            moveFigure(hb, "whiteImage");
+                        }
+                        else {
+                            moveFigure(hb, "blackImage");
+                        }
 
                         //sprawdzenie czy kliknięte pole ma w sobie figure i podkreślenie jej
                         if(!hb.getChildren().isEmpty() && !isHighlighted) {
@@ -135,6 +137,16 @@ public class GameController extends GridPane{
                         }
                     }
                 move_counter++;
+
+                if(move_counter %2 == 0) {
+                    wts.setYes(wts);
+                    bts.setNot(bts);
+                }
+                else {
+                    bts.setYes(bts);
+                    wts.setNot(wts);
+                }
+
                 System.out.println(move_counter);
             }
         }

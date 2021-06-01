@@ -68,6 +68,8 @@ public class MainController {
     public void newGame(ActionEvent actionEvent) throws IOException {
         App.changeScene(mainAnchorPane,"gameWindow");
         GameController.wts.start();
+        GameController.bts.start();
+        GameController.bts.suspend();
     }
 
     public void setPace(ActionEvent actionEvent) {
