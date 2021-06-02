@@ -125,22 +125,25 @@ public class GameController extends GridPane{
                     hb.getChildren().add(temp);
                     tempHb = null;
                     isHighlighted = true;
+                    move_counter++;
                 }
                     else if(!hb.getChildren().isEmpty()) {
                         if(hb.getChildren().get(0).getId().equals("whiteImage")) {
                             if(tempHb.getChildren().get(0).getId().equals("blackImage")) {
                                 hb.getChildren().clear();
                                 hb.getChildren().add(temp);
+                                move_counter++;
                             }
                         }
                         else if(hb.getChildren().get(0).getId().equals("blackImage")) {
                             if(tempHb.getChildren().get(0).getId().equals("whiteImage")) {
                                 hb.getChildren().clear();
                                 hb.getChildren().add(temp);
+                                move_counter++;
                             }
                         }
                     }
-                move_counter++;
+
 
                 if(move_counter %2 == 0) {
                     wts.setYes(wts);
@@ -150,13 +153,6 @@ public class GameController extends GridPane{
                     bts.setYes(bts);
                     wts.setNot(wts);
                 }
-
-                    if(move_counter%2 == 1) {
-                        System.out.println(move_counter + " białe");
-                    }
-                    else {
-                        System.out.println(move_counter + " czarne");
-                    }
             }
         }
     }
