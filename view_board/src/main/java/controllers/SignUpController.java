@@ -2,6 +2,7 @@ package controllers;
 
 import app.App;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import player.manager.RegistrationManager;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 public class SignUpController {
     public AnchorPane signUpAnchorPane;
     public TextField loginTextField;
-    public TextField passwordTextField;
+    public PasswordField passwordTextField;
     public TextField nickTextField;
     public Label warningLabel;
 
