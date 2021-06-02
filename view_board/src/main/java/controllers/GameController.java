@@ -100,12 +100,13 @@ public class GameController extends GridPane{
                         else {
                             moveFigure(hb, "blackImage");
                         }
-
                         //sprawdzenie czy kliknięte pole ma w sobie figure i podkreślenie jej
                         if(!hb.getChildren().isEmpty() && !isHighlighted) {
-                            hb.setBorder(new Border(new BorderStroke(Color.YELLOW,
-                                    BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(4))));
-                            temp2Hb = tempHb;
+                            if(move_counter%2 ==0 && hb.getChildren().get(0).getId().equals("whiteImage")) {
+                                glowUp(hb);
+                            }
+                            else if (move_counter%2 == 1 && hb.getChildren().get(0).getId().equals("blackImage"))
+                                glowUp(hb);
                             tempHb = hb;
                             temp = (ImageView) hb.getChildren().get(0);
                             isHighlighted = true;
@@ -114,6 +115,10 @@ public class GameController extends GridPane{
                 }
             });
         });
+    }
+    public void glowUp(HBox hb) {
+        hb.setBorder(new Border(new BorderStroke(Color.YELLOW,
+                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(4))));
     }
     public void moveFigure(HBox hb, String color) {
         if(tempHb != null) {
@@ -143,8 +148,6 @@ public class GameController extends GridPane{
                             }
                         }
                     }
-
-
                 if(move_counter %2 == 0) {
                     wts.setYes(wts);
                     bts.setNot(bts);
