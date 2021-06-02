@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import player.manager.DatabaseManager;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class App extends Application {
 
@@ -20,9 +21,13 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        DatabaseManager dbm = new DatabaseManager();
-//        dbm.createDatabase();
-//        dbm.createUser();
+        try(DatabaseManager dbm = new DatabaseManager()) {
+            dbm.createDatabase();
+            dbm.createUser();
+        } catch(SQLException e) {
+            System.out.println("Database or player was already created");
+        }
+
         FXMLLoader loader = new FXMLLoader();
         stage.getIcons().add(new Image("/images/icon.png"));
         loader.setLocation(this.getClass().getResource("/fxml/mainWindow.fxml"));
