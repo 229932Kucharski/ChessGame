@@ -5,13 +5,18 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import player.manager.LoginManager;
 
 import java.util.ArrayList;
@@ -29,7 +34,6 @@ public class GameController extends GridPane{
 
     public static ThreadStopwatch wts = new ThreadStopwatch();
     public static ThreadStopwatch bts = new ThreadStopwatch();
-
 
     ImageView temp;
     HBox tempHb;
@@ -147,7 +151,12 @@ public class GameController extends GridPane{
                     wts.setNot(wts);
                 }
 
-                System.out.println(move_counter);
+                    if(move_counter%2 == 1) {
+                        System.out.println(move_counter + " białe");
+                    }
+                    else {
+                        System.out.println(move_counter + " czarne");
+                    }
             }
         }
     }
@@ -187,10 +196,35 @@ public class GameController extends GridPane{
     }
 
     public void giveUp(ActionEvent actionEvent) {
-        if(LoginManager.getLoggedUser() != null) {
-            LoginManager.getLoggedUser().getStatistic().setLoses(LoginManager.getLoggedUser().getStatistic().getLoses() + 1);
-            LoginManager.updateLoggedUser();
+
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Give Up");
+            alert.setHeaderText("Czy na pewno chcesz się poddać?");
+            //alert.setContentText("Czy napewno chcesz się poddać?");
+            //alert.setGraphic(new ImageView(new Image("/images/icon.png")));
+            ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("/images/icon.png"));
+            ButtonType okButton = new ButtonType("Tak", ButtonBar.ButtonData.YES);
+            ButtonType noButton = new ButtonType("Nie", ButtonBar.ButtonData.NO);
+            alert.getButtonTypes().setAll(okButton, noButton);
+            alert.showAndWait().ifPresent(type -> {
+                if (type == okButton) {
+                    try{
+                        if(LoginManager.getLoggedUser() != null) {
+                            LoginManager.getLoggedUser().getStatistic().setLoses(LoginManager.getLoggedUser().getStatistic().getLoses() + 1);
+                            LoginManager.updateLoggedUser();
+                        }
+                        App.changeScene(gameAnchorPane, "mainWindow");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    alert.close();
+                }
+            });
+
+
         }
-        App.changeScene(gameAnchorPane, "mainWindow");
-    }
+
+
 }
