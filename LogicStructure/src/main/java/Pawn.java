@@ -16,7 +16,7 @@ public class Pawn extends Piece {
                 possibleMove[1] = new Move(currentX, currentY, currentX, currentY+2);
             } else if((pieceColor == PieceColor.BLACK) && currentY > 0) {
                 possibleMove[0] = new Move(currentX, currentY, currentX, currentY-1);
-                possibleMove[0] = new Move(currentX, currentY, currentX, currentY-12);
+                possibleMove[1] = new Move(currentX, currentY, currentX, currentY-2);
             }
             firstMove = false;
             return possibleMove;
