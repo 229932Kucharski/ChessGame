@@ -1,11 +1,11 @@
+
 public class King extends Piece {
 
-    boolean wasMoved = false;
+    private boolean moved = false;
 
     public King(int x, int y, PieceColor color, int value) {
         super(x, y, color, value);
     }
-
 
     @Override
     public Move[] getPossibleMoves() {
@@ -73,4 +73,13 @@ public class King extends Piece {
         }
         return possibleMoves;
     }
+
+    public void setMovedTrue() {
+        moved = true;
+    }
+
+    public boolean wasMoved() {
+        return moved;
+    }
+
 }
