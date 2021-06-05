@@ -1,3 +1,7 @@
+package Algorithm;
+
+import Piece.Move;
+
 import java.util.Random;
 
 public class Easy extends Algorithm{

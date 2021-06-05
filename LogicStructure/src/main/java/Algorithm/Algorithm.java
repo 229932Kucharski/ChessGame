@@ -1,3 +1,8 @@
+package Algorithm;
+
+import Piece.Move;
+import Piece.PieceSet;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +26,8 @@ public abstract class Algorithm {
 
             switch (difficultyLevel) {
 
-                case "Easy":
-                    System.out.println("Easy");
+                case "Algorithm.Easy":
+                    System.out.println("Algorithm.Easy");
                     makeMove();
                     break;
                 case "Normal":
