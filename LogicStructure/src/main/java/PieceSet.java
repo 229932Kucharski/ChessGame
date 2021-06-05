@@ -81,4 +81,47 @@ public class PieceSet {
         return pieces.remove(piece);
     }
 
+    public boolean isCastlingAvailable() {
+        List<Rook> rooks = new ArrayList<>();
+        King king = null;
+        for(Piece piece : pieces) {
+            if(piece instanceof Rook) {
+                rooks.add((Rook)piece);
+            } else if(piece instanceof King) {
+                king = (King)piece;
+            }
+        }
+        if( (king == null) || (king.wasMoved()) ) {
+            return false;
+        }
+        for(Rook rook : rooks) {
+            if(!rook.wasMoved()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void doCastling(King king, Rook rook) {
+        if( (!king.wasMoved()) && (!rook.wasMoved()) ) {
+            if(pieceColor == PieceColor.WHITE) {
+                if( (rook.currentX == 0) && (rook.currentY == 0) ) {
+                    king.move(2, 0);
+                    rook.move(3, 0);
+                } else {
+                    king.move(6, 0);
+                    rook.move(5, 0);
+                }
+            } else if(pieceColor == PieceColor.BLACK) {
+                if( (rook.currentX == 0) && (rook.currentY == 7) ) {
+                    king.move(2, 7);
+                    rook.move(3, 7);
+                } else {
+                    king.move(6, 7);
+                    rook.move(5, 7);
+                }
+            }
+        }
+    }
+
 }

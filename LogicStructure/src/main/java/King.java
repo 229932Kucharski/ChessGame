@@ -82,4 +82,10 @@ public class King extends Piece {
         return moved;
     }
 
+    @Override
+    public void move(int newX, int newY) {
+        super.move(newX, newY);
+        setMovedTrue();
+    }
+
 }
