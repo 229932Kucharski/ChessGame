@@ -23,24 +23,24 @@ public class PieceSet {
         }
 
         for(int x = 0; x < 8; x ++) {
-            pieces.add(new Pawn(x, pawnY, pieceColor, id));
+            pieces.add(new Pawn(x, pawnY, pieceColor, 1));
             id++;
         }
-        pieces.add(new Rook(0, kingY, pieceColor, id));
+        pieces.add(new Rook(0, kingY, pieceColor, 5));
         id++;
-        pieces.add(new Knight(1, kingY, pieceColor, id));
+        pieces.add(new Knight(1, kingY, pieceColor, 3));
         id++;
-        pieces.add(new Bishop(2, kingY, pieceColor, id));
+        pieces.add(new Bishop(2, kingY, pieceColor, 3));
         id++;
-        pieces.add(new Queen(3, kingY, pieceColor, id));
+        pieces.add(new Queen(3, kingY, pieceColor, 10));
         id++;
-        pieces.add(new King(4, kingY, pieceColor, id));
+        pieces.add(new King(4, kingY, pieceColor, 0));
         id++;
-        pieces.add(new Bishop(5, kingY, pieceColor, id));
+        pieces.add(new Bishop(5, kingY, pieceColor, 3));
         id++;
-        pieces.add(new Knight(6, 7, pieceColor, id));
+        pieces.add(new Knight(6, 7, pieceColor, 3));
         id++;
-        pieces.add(new Rook(7, 7, pieceColor, id));
+        pieces.add(new Rook(7, 7, pieceColor, 5));
     }
 
     public boolean move(Move move) {
