@@ -1,6 +1,10 @@
 package Algorithm;
 
+
+
 import Piece.Move;
+import Piece.Piece;
+import Piece.PieceSet;
 
 import java.util.Random;
 
@@ -12,7 +16,8 @@ public class Easy extends Algorithm{
     public void makeMove() {
         int index = random.nextInt(copy.size());
 
-        Move[] move = copy.get(index);
+        Move[] nextMove =  copy.get(index);
+
 
     }
 }

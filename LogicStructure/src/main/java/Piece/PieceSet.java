@@ -6,20 +6,23 @@ import java.util.List;
 public class PieceSet {
 
     private PieceColor pieceColor;
+    protected int whiteScore = 40, blackScore = 40;
     protected List<Piece> pieces = new ArrayList<>();
-    protected List<Move[]> possibleMoves = new ArrayList<Move[]>();
+    public List<Move[]> possibleMoves = new ArrayList<Move[]>();
 
     public PieceSet(PieceColor pieceColor) throws NullPointerException{
         this.pieceColor = pieceColor;
-        String ID = "00";
+        String ID ;
         int id = 0;
         int pawnY = 0;
         int kingY = 0;
-        ID += id;
+
         if(pieceColor == PieceColor.WHITE) {
+            ID = "W00" + id;
             pawnY = 1;
             kingY = 0;
         } else {
+            ID = "B00" + id;
             kingY = 7;
             pawnY = 6;
         }
@@ -43,9 +46,10 @@ public class PieceSet {
         pieces.add(new Knight(6, kingY, pieceColor, 3, ID));
         id++;
         pieces.add(new Rook(7, kingY, pieceColor, 5, ID));
+
     }
 
-    public boolean move(Move move) {
+    public  boolean move(Move move) {
         for(Piece piece : pieces) {
 
             Move[] moves = piece.getPossibleMoves();
@@ -80,7 +84,20 @@ public class PieceSet {
         return null;
     }
 
+    public int getWhiteScore() {
+        return whiteScore;
+    }
+
+    public int getBlackScore() {
+        return blackScore;
+    }
+
     public boolean removePiece(Piece piece) {
+        if(pieceColor == PieceColor.WHITE) {
+            whiteScore -= piece.getValue();
+        } else {
+            blackScore -= piece.getValue();
+        }
         return pieces.remove(piece);
     }
 

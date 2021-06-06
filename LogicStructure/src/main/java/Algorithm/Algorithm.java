@@ -1,7 +1,6 @@
 package Algorithm;
 
-import Piece.Move;
-import Piece.PieceSet;
+import Piece.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,8 @@ public abstract class Algorithm {
     protected Move nextMove;
     protected String difficultyLevel;
 
-    private PieceSet gameSet;
+    protected PieceSet gameSet;
+    protected PieceColor maximizing_color;
 
     public abstract void makeMove();
     protected List<Move[]> copy = new ArrayList<Move[]>();
@@ -21,6 +21,7 @@ public abstract class Algorithm {
 
     public Algorithm() {
 
+        assert false;
         copy.addAll(gameSet.possibleMoves);
 
 
@@ -44,4 +45,14 @@ public abstract class Algorithm {
     public Move  getNextMove() { return nextMove; }
 
     public String getDifficultyLevel() { return difficultyLevel; }
+
+    public int evaluate(PieceColor maximizing_color){
+        int currentScore;
+        if (maximizing_color == PieceColor.WHITE){
+            currentScore = gameSet.getWhiteScore() - gameSet.getBlackScore();
+        }else{
+            currentScore = gameSet.getBlackScore() - gameSet.getWhiteScore();
+        }
+        return currentScore;
+    }
 }
