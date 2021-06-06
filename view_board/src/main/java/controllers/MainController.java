@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import player.manager.LoginManager;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 public class MainController {
     public AnchorPane mainAnchorPane;
@@ -67,8 +68,11 @@ public class MainController {
 
     public void newGame(ActionEvent actionEvent) throws IOException {
         App.changeScene(mainAnchorPane,"gameWindow");
-        GameController.wts.start();
-        GameController.bts.start();
+        try {
+            GameController.wts.start();
+            GameController.bts.start();
+        }
+        catch (Exception e){}
         GameController.bts.suspend();
     }
 
@@ -76,40 +80,60 @@ public class MainController {
 
         switch (paceChoiceBox.getValue().getPace()) {
             case "bullet 1 | 0" -> {
+                GameController.wts.setZero();
+                GameController.bts.setZero();
                 GameController.wts.setTime(1);
                 GameController.wts.setIncrement(0);
                 GameController.bts.setTime(1);
                 GameController.bts.setIncrement(0);
             }
             case "bullet 1 | 1" -> {
+                GameController.wts.setZero();
+                GameController.bts.setZero();
                 GameController.wts.setTime(1);
                 GameController.wts.setIncrement(1);
                 GameController.bts.setTime(1);
                 GameController.bts.setIncrement(1);
             }
             case "blitz 3 | 0" -> {
+                GameController.wts.setZero();
+                GameController.bts.setZero();
                 GameController.wts.setTime(3);
                 GameController.wts.setIncrement(0);
                 GameController.bts.setTime(3);
                 GameController.bts.setIncrement(0);
             }
             case "blitz 5 | 0" -> {
+                GameController.wts.setZero();
+                GameController.bts.setZero();
                 GameController.wts.setTime(5);
                 GameController.wts.setIncrement(0);
                 GameController.bts.setTime(5);
                 GameController.bts.setIncrement(0);
             }
             case "blitz 5 | 5" -> {
+                GameController.wts.setZero();
+                GameController.bts.setZero();
                 GameController.wts.setTime(5);
                 GameController.wts.setIncrement(5);
                 GameController.bts.setTime(5);
                 GameController.bts.setIncrement(5);
             }
             case "szybkie 10 | 0" -> {
+                GameController.wts.setZero();
+                GameController.bts.setZero();
                 GameController.wts.setTime(10);
                 GameController.wts.setIncrement(0);
                 GameController.bts.setTime(10);
-                GameController.bts.setIncrement(0);;
+                GameController.bts.setIncrement(0);
+            }
+            default -> {
+                GameController.wts.setZero();
+                GameController.bts.setZero();
+                GameController.wts.setTime(2);
+                GameController.wts.setIncrement(5);
+                GameController.bts.setTime(2);
+                GameController.bts.setIncrement(5);
             }
         }
     }
