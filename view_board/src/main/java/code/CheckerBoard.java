@@ -54,6 +54,7 @@ public class CheckerBoard {
                     if(board[i][j] == piece) {
                         board[newX][newY] = piece;
                         board[i][j] = null;
+                        return;
                     }
                 }
             }
