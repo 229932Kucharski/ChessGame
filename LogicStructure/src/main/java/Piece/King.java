@@ -1,5 +1,8 @@
 package Piece;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class King extends Piece {
 
     private boolean moved = false;
@@ -10,10 +13,11 @@ public class King extends Piece {
 
     @Override
     public Move[] getPossibleMoves() {
-        Move[] possibleMoves = new Move[8];
+        List<Move> listPossibleMoves = new ArrayList<>();
+//        Move[] possibleMoves = new Move[8];
         int tempX = 0;
         int tempY = 0;
-        int counter = 0;
+//        int counter = 0;
 
         for (int direction = 0; direction < 8; direction++) {
             tempX = currentX;
@@ -23,54 +27,67 @@ public class King extends Piece {
                 if (tempX > 0 && tempY > 0) {
                     tempX--;
                     tempY--;
-                    possibleMoves[counter] = new Move(currentX, currentY, tempX, tempY);
+                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+//                    possibleMoves[counter] = new Move(currentX, currentY, tempX, tempY);
                 }
             } else if (direction == 1) {
                 if ( tempY > 0) {
                     tempY--;
-                    possibleMoves[counter] = new Move(currentX, currentY, tempX, tempY);
-                    counter++;
+                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+//                    possibleMoves[counter] = new Move(currentX, currentY, tempX, tempY);
+//                    counter++;
                 }
             } else if (direction == 2) {
                 if (tempX < 7 && tempY > 0) {
                     tempX++;
                     tempY--;
-                    possibleMoves[counter] = new Move(currentX, currentY, tempX, tempY);
-                    counter++;
+                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+//                    possibleMoves[counter] = new Move(currentX, currentY, tempX, tempY);
+//                    counter++;
                 }
             } else if (direction == 3) {
                 if (tempX < 7 ) {
                     tempX++;
-                    possibleMoves[counter] = new Move(currentX, currentY, tempX, tempY);
-                    counter++;
+                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+//                    possibleMoves[counter] = new Move(currentX, currentY, tempX, tempY);
+//                    counter++;
                 }
             } else if (direction == 4) {
                 if (tempX < 7 && tempY < 7) {
                     tempX++;
                     tempY++;
-                    possibleMoves[counter] = new Move(currentX, currentY, tempX, tempY);
-                    counter++;
+                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+//                    possibleMoves[counter] = new Move(currentX, currentY, tempX, tempY);
+//                    counter++;
                 }
             } else if (direction == 5) {
                 if (tempY < 7) {
                     tempY++;
-                    possibleMoves[counter] = new Move(currentX, currentY, tempX, tempY);
-                    counter++;
+                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+//                    possibleMoves[counter] = new Move(currentX, currentY, tempX, tempY);
+//                    counter++;
                 }
             } else if (direction == 6) {
                 if (tempX > 0 && tempY < 7) {
                     tempX--;
                     tempY++;
-                    possibleMoves[counter] = new Move(currentX, currentY, tempX, tempY);
-                    counter++;
+                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+//                    possibleMoves[counter] = new Move(currentX, currentY, tempX, tempY);
+//                    counter++;
                 }
             } else if (direction == 7) {
                 if (tempX > 0 ) {
                     tempX--;
-                    possibleMoves[counter] = new Move(currentX, currentY, tempX, tempY);
-                    counter++;
+                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+//                    possibleMoves[counter] = new Move(currentX, currentY, tempX, tempY);
+//                    counter++;
                 }
             }
+        }
+
+        Move[] possibleMoves = new Move[listPossibleMoves.size()];
+        for(int i = 0; i < listPossibleMoves.size(); i++) {
+            possibleMoves[i] = listPossibleMoves.get(i);
         }
         return possibleMoves;
     }

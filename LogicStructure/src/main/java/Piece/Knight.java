@@ -1,5 +1,8 @@
 package Piece;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Knight extends Piece {
 
     public Knight(int x, int y, PieceColor color, int value, String id) {
@@ -7,8 +10,9 @@ public class Knight extends Piece {
     }
 
     public Move[] getPossibleMoves() {
-        Move[] possibleMoves = new Move[8];
-        int counter = 0;
+        List<Move> listPossibleMoves = new ArrayList<>();
+//        Move[] possibleMoves = new Move[8];
+//        int counter = 0;
 
         for(int direction = 0; direction < 8; direction++) {
             int xFactor = 0;
@@ -61,14 +65,20 @@ public class Knight extends Piece {
             tmpX = tmpX + xFactor;
             tmpY = tmpY + yFactor;
             if(checkIfPossibleMove(tmpX,tmpY)) {
-                possibleMoves[counter] = new Move(currentX, currentY, tmpX, tmpY);
-                counter++;
+//                possibleMoves[counter] = new Move(currentX, currentY, tmpX, tmpY);
+//                counter++;
+                listPossibleMoves.add(new Move(currentX, currentY, tmpX, tmpY));
             }
         }
 
-        Move[] foundMoves = new Move[counter];
-        System.arraycopy(possibleMoves, 0, foundMoves, 0, counter);
-        return foundMoves;
+//        Move[] foundMoves = new Move[counter];
+//        System.arraycopy(possibleMoves, 0, foundMoves, 0, counter);
+//        return foundMoves;
+        Move[] possibleMoves = new Move[listPossibleMoves.size()];
+        for(int i = 0; i < listPossibleMoves.size(); i++) {
+            possibleMoves[i] = listPossibleMoves.get(i);
+        }
+        return possibleMoves;
     }
 
     private boolean checkIfPossibleMove(int x, int y) {
