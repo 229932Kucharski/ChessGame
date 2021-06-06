@@ -12,10 +12,10 @@ public class Pawn extends Piece {
     public Move[] getPossibleMoves() {
         if(firstMove) {
             Move[] possibleMove = new Move[2];
-            if((pieceColor == PieceColor.WHITE) && currentY < 7) {
+            if((pieceColor == PieceColor.BLACK) && currentY < 7) {
                 possibleMove[0] = new Move(currentX, currentY, currentX, currentY+1);
                 possibleMove[1] = new Move(currentX, currentY, currentX, currentY+2);
-            } else if((pieceColor == PieceColor.BLACK) && currentY > 0) {
+            } else if((pieceColor == PieceColor.WHITE) && currentY > 0) {
                 possibleMove[0] = new Move(currentX, currentY, currentX, currentY-1);
                 possibleMove[1] = new Move(currentX, currentY, currentX, currentY-2);
             }
@@ -23,10 +23,10 @@ public class Pawn extends Piece {
             return possibleMove;
         } else {
             Move[] possibleMove = new Move[1];
-            if((pieceColor == PieceColor.WHITE) && currentY < 7) {
+            if((pieceColor == PieceColor.BLACK) && currentY < 7) {
                 possibleMove[0] = new Move(currentX, currentY, currentX, currentY+1);
                 return possibleMove;
-            } else if((pieceColor == PieceColor.BLACK) && currentY > 0) {
+            } else if((pieceColor == PieceColor.WHITE) && currentY > 0) {
                 possibleMove[0] = new Move(currentX, currentY, currentX, currentY-1);
                 return possibleMove;
             } else {
