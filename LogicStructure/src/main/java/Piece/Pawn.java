@@ -19,7 +19,6 @@ public class Pawn extends Piece {
                 possibleMove[0] = new Move(currentX, currentY, currentX, currentY-1);
                 possibleMove[1] = new Move(currentX, currentY, currentX, currentY-2);
             }
-            firstMove = false;
             return possibleMove;
         } else {
             Move[] possibleMove = new Move[1];
@@ -33,6 +32,12 @@ public class Pawn extends Piece {
                 return null;
             }
         }
+    }
+
+    @Override
+    public void move(int newX, int newY) {
+        firstMove = false;
+        super.move(newX, newY);
     }
 
 }
