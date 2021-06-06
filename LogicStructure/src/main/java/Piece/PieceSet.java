@@ -19,12 +19,12 @@ public class PieceSet {
 
         if(pieceColor == PieceColor.WHITE) {
             ID = "W00" + id;
-            pawnY = 1;
-            kingY = 0;
+            pawnY = 6;
+            kingY = 7;
         } else {
             ID = "B00" + id;
-            kingY = 7;
-            pawnY = 6;
+            kingY = 0;
+            pawnY = 1;
         }
 
         for(int x = 0; x < 8; x ++) {
