@@ -3,8 +3,6 @@ package Algorithm;
 
 
 import Piece.Move;
-import Piece.Piece;
-import Piece.PieceSet;
 
 import java.util.Random;
 
@@ -14,9 +12,21 @@ public class Easy extends Algorithm{
 
     @Override
     public void makeMove() {
-        int index = random.nextInt(copy.size());
+        int index = random.nextInt(gameSet.getPossibleMoves().size());
 
-        Move[] nextMove =  copy.get(index);
+        Move nextMove =  gameSet.getPossibleMoves().get(index);
+
+
+
+       for(Move possibleMove : gameSet.getPossibleMoves()) {
+           while(possibleMove.isDestination(nextMove)) {
+               gameSet.getPossibleMoves().remove(index);
+               index = random.nextInt(gameSet.getPossibleMoves().size());
+               nextMove =  gameSet.getPossibleMoves().get(index);
+           }
+       }
+
+       gameSet.move(nextMove);
 
 
     }

@@ -13,16 +13,18 @@ public abstract class Algorithm {
     protected String difficultyLevel;
 
     protected PieceSet gameSet;
+
+
+
     protected PieceColor maximizing_color;
 
     public abstract void makeMove();
-    protected List<Move[]> copy = new ArrayList<Move[]>();
+
 
 
     public Algorithm() {
 
-        assert false;
-        copy.addAll(gameSet.possibleMoves);
+
 
 
             switch (difficultyLevel) {

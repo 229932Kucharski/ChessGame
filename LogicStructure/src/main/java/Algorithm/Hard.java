@@ -16,11 +16,11 @@ public class Hard extends Algorithm {
         }
         double max_eval = Double.NEGATIVE_INFINITY;
 
-        for(Move[] possibleMove : copy) {
+        for(Move possibleMove : gameSet.getPossibleMoves()) {
 
         }
 
-        
+
         return null;
     }
 
