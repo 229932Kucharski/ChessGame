@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.scene.control.Label;
 import player.manager.LoginManager;
 
+import static controllers.GameController.move_counter;
 import static java.lang.StrictMath.abs;
 
 public class ThreadStopwatch extends Thread{
@@ -15,13 +16,14 @@ public class ThreadStopwatch extends Thread{
     int seconds = 0;
     int minutes = 0;
     int hours = 0;
+    boolean exit = false;
 
 
    public Label timelabel;
 
-    String seconds_string = String.format("%02d", seconds);
-    String minutes_string = String.format("%02d", minutes);
-    String hours_string = String.format("%02d", hours);
+//    String seconds_string = String.format("%02d", seconds);
+//    String minutes_string = String.format("%02d", minutes);
+//    String hours_string = String.format("%02d", hours);
 
     public int getTime() { return Time; }
     public void setTime(int time) { Time = time; }
@@ -31,19 +33,18 @@ public class ThreadStopwatch extends Thread{
     public int getElapsedTime() { return elapsedTime; }
     public void setElapsedTime(int elapsedTime) { this.elapsedTime = elapsedTime; }
 
-
-    public int getSeconds() {return seconds; }
-    public int getMinutes() {return minutes; }
-    public int getHours() {return hours; }
-
-    public String getSeconds_string() { return seconds_string; }
-    public String getMinutes_string() { return minutes_string; }
-    public String getHours_string() { return hours_string; }
+//    public int getSeconds() {return seconds; }
+//    public int getMinutes() {return minutes; }
+//    public int getHours() {return hours; }
+//
+//    public String getSeconds_string() { return seconds_string; }
+//    public String getMinutes_string() { return minutes_string; }
+//    public String getHours_string() { return hours_string; }
 
     public void run() {
-        while (true) {
+        while (!exit) {
             try {
-                this.sleep(1000);
+                sleep(250);
             } catch(InterruptedException exc) {
                 System.out.println("Wątek zliczania czasu zoostał przerwany.");
                 return;
@@ -57,18 +58,25 @@ public class ThreadStopwatch extends Thread{
                 minutes++;
                 seconds = seconds%60;
             }
+            String seconds_string = String.format("%02d", seconds);
+            String minutes_string = String.format("%02d", minutes);
             //System.out.println(hours+ ":"+ minutes + ":" + seconds);
 
             Platform.runLater(new Runnable(){
                 @Override
                 public void run() {
-                    timelabel.setText(minutes + ":" + seconds);
+                    timelabel.setText(minutes_string + ":" + seconds_string);
                 }
             });
             if (hours == 0 && minutes == 0 && seconds == 0){
-
+                exit = true;
                 if(LoginManager.getLoggedUser() != null) {
-                    LoginManager.getLoggedUser().getStatistic().setLoses(LoginManager.getLoggedUser().getStatistic().getLoses() + 1);
+                    if(move_counter %2 == 0) {
+                        LoginManager.getLoggedUser().getStatistic().setCheckMate(LoginManager.getLoggedUser().getStatistic().getCheckMate() + 1);
+                    }
+                    else {
+                        LoginManager.getLoggedUser().getStatistic().setLoses(LoginManager.getLoggedUser().getStatistic().getLoses() + 1);
+                    }
                     LoginManager.updateLoggedUser();
                 }
 
@@ -86,13 +94,17 @@ public class ThreadStopwatch extends Thread{
         timelabel = lab;
     }
 
-    public void setNot(ThreadStopwatch ts){
-            setElapsedTime(getElapsedTime() - getIncrement());
-            ts.suspend();
+    public void setNot(){
+            this.setElapsedTime(this.getElapsedTime() - this.getIncrement());
+            this.suspend();
     }
 
-    public void setYes(ThreadStopwatch ts){
-            ts.resume();
+    public void setYes(){
+            this.resume();
     }
 
+    public void setZero(){
+        this.setTime(0);
+        this.setElapsedTime(0);
+    }
 }

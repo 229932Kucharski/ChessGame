@@ -34,16 +34,20 @@ public class GameController extends GridPane{
 
     public static ThreadStopwatch wts = new ThreadStopwatch();
     public static ThreadStopwatch bts = new ThreadStopwatch();
+    //public static ThreadStopwatch nts = new ThreadStopwatch();
 
     ImageView temp;
     HBox tempHb;
     HBox temp2Hb;
     boolean beat;
-    int move_counter = 0;
+    public static int move_counter = 0;
     public void initialize() {
         if(LoginManager.getLoggedUser()!=null) {
             username.setText(LoginManager.getLoggedUser().getName());
         }
+
+        move_counter = 0;
+
         //inicjalizacja hboxów na planszy
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -149,12 +153,12 @@ public class GameController extends GridPane{
                         }
                     }
                 if(move_counter %2 == 0) {
-                    wts.setYes(wts);
-                    bts.setNot(bts);
+                    wts.setYes();
+                    bts.setNot();
                 }
                 else {
-                    bts.setYes(bts);
-                    wts.setNot(wts);
+                    bts.setYes();
+                    wts.setNot();
                 }
             }
         }
@@ -210,7 +214,12 @@ public class GameController extends GridPane{
                 if (type == okButton) {
                     try{
                         if(LoginManager.getLoggedUser() != null) {
-                            LoginManager.getLoggedUser().getStatistic().setLoses(LoginManager.getLoggedUser().getStatistic().getLoses() + 1);
+                            if(move_counter %2 == 0) {
+                                LoginManager.getLoggedUser().getStatistic().setCheckMate(LoginManager.getLoggedUser().getStatistic().getCheckMate() + 1);
+                            }
+                            else {
+                                LoginManager.getLoggedUser().getStatistic().setLoses(LoginManager.getLoggedUser().getStatistic().getLoses() + 1);
+                            }
                             LoginManager.updateLoggedUser();
                         }
                         App.changeScene(gameAnchorPane, "mainWindow");
