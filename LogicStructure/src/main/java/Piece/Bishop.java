@@ -2,8 +2,8 @@ package Piece;
 
 public class Bishop extends Piece{
 
-    public Bishop(int x, int y, PieceColor color, int value) {
-        super(x, y, color, value);
+    public Bishop(int x, int y, PieceColor color, int value, String id) {
+        super(x, y, color, value, id);
     }
 
     @Override

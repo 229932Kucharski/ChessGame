@@ -11,9 +11,11 @@ public class PieceSet {
 
     public PieceSet(PieceColor pieceColor) throws NullPointerException{
         this.pieceColor = pieceColor;
+        String ID = "00";
         int id = 0;
         int pawnY = 0;
         int kingY = 0;
+        ID += id;
         if(pieceColor == PieceColor.WHITE) {
             pawnY = 1;
             kingY = 0;
@@ -23,24 +25,24 @@ public class PieceSet {
         }
 
         for(int x = 0; x < 8; x ++) {
-            pieces.add(new Pawn(x, pawnY, pieceColor, 1));
+            pieces.add(new Pawn(x, pawnY, pieceColor, 1, ID));
             id++;
         }
-        pieces.add(new Rook(0, kingY, pieceColor, 5));
+        pieces.add(new Rook(0, kingY, pieceColor, 5, ID));
         id++;
-        pieces.add(new Knight(1, kingY, pieceColor, 3));
+        pieces.add(new Knight(1, kingY, pieceColor, 3, ID));
         id++;
-        pieces.add(new Bishop(2, kingY, pieceColor, 3));
+        pieces.add(new Bishop(2, kingY, pieceColor, 3, ID));
         id++;
-        pieces.add(new Queen(3, kingY, pieceColor, 10));
+        pieces.add(new Queen(3, kingY, pieceColor, 10, ID));
         id++;
-        pieces.add(new King(4, kingY, pieceColor, 0));
+        pieces.add(new King(4, kingY, pieceColor, 0, ID));
         id++;
-        pieces.add(new Bishop(5, kingY, pieceColor, 3));
+        pieces.add(new Bishop(5, kingY, pieceColor, 3, ID));
         id++;
-        pieces.add(new Knight(6, 7, pieceColor, 3));
+        pieces.add(new Knight(6, kingY, pieceColor, 3, ID));
         id++;
-        pieces.add(new Rook(7, 7, pieceColor, 5));
+        pieces.add(new Rook(7, kingY, pieceColor, 5, ID));
     }
 
     public boolean move(Move move) {

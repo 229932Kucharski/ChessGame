@@ -4,8 +4,8 @@ public class Pawn extends Piece {
 
     private boolean firstMove = true;
 
-    public Pawn(int x, int y, PieceColor color, int value) {
-        super(x, y, color, value);
+    public Pawn(int x, int y, PieceColor color, int value, String id) {
+        super(x, y, color, value, id);
     }
 
     @Override
