@@ -2,8 +2,8 @@ package Piece;
 
 public class Queen extends Piece {
 
-    public Queen(int x, int y, PieceColor color, int value) {
-        super(x, y, color, value);
+    public Queen(int x, int y, PieceColor color, int value, String id) {
+        super(x, y, color, value, id);
     }
 
     @Override

@@ -2,8 +2,8 @@ package Piece;
 
 public class Knight extends Piece {
 
-    public Knight(int x, int y, PieceColor color, int value) {
-        super(x, y, color, value);
+    public Knight(int x, int y, PieceColor color, int value, String id) {
+        super(x, y, color, value, id);
     }
 
     public Move[] getPossibleMoves() {

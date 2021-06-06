@@ -4,8 +4,8 @@ public class Rook extends Piece {
 
     private boolean moved = false;
 
-    public Rook(int x, int y, PieceColor color, int value) {
-        super(x, y, color, value);
+    public Rook(int x, int y, PieceColor color, int value, String id) {
+        super(x, y, color, value, id);
     }
 
     @Override
