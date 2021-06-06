@@ -1,6 +1,11 @@
 package controllers;
 
+import Piece.Move;
+import Piece.Piece;
+import Piece.PieceColor;
+import Piece.PieceSet;
 import app.App;
+import code.CheckerBoard;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
@@ -15,6 +20,8 @@ import javafx.scene.layout.*;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import player.manager.LoginManager;
@@ -32,22 +39,24 @@ public class GameController extends GridPane{
     public Label sPlayerLabel;
     public Label fPlayerLabel;
 
+
     public static ThreadStopwatch wts = new ThreadStopwatch();
     public static ThreadStopwatch bts = new ThreadStopwatch();
     //public static ThreadStopwatch nts = new ThreadStopwatch();
 
     ImageView temp;
     HBox tempHb;
-    HBox temp2Hb;
-    boolean beat;
-    public static int move_counter = 0;
+    CheckerBoard cb = new CheckerBoard();
+    static int move_counter = 0;
+    int oldX;
+    int oldY;
+    int newX;
+    int newY;
     public void initialize() {
         if(LoginManager.getLoggedUser()!=null) {
             username.setText(LoginManager.getLoggedUser().getName());
         }
-
-        move_counter = 0;
-
+        cb.initBoard();
         //inicjalizacja hboxów na planszy
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -87,6 +96,7 @@ public class GameController extends GridPane{
                         Node source = (Node) event.getSource();
                         Integer colIndex = GridPane.getColumnIndex(source);
                         Integer rowIndex = GridPane.getRowIndex(source);
+
                         if(colIndex == null) {
                             colIndex = 0;
                         }
@@ -96,22 +106,37 @@ public class GameController extends GridPane{
 //                        System.out.printf("Mouse entered cell [%d, %d]%n", colIndex, rowIndex);
                         //pobranie hboxa z gridpane
                         HBox hb = (HBox) getNodeByXY(chessboardGridPane, rowIndex, colIndex);
+                        //drawEllipse(hb);
+
+                        newX = rowIndex;
+                        newY = colIndex;
                         isHighlighted = false;
                         //przenoszenie pionka w inne miejsce
-                        if(move_counter %2 == 0) {
-                            moveFigure(hb, "whiteImage");
-                        }
-                        else {
-                            moveFigure(hb, "blackImage");
+                        if(tempHb != null) {
+                            System.out.println("old: " + oldX + " " + oldY + ", new: " + newX + " " + newY);
+                            if (move_counter % 2 == 0) {
+                                if(cb.getPs().move(new Move(oldY, oldX, newY, newX))) {
+                                    moveFigure(hb, cb.getPiece(oldY, oldX).getPieceColor());
+                                }
+                            } else {
+                               if(cb.getPsb().move(new Move(oldY, oldX, newY, newX))) {
+                                   moveFigure(hb, cb.getPiece(oldY, oldX).getPieceColor());
+                               }
+                            }
                         }
                         //sprawdzenie czy kliknięte pole ma w sobie figure i podkreślenie jej
+
                         if(!hb.getChildren().isEmpty() && !isHighlighted) {
-                            if(move_counter%2 ==0 && hb.getChildren().get(0).getId().equals("whiteImage")) {
+                            Piece piece = cb.getPiece(newY, newX);
+                            if(move_counter %2 == 0 && cb.getPiece(newY, newX).getPieceColor() == PieceColor.WHITE) {
                                 glowUp(hb);
                             }
-                            else if (move_counter%2 == 1 && hb.getChildren().get(0).getId().equals("blackImage"))
+                            else if (move_counter%2 == 1 && cb.getPiece(newY, newX).getPieceColor() == PieceColor.BLACK) {
                                 glowUp(hb);
+                            }
                             tempHb = hb;
+                            oldX = newX;
+                            oldY = newY;
                             temp = (ImageView) hb.getChildren().get(0);
                             isHighlighted = true;
                         }
@@ -124,10 +149,11 @@ public class GameController extends GridPane{
         hb.setBorder(new Border(new BorderStroke(Color.YELLOW,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(4))));
     }
-    public void moveFigure(HBox hb, String color) {
-        if(tempHb != null) {
-            if (tempHb.getChildren().get(0) == temp && temp.getId().equals(color)) {
+    public void moveFigure(HBox hb, PieceColor pc) {
+
+            if (tempHb.getChildren().get(0) == temp && cb.getPiece(oldY, oldX).getPieceColor() == pc ) {
                 if (hb.getChildren().isEmpty()) {
+
                     hb.setBorder(new Border(new BorderStroke(Color.YELLOW,
                             BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(0))));
                     tempHb.getChildren().clear();
@@ -135,23 +161,26 @@ public class GameController extends GridPane{
                     tempHb = null;
                     isHighlighted = true;
                     move_counter++;
+                    cb.movePiece(cb.getPiece(oldY,oldX),newY,newX);
                 }
-                    else if(!hb.getChildren().isEmpty()) {
-                        if(hb.getChildren().get(0).getId().equals("whiteImage")) {
-                            if(tempHb.getChildren().get(0).getId().equals("blackImage")) {
-                                hb.getChildren().clear();
-                                hb.getChildren().add(temp);
-                                move_counter++;
-                            }
-                        }
-                        else if(hb.getChildren().get(0).getId().equals("blackImage")) {
-                            if(tempHb.getChildren().get(0).getId().equals("whiteImage")) {
-                                hb.getChildren().clear();
-                                hb.getChildren().add(temp);
-                                move_counter++;
-                            }
+                else if(!hb.getChildren().isEmpty()) {
+                    if(cb.getPiece(newY, newX).getPieceColor() == PieceColor.WHITE) {
+                        if(cb.getPiece(oldY, oldX).getPieceColor() == PieceColor.BLACK) {
+
+                            hb.getChildren().clear();
+                            hb.getChildren().add(temp);
+                            move_counter++;
                         }
                     }
+                    else if(cb.getPiece(newY, newX).getPieceColor() == PieceColor.BLACK) {
+                        if(cb.getPiece(oldY, oldX).getPieceColor() == PieceColor.WHITE) {
+                            hb.getChildren().clear();
+                            hb.getChildren().add(temp);
+                            move_counter++;
+                        }
+                    }
+                }
+
                 if(move_counter %2 == 0) {
                     wts.setYes();
                     bts.setNot();
@@ -162,7 +191,7 @@ public class GameController extends GridPane{
                 }
             }
         }
-    }
+
 
     public void clearHBox() {
         for (HBox hbox : hBoxList) {
@@ -230,9 +259,14 @@ public class GameController extends GridPane{
                     alert.close();
                 }
             });
-
-
         }
+public void drawEllipse(HBox hb) {
+    if(hb.getChildren().isEmpty()) {
+        Circle circle = new Circle(20, Paint.valueOf("grey"));
+        circle.setId("circle");
+        hb.getChildren().add(circle);
+    }
 
+}
 
 }
