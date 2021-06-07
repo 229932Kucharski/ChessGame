@@ -41,7 +41,7 @@ public class CheckerBoard {
     private void createBoard(int i, int j, PieceSet p) {
         board[i][j] = p.getPiece(i,j);
         if(p.getPiece(i,j) != null) {
-            System.out.println(p.getPiece(i, j));
+            System.out.println(p.getPiece(i, j) + " " + p.getPiece(i, j).getId());
             System.out.println("x: " + p.getPiece(i, j).getCurrentX());
             System.out.println("y: " + p.getPiece(i, j).getCurrentY() + " | board y: " + abs(j-7));
             System.out.println();
