@@ -1,5 +1,7 @@
 package Piece;
 
+import java.util.List;
+
 public abstract class Piece {
 
     private boolean danger = false;
@@ -12,7 +14,7 @@ public abstract class Piece {
     protected String id;
     private boolean isOnBoard = true;
 
-    public abstract Move[] getPossibleMoves();
+    public abstract Move[] getPossibleMoves(List<Piece> allOtherPieces);
 
     public Piece(int x, int y, PieceColor color, int value, String id) {
         currentX = x;

@@ -1,5 +1,7 @@
 package Piece;
 
+import java.util.List;
+
 public class Pawn extends Piece {
 
     private boolean firstMove = true;
@@ -8,8 +10,30 @@ public class Pawn extends Piece {
         super(x, y, color, value, id);
     }
 
+    private boolean isMovePossible(List<Piece> allOtherPieces, int newX, int newY) {
+        for(Piece piece : allOtherPieces) {
+            boolean samePosition = (piece.currentX == newX) && (piece.currentY == newY);
+            if( samePosition && (piece.getPieceColor() == this.getPieceColor()) ){
+                return false;
+            } else if ( samePosition && (piece.getPieceColor() != this.getPieceColor() ) ) {
+                return true;
+            }
+        }
+        return true;
+    }
+
+    private boolean isMoveAttack(List<Piece> allOtherPieces, int newX, int newY) {
+        for(Piece piece : allOtherPieces) {
+            boolean samePosition = (piece.currentX == newX) && (piece.currentY == newY);
+            if ( samePosition && (piece.getPieceColor() != this.getPieceColor() ) ) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
-    public Move[] getPossibleMoves() {
+    public Move[] getPossibleMoves(List<Piece> allOtherPieces) {
         if(firstMove) {
             Move[] possibleMove = new Move[2];
             if((pieceColor == PieceColor.BLACK) && currentY < 7) {
