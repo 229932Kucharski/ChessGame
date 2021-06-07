@@ -40,6 +40,7 @@ public class DatabaseManager implements AutoCloseable{
                 "staleMate int NOT NULL," +
                 "loses int NOT NULL," +
                 "played int NOT NULL," +
+                "cover varbinary(MAX)" +
                 ");";
         Statement s = connection.createStatement();
         s.executeUpdate(createUser);

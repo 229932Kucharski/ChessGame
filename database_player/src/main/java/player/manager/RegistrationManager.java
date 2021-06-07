@@ -37,7 +37,8 @@ public class RegistrationManager {
         if (!isLoginFree(login)) {
             throw new IllegalArgumentException("Login is already in use");
         }
-        User user = new User(null, FiguresStyle.classic, ChessboardStyle.classic, 0, name, login, pass, 0, 0, 0, 0);
+        User user = new User(null, FiguresStyle.classic, ChessboardStyle.classic,
+                0, name, login, pass, 0, 0, 0, 0, null);
         try(UserDao userDao = new UserDao()) {
             userDao.add(user);
         } catch (Exception e) {

@@ -10,7 +10,7 @@ public class UserTest {
     @Test
     public void createUserTest() {
         User user = new User(null , FiguresStyle.classic, ChessboardStyle.classic,
-                0, "Gelo", "gelo2424", "qwerty", 0, 0, 0 ,5);
+                0, "Gelo", "gelo2424", "qwerty", 0, 0, 0 ,5, null);
         Assert.assertEquals(user.getLogin(), "gelo2424");
         Assert.assertEquals(user.getName(), "Gelo");
         Assert.assertArrayEquals(user.getPassword(), PasswordHashing.hashPassword("qwerty"));
@@ -22,7 +22,7 @@ public class UserTest {
     @Test
     public void userSetterTest() {
         User user = new User(null , FiguresStyle.classic, ChessboardStyle.classic,
-                0, "Gelo", "gelo2424", "qwerty", 0, 0, 0 ,5);
+                0, "Gelo", "gelo2424", "qwerty", 0, 0, 0 ,5, null);
         user.setPassword("alamakota");
         user.setName("NewName");
         Assert.assertEquals(user.getName(), "NewName");

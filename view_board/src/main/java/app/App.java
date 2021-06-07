@@ -23,9 +23,14 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         try(DatabaseManager dbm = new DatabaseManager()) {
             dbm.createDatabase();
+        } catch(SQLException e) {
+            System.out.println("Database  was already created");
+        }
+
+        try(DatabaseManager dbm = new DatabaseManager()) {
             dbm.createUser();
         } catch(SQLException e) {
-            System.out.println("Database or player was already created");
+            System.out.println("Table player was already created");
         }
 
         FXMLLoader loader = new FXMLLoader();
