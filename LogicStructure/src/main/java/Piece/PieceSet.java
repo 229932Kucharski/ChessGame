@@ -1,6 +1,7 @@
 package Piece;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PieceSet {
@@ -8,7 +9,11 @@ public class PieceSet {
     private PieceColor pieceColor;
     protected int whiteScore = 40, blackScore = 40;
     protected List<Piece> pieces = new ArrayList<>();
-    public List<Move[]> possibleMoves = new ArrayList<Move[]>();
+    protected List<Move> possibleMoves = new ArrayList<>();
+
+    public List<Move> getPossibleMoves() {
+        return possibleMoves;
+    }
 
     public PieceSet(PieceColor pieceColor) throws NullPointerException{
         this.pieceColor = pieceColor;
@@ -30,22 +35,48 @@ public class PieceSet {
         for(int x = 0; x < 8; x ++) {
             pieces.add(new Pawn(x, pawnY, pieceColor, 1, ID));
             id++;
+            if(pieceColor == PieceColor.WHITE) ID = "W00" + id;
+            else ID = "B00" + id;
         }
         pieces.add(new Rook(0, kingY, pieceColor, 5, ID));
         id++;
+        if(pieceColor == PieceColor.WHITE) ID = "W00" + id;
+        else ID = "B00" + id;
         pieces.add(new Knight(1, kingY, pieceColor, 3, ID));
         id++;
+        if(pieceColor == PieceColor.WHITE) ID = "W00" + id;
+        else ID = "B00" + id;
         pieces.add(new Bishop(2, kingY, pieceColor, 3, ID));
         id++;
+        if(pieceColor == PieceColor.WHITE) ID = "W00" + id;
+        else ID = "B00" + id;
         pieces.add(new Queen(3, kingY, pieceColor, 10, ID));
         id++;
+        if(pieceColor == PieceColor.WHITE) ID = "W00" + id;
+        else ID = "B00" + id;
         pieces.add(new King(4, kingY, pieceColor, 0, ID));
         id++;
+        if(pieceColor == PieceColor.WHITE) ID = "W00" + id;
+        else ID = "B00" + id;
         pieces.add(new Bishop(5, kingY, pieceColor, 3, ID));
         id++;
+        if(pieceColor == PieceColor.WHITE) ID = "W00" + id;
+        else ID = "B00" + id;
         pieces.add(new Knight(6, kingY, pieceColor, 3, ID));
         id++;
+        if(pieceColor == PieceColor.WHITE) ID = "W00" + id;
+        else ID = "B00" + id;
         pieces.add(new Rook(7, kingY, pieceColor, 5, ID));
+
+    }
+
+    private void calculatePossibleMoves(){
+        for(Piece piece : pieces){
+            Move[] moves = piece.getPossibleMoves();
+
+            possibleMoves.addAll(Arrays.asList(moves));
+            
+        }
 
     }
 
@@ -58,7 +89,6 @@ public class PieceSet {
 
                 if(possibleMove.equals(move)) {
                     piece.move(move.getNextX(), move.getNextY());
-                    possibleMoves.add(piece.getPossibleMoves());
                     return true;
                 }
 

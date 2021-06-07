@@ -50,5 +50,12 @@ public class Move {
                 .append(nextY, move.nextY)
                 .isEquals();
     }
+    public boolean isDestination(Move move){
+
+        if((currentX == move.nextX) && (currentY == move.nextY)){
+            return true;
+        }
+        return false;
+    }
 
 }

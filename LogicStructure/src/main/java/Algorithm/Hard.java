@@ -14,13 +14,16 @@ public class Hard extends Algorithm {
             evaluate(maximizing_color);
             return null;
         }
-        double max_eval = Double.NEGATIVE_INFINITY;
+        if (maximizing_player) {
 
-        for(Move[] possibleMove : copy) {
+            double max_eval = Double.NEGATIVE_INFINITY;
+            for (Move move : gameSet.getPossibleMoves()) {
 
+
+            }
         }
 
-        
+
         return null;
     }
 

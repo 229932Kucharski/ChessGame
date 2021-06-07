@@ -49,4 +49,7 @@ public abstract class Piece {
         isOnBoard = false;
     }
 
+    public String getId() {
+        return id;
+    }
 }
