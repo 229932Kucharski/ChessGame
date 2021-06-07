@@ -5,7 +5,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 public class Move {
 
 //    Piece moveOwner;
-    private boolean attack;
+    private boolean attack = false;
 
     private final int currentX;
     private final int currentY;
