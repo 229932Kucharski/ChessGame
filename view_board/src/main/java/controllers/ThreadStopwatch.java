@@ -44,7 +44,7 @@ public class ThreadStopwatch extends Thread{
     public void run() {
         while (!exit) {
             try {
-                sleep(250);
+                sleep(1000);
             } catch(InterruptedException exc) {
                 System.out.println("Wątek zliczania czasu zoostał przerwany.");
                 return;

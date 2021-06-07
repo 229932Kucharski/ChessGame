@@ -23,6 +23,8 @@ public class StyleController {
     public ImageView chessImage;
     public AnchorPane styleAnchorPane;
 
+    public static String figuresStyle = "classic";
+
     public void initialize() {
         ObservableList<FiguresStyle> figures = FXCollections.observableArrayList(FiguresStyle.values());
         figuresChoiceBox.setItems(figures);
@@ -39,14 +41,17 @@ public class StyleController {
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
 
                if (t1.equals(1)) {
-                    Image image = new Image("/images/queen.png");
+                    figuresStyle = "classic";
+                    Image image = new Image("/images/classic/queen.png");
                     figureImage.setImage(image);
                 }
                 else if (t1.equals(2)) {
+                   figuresStyle = "wooden";
                     Image image = new Image("/images/woodenTemp.jpg");
                     figureImage.setImage(image);
                 }
                 else if (t1.equals(3)) {
+                   figuresStyle = "marble";
                     Image image = new Image("/images/marbleTemp.jpg");
                     figureImage.setImage(image);
                 }
