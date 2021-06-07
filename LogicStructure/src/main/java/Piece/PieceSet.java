@@ -70,10 +70,17 @@ public class PieceSet {
 
     }
 
-    private void calculatePossibleMoves(){
+    private void calculatePossibleMoves(PieceSet enemyPiece){
         for(Piece piece : pieces){
-            Move[] moves = piece.getPossibleMoves();
+            List<Piece> allOtherPieces = new ArrayList<>();
+            allOtherPieces.addAll(enemyPiece.getPieces());
+            for(int i = 0; i < pieces.size(); i++) {
+                if(pieces.get(i) != piece) {
+                    allOtherPieces.add(pieces.get(i));
+                }
+            }
 
+            Move[] moves = piece.getPossibleMoves(allOtherPieces);
             possibleMoves.addAll(Arrays.asList(moves));
             
         }
@@ -83,9 +90,9 @@ public class PieceSet {
     public  boolean move(Move move) {
         for(Piece piece : pieces) {
 
-            Move[] moves = piece.getPossibleMoves();
+//            Move[] moves = piece.getPossibleMoves();
 
-            for(Move possibleMove : moves) {
+            for(Move possibleMove : possibleMoves) {
 
                 if(possibleMove.equals(move)) {
                     piece.move(move.getNextX(), move.getNextY());
@@ -129,6 +136,10 @@ public class PieceSet {
             blackScore -= piece.getValue();
         }
         return pieces.remove(piece);
+    }
+
+    public List<Piece> getPieces() {
+        return pieces;
     }
 
     public boolean isCastlingAvailable() {
