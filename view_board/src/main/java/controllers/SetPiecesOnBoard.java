@@ -7,7 +7,7 @@ public class SetPiecesOnBoard {
 
     static CheckerBoard cb = new CheckerBoard();
     public static void setPieces(HBox hb, int i, int j) {
-        String dir = StyleController.figuresStyle;
+        String dir = StyleManager.figuresStyle;
         cb.fillHBox(hb,"/images/"+ dir +"/rookBlack.png",i,j, 0,0);
         cb.fillHBox(hb,"/images/"+ dir +"/rookBlack.png",i,j,0,7);
         cb.fillHBox(hb,"/images/"+ dir +"/rook.png",i,j,7,0);
