@@ -3,13 +3,14 @@ package controllers;
 import Piece.Move;
 import Piece.Piece;
 import Piece.PieceColor;
-import Piece.PieceSet;
 import app.App;
 import code.CheckerBoard;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -23,9 +24,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import player.manager.LoginManager;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,9 +42,14 @@ public class GameController extends GridPane{
     public Label sPlayerLabel;
     public Label fPlayerLabel;
 
+    public Text whoWon;
+    public HBox reasonWin;
+    public AnchorPane winBg;
 
     public static ThreadStopwatch wts = new ThreadStopwatch();
     public static ThreadStopwatch bts = new ThreadStopwatch();
+
+
     //public static ThreadStopwatch nts = new ThreadStopwatch();
 
     ImageView temp;
@@ -106,6 +114,7 @@ public class GameController extends GridPane{
 //                        System.out.printf("Mouse entered cell [%d, %d]%n", colIndex, rowIndex);
                         //pobranie hboxa z gridpane
                         HBox hb = (HBox) getNodeByXY(chessboardGridPane, rowIndex, colIndex);
+
                         //drawEllipse(hb);
 
                         newX = rowIndex;
@@ -160,8 +169,8 @@ public class GameController extends GridPane{
                     hb.getChildren().add(temp);
                     tempHb = null;
                     isHighlighted = true;
-                    move_counter++;
                     cb.movePiece(cb.getPiece(oldY,oldX),newY,newX);
+                    move_counter++;
                 }
                 else if(!hb.getChildren().isEmpty()) {
                     if(cb.getPiece(newY, newX).getPieceColor() == PieceColor.WHITE) {
@@ -169,6 +178,7 @@ public class GameController extends GridPane{
 
                             hb.getChildren().clear();
                             hb.getChildren().add(temp);
+                            cb.movePiece(cb.getPiece(oldY,oldX),newY,newX);
                             move_counter++;
                         }
                     }
@@ -176,11 +186,11 @@ public class GameController extends GridPane{
                         if(cb.getPiece(oldY, oldX).getPieceColor() == PieceColor.WHITE) {
                             hb.getChildren().clear();
                             hb.getChildren().add(temp);
+                            cb.movePiece(cb.getPiece(oldY,oldX),newY,newX);
                             move_counter++;
                         }
                     }
                 }
-
                 if(move_counter %2 == 0) {
                     wts.setYes();
                     bts.setNot();
@@ -228,8 +238,6 @@ public class GameController extends GridPane{
     }
 
     public void giveUp(ActionEvent actionEvent) {
-
-
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Give Up");
             alert.setHeaderText("Czy na pewno chcesz się poddać?");
@@ -266,7 +274,19 @@ public void drawEllipse(HBox hb) {
         circle.setId("circle");
         hb.getChildren().add(circle);
     }
-
 }
+    public void winOpen() throws IOException {
+        Stage stage = new Stage();
+        stage.getIcons().add(new Image("/images/chess.png"));
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Pane root = fxmlLoader.load(getClass().getResource("/fxml/winWindow.fxml").openStream());
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(gameAnchorPane.getScene().getWindow());
+        stage.setResizable(false);
+        stage.setTitle("Win");
+        stage.showAndWait();
 
+        //whoWon.setText("");
+    }
 }

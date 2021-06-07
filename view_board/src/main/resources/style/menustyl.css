@@ -21,3 +21,8 @@
     -fx-base: #562837;
     -fx-font-size: 20px;
 }
+
+#back {
+    -fx-background-image: url("../images/cr.jpg");
+    -fx-background-size: 100% 100%;
+}
