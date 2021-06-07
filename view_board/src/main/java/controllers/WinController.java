@@ -37,9 +37,4 @@ public class WinController {
         // do what you have to do
         stage.close();
     }
-//    public void back(ActionEvent actionEvent) {
-//          // Platform.exit();
-////        App.changeScene(gameController.gameAnchorPane, "mainWindow");
-//
-//    }
 }

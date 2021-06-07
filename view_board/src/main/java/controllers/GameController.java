@@ -261,6 +261,8 @@ public class GameController extends GridPane{
     }
 
     public void back(ActionEvent actionEvent) {
+        bts.setZero();
+        wts.setZero();
         App.changeScene(gameAnchorPane,"mainWindow");
     }
     public static List<HBox> gethBoxList() {
