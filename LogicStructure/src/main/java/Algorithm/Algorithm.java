@@ -63,7 +63,4 @@ public abstract class Algorithm {
 
     }
 
-    public int evaluate(){
-        return allySet.getScore() - enemySet.getScore();
-    }
 }

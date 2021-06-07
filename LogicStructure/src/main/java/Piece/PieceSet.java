@@ -126,7 +126,8 @@ public class PieceSet {
     }
 
     public int getScore() {
-        return score;
+        int finalScore = 40;
+        return finalScore - score;
     }
 
     public boolean removePiece(Piece piece) {
