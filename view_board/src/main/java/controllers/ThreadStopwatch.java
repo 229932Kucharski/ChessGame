@@ -5,6 +5,8 @@ import javafx.application.Platform;
 import javafx.scene.control.Label;
 import player.manager.LoginManager;
 
+import java.io.IOException;
+
 import static controllers.GameController.move_counter;
 import static java.lang.StrictMath.abs;
 
@@ -20,6 +22,7 @@ public class ThreadStopwatch extends Thread{
 
 
    public Label timelabel;
+   public GameController gameController;
 
 //    String seconds_string = String.format("%02d", seconds);
 //    String minutes_string = String.format("%02d", minutes);
@@ -29,6 +32,14 @@ public class ThreadStopwatch extends Thread{
     public void setTime(int time) { Time = time; }
     public int getIncrement() { return Increment; }
     public void setIncrement(int increment) { Increment = increment; }
+
+    public GameController getGameController() {
+        return gameController;
+    }
+
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
+    }
 
     public int getElapsedTime() { return elapsedTime; }
     public void setElapsedTime(int elapsedTime) { this.elapsedTime = elapsedTime; }
@@ -70,6 +81,7 @@ public class ThreadStopwatch extends Thread{
             });
             if (hours == 0 && minutes == 0 && seconds == 0){
                 exit = true;
+
                 if(LoginManager.getLoggedUser() != null) {
                     if(move_counter %2 == 0) {
                         LoginManager.getLoggedUser().getStatistic().setCheckMate(LoginManager.getLoggedUser().getStatistic().getCheckMate() + 1);
@@ -79,6 +91,17 @@ public class ThreadStopwatch extends Thread{
                     }
                     LoginManager.updateLoggedUser();
                 }
+
+                Platform.runLater(new Runnable(){
+                    @Override
+                    public void run() {
+                        try {
+                            gameController.winOpen();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
 
                 return;
             }

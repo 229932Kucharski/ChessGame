@@ -35,6 +35,7 @@ public class App extends Application {
 
         FXMLLoader loader = new FXMLLoader();
         stage.getIcons().add(new Image("/images/icon.png"));
+        stage.setResizable(false);
         loader.setLocation(this.getClass().getResource("/fxml/mainWindow.fxml"));
         AnchorPane anchorPane = loader.load();
         Scene scene = new Scene(anchorPane);

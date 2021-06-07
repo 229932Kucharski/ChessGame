@@ -79,9 +79,5 @@ public class CheckerBoard {
         return board;
     }
 
-    public static void main(String[] args) {
-        CheckerBoard cb = new CheckerBoard();
-        cb.initBoard();
-    }
 
 }

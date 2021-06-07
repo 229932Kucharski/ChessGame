@@ -28,6 +28,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import player.manager.LoginManager;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,7 @@ public class GameController extends GridPane{
 
     public static ThreadStopwatch wts = new ThreadStopwatch();
     public static ThreadStopwatch bts = new ThreadStopwatch();
+    public ImageView coverImageView;
 
 
     //public static ThreadStopwatch nts = new ThreadStopwatch();
@@ -61,8 +63,12 @@ public class GameController extends GridPane{
     int newX;
     int newY;
     public void initialize() {
+        move_counter = 0;
         if(LoginManager.getLoggedUser()!=null) {
             username.setText(LoginManager.getLoggedUser().getName());
+            File imageFile = new File("assets/cover/"+ LoginManager.getLoggedUser().getLogin() +".jpg");
+            Image image = new Image(imageFile.toURI().toString());
+            coverImageView.setImage(image);
         }
         cb.initBoard();
         //inicjalizacja hboxów na planszy
@@ -86,7 +92,9 @@ public class GameController extends GridPane{
                 chessboardGridPane.add(hb, i, j);
 
                 wts.setLabel(fPlayerLabel);
+                wts.setGameController(this);
                 bts.setLabel(sPlayerLabel);
+                bts.setGameController(this);
 
             }
         }
@@ -98,7 +106,6 @@ public class GameController extends GridPane{
                 @Override
                 public void handle(MouseEvent event) {
                     if (event.getClickCount() == 1) {
-
                         clearHBox();
                         //pobranie źródła z gridpane (x,y)
                         Node source = (Node) event.getSource();
@@ -114,9 +121,7 @@ public class GameController extends GridPane{
 //                        System.out.printf("Mouse entered cell [%d, %d]%n", colIndex, rowIndex);
                         //pobranie hboxa z gridpane
                         HBox hb = (HBox) getNodeByXY(chessboardGridPane, rowIndex, colIndex);
-
                         //drawEllipse(hb);
-
                         newX = rowIndex;
                         newY = colIndex;
                         isHighlighted = false;
@@ -134,7 +139,6 @@ public class GameController extends GridPane{
                             }
                         }
                         //sprawdzenie czy kliknięte pole ma w sobie figure i podkreślenie jej
-
                         if(!hb.getChildren().isEmpty() && !isHighlighted) {
                             Piece piece = cb.getPiece(newY, newX);
                             if(move_counter %2 == 0 && cb.getPiece(newY, newX).getPieceColor() == PieceColor.WHITE) {
@@ -251,7 +255,7 @@ public class GameController extends GridPane{
                 if (type == okButton) {
                     try{
                         if(LoginManager.getLoggedUser() != null) {
-                            if(move_counter %2 == 0) {
+                            if(move_counter %2 == 1) {
                                 LoginManager.getLoggedUser().getStatistic().setCheckMate(LoginManager.getLoggedUser().getStatistic().getCheckMate() + 1);
                             }
                             else {
@@ -268,24 +272,27 @@ public class GameController extends GridPane{
                 }
             });
         }
-public void drawEllipse(HBox hb) {
-    if(hb.getChildren().isEmpty()) {
-        Circle circle = new Circle(20, Paint.valueOf("grey"));
-        circle.setId("circle");
-        hb.getChildren().add(circle);
+
+    public void drawEllipse(HBox hb) {
+        if(hb.getChildren().isEmpty()) {
+            Circle circle = new Circle(20, Paint.valueOf("grey"));
+            circle.setId("circle");
+            hb.getChildren().add(circle);
+        }
     }
-}
     public void winOpen() throws IOException {
         Stage stage = new Stage();
         stage.getIcons().add(new Image("/images/chess.png"));
         FXMLLoader fxmlLoader = new FXMLLoader();
-        Pane root = fxmlLoader.load(getClass().getResource("/fxml/winWindow.fxml").openStream());
+        Pane root = fxmlLoader.load(GameController.class.getResource("/fxml/winWindow.fxml").openStream());
+        root.getStylesheets().add(getClass().getResource("/style/menustyl.css").toExternalForm());
         stage.setScene(new Scene(root));
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(gameAnchorPane.getScene().getWindow());
         stage.setResizable(false);
         stage.setTitle("Win");
         stage.showAndWait();
+
 
         //whoWon.setText("");
     }

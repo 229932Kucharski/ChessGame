@@ -19,7 +19,7 @@ public class ImageManager {
     public static byte[] chooseCoverFromFile() throws IOException {
         byte[] cover;
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Image Files", "jpg", "jpeg", "png");
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.jpeg");
         fileChooser.setSelectedExtensionFilter(filter);
         fileChooser.setTitle("Choose a cover (.jpg)");
         fileChooser.setInitialDirectory(
@@ -29,6 +29,15 @@ public class ImageManager {
         if (file == null) {
             return null;
         }
+        String fileName = file.toString();
+        int index = fileName.lastIndexOf('.');
+        if(index > 0) {
+            String extension = fileName.substring(index + 1);
+            if(!extension.equals("jpg") && !extension.equals("jpeg")) {
+                return null;
+            }
+        }
+
         cover = ImageManager.imageToByteArray(file.getAbsolutePath());
         byteArrayToImage(LoginManager.getLoggedUser().getLogin(), cover);
 
