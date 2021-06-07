@@ -23,16 +23,14 @@ public class StyleController {
     public ImageView chessImage;
     public AnchorPane styleAnchorPane;
 
-    public static String figuresStyle = "classic";
-
     public void initialize() {
+        User user = LoginManager.getLoggedUser();
         ObservableList<FiguresStyle> figures = FXCollections.observableArrayList(FiguresStyle.values());
         figuresChoiceBox.setItems(figures);
-        figuresChoiceBox.setValue(FiguresStyle.menu);
+        figuresChoiceBox.setValue(user.getPieceDesign());
 
         ObservableList<ChessboardStyle> cbs = FXCollections.observableArrayList(ChessboardStyle.values());
         chessboardChoiceBox.setItems(cbs);
-        User user = LoginManager.getLoggedUser();
         chessboardChoiceBox.setValue(user.getBoardDesign());
 
         figuresChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
@@ -41,20 +39,21 @@ public class StyleController {
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
 
                if (t1.equals(1)) {
-                    figuresStyle = "classic";
+                   StyleManager.setFiguresStyle(FiguresStyle.classic);
                     Image image = new Image("/images/classic/queen.png");
                     figureImage.setImage(image);
                 }
                 else if (t1.equals(2)) {
-                   figuresStyle = "wooden";
+                   StyleManager.setFiguresStyle(FiguresStyle.wooden);
                     Image image = new Image("/images/woodenTemp.jpg");
                     figureImage.setImage(image);
                 }
                 else if (t1.equals(3)) {
-                   figuresStyle = "marble";
+                    StyleManager.setFiguresStyle(FiguresStyle.marble);
                     Image image = new Image("/images/marbleTemp.jpg");
                     figureImage.setImage(image);
                 }
+                LoginManager.updateLoggedUser();
             }
             }
         );

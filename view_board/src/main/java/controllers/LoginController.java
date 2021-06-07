@@ -34,6 +34,7 @@ public class LoginController {
             return;
         }
         StyleManager.setBoardColor(LoginManager.getLoggedUser().getBoardDesign());
+        StyleManager.setFiguresStyle(LoginManager.getLoggedUser().getPieceDesign());
         App.changeScene(loginAnchorPane, "mainWindow");
     }
 
