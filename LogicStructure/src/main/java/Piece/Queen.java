@@ -9,8 +9,24 @@ public class Queen extends Piece {
         super(x, y, color, value, id);
     }
 
+    private boolean decideIfAddAndAdd(List<Move> listPossibleMoves, List<Piece> allOtherPieces, int tempX, int tempY) {
+        if(isMovePossible(allOtherPieces, tempX, tempY)) {
+            Move move = new Move(currentX, currentY, tempX, tempY);
+            if(isMoveAttack(allOtherPieces, move)) {
+                move.setAttack(true);
+                listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                return true;
+            } else {
+                listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                return false;
+            }
+        } else {
+            return true; //wyjscie z while
+        }
+    }
+
     @Override
-    public Move[] getPossibleMoves() {
+    public Move[] getPossibleMoves(List<Piece> allOtherPieces) {
         List<Move> listPossibleMoves = new ArrayList<>();
         int tempX = 0;
         int tempY = 0;
@@ -20,50 +36,85 @@ public class Queen extends Piece {
             tempY = currentY;
 
             if (direction == 0) {
+
                 while (tempX < 7 && tempY > 0) {
                     tempX++;
                     tempY--;
-                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                    if(decideIfAddAndAdd(listPossibleMoves, allOtherPieces, tempX, tempY)) {
+                        tempX = 8;
+                        tempY = -1;
+                    }
                 }
+
             } else if (direction == 1) {
+
                 while (tempX < 7  && tempY < 7) {
                     tempX++;
                     tempY++;
-                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                    if(decideIfAddAndAdd(listPossibleMoves, allOtherPieces, tempX, tempY)) {
+                        tempX = 8;
+                        tempY = 8;
+                    }
                 }
+
             } else if (direction == 2) {
+
                 while (tempX > 0 && tempY < 7)  {
                     tempX--;
                     tempY++;
-                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                    if(decideIfAddAndAdd(listPossibleMoves, allOtherPieces, tempX, tempY)) {
+                        tempX = -1;
+                        tempY = 8;
+                    }
                 }
+
             } else if (direction == 3) {
+
                 while (tempX > 0 && tempY > 0) {
                     tempX--;
                     tempY--;
-                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                    if(decideIfAddAndAdd(listPossibleMoves, allOtherPieces, tempX, tempY)) {
+                        tempX = -1;
+                        tempY = -1;
+                    }
                 }
-            }
-            else if (direction == 4) {
+
+            } else if (direction == 4) {
+
                 while(tempX < 7) {
                     tempX++;
-                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                    if(decideIfAddAndAdd(listPossibleMoves, allOtherPieces, tempX, tempY)) {
+                        tempX = 8;
+                    }
                 }
+
             } else if (direction == 5) {
+
                 while(tempX > 0) {
                     tempX--;
-                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                    if(decideIfAddAndAdd(listPossibleMoves, allOtherPieces, tempX, tempY)) {
+                        tempX = -1;
+                    }
                 }
+
             } else if (direction == 6) {
+
                 while(tempY < 7) {
                     tempY++;
-                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                    if(decideIfAddAndAdd(listPossibleMoves, allOtherPieces, tempX, tempY)) {
+                        tempY = 8;
+                    }
                 }
+
             } else if (direction == 7) {
+
                 while(tempY > 0) {
                     tempY--;
-                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                    if(decideIfAddAndAdd(listPossibleMoves, allOtherPieces, tempX, tempY)) {
+                        tempY = -1;
+                    }
                 }
+
             }
 
 
