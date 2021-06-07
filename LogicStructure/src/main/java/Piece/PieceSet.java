@@ -87,7 +87,8 @@ public class PieceSet {
 
     }
 
-    public  boolean move(Move move) {
+    public  boolean move(Move move, PieceSet enemyPiece) {
+        calculatePossibleMoves(enemyPiece);
         for(Piece piece : pieces) {
 
 //            Move[] moves = piece.getPossibleMoves();

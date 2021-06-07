@@ -26,7 +26,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import player.manager.LoginManager;
 
 import java.io.File;
@@ -134,11 +133,11 @@ public class GameController extends GridPane{
                         if(tempHb != null) {
                             System.out.println("old: " + oldX + " " + oldY + ", new: " + newX + " " + newY);
                             if (move_counter % 2 == 0) {
-                                if(cb.getPs().move(new Move(oldY, oldX, newY, newX))) {
+                                if(cb.getPs().move(new Move(oldY, oldX, newY, newX),cb.getPsb())) {
                                     moveFigure(hb, cb.getPiece(oldY, oldX).getPieceColor());
                                 }
                             } else {
-                               if(cb.getPsb().move(new Move(oldY, oldX, newY, newX))) {
+                               if(cb.getPsb().move(new Move(oldY, oldX, newY, newX),cb.getPs())) {
                                    moveFigure(hb, cb.getPiece(oldY, oldX).getPieceColor());
                                }
                             }
@@ -184,7 +183,6 @@ public class GameController extends GridPane{
                 else if(!hb.getChildren().isEmpty()) {
                     if(cb.getPiece(newY, newX).getPieceColor() == PieceColor.WHITE) {
                         if(cb.getPiece(oldY, oldX).getPieceColor() == PieceColor.BLACK) {
-
                             hb.getChildren().clear();
                             hb.getChildren().add(temp);
                             cb.movePiece(cb.getPiece(oldY,oldX),newY,newX);
@@ -211,13 +209,13 @@ public class GameController extends GridPane{
             }
         }
 
-
     public void clearHBox() {
         for (HBox hbox : hBoxList) {
             hbox.setBorder(new Border(new BorderStroke(Color.YELLOW,
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(0))));
         }
     }
+
     public Node getNodeByXY(GridPane gp, int x, int y) {
         Node result = null;
         ObservableList<Node> children = gp.getChildren();

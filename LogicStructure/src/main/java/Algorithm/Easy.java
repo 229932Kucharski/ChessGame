@@ -3,6 +3,7 @@ package Algorithm;
 
 
 import Piece.Move;
+import Piece.PieceSet;
 
 import java.util.Random;
 
@@ -26,7 +27,7 @@ public class Easy extends Algorithm{
            }
        }
 
-       gameSet.move(nextMove);
+      // gameSet.move(nextMove);
 
 
     }
