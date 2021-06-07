@@ -76,7 +76,7 @@ public class Rook extends Piece {
                 }
 
             } else if(direction == 3) {
-                
+
                 while(tempY > 0) {
                     tempY--;
                     if(isMovePossible(allOtherPieces, tempX, tempY)) {

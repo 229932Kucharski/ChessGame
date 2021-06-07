@@ -9,7 +9,8 @@ public class Knight extends Piece {
         super(x, y, color, value, id);
     }
 
-    public Move[] getPossibleMoves() {
+    @Override
+    public Move[] getPossibleMoves(List<Piece> allOtherPieces) {
         List<Move> listPossibleMoves = new ArrayList<>();
 
         for(int direction = 0; direction < 8; direction++) {
@@ -62,8 +63,10 @@ public class Knight extends Piece {
 
             tmpX = tmpX + xFactor;
             tmpY = tmpY + yFactor;
-            if(checkIfPossibleMove(tmpX,tmpY)) {
-                listPossibleMoves.add(new Move(currentX, currentY, tmpX, tmpY));
+            if(checkIfPossibleMove(allOtherPieces,tmpX,tmpY)) {
+                Move move = new Move(currentX, currentY, tmpX, tmpY);
+                move.setAttack(isMoveAttack(allOtherPieces, move));
+                listPossibleMoves.add(move);
             }
         }
 
@@ -74,14 +77,14 @@ public class Knight extends Piece {
         return possibleMoves;
     }
 
-    private boolean checkIfPossibleMove(int x, int y) {
+    private boolean checkIfPossibleMove(List<Piece> allOtherPieces, int x, int y) {
         if( (x < 0) || (x > 7) ) {
             return false;
         }
         if( (y < 0) || (y > 7) ) {
             return false;
         }
-        return true;
+        return isMovePossible(allOtherPieces, x, y);
     }
 
 }

@@ -10,7 +10,7 @@ public class Bishop extends Piece{
     }
 
     @Override
-    public Move[] getPossibleMoves() {
+    public Move[] getPossibleMoves(List<Piece> allOtherPieces) {
         List<Move> listPossibleMoves = new ArrayList<>();
         int tempX = 0;
         int tempY = 0;
@@ -20,29 +20,89 @@ public class Bishop extends Piece{
             tempY = currentY;
 
             if (direction == 0) {
+
                 while (tempX < 7 && tempY > 0) {
                     tempX++;
                     tempY--;
-                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                    if(isMovePossible(allOtherPieces, tempX, tempY)) {
+                        Move move = new Move(currentX, currentY, tempX, tempY);
+                        if(isMoveAttack(allOtherPieces, move)) {
+                            move.setAttack(true);
+                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            tempX = 8;
+                            tempY = -1; //wyjscie z while
+                        } else {
+                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                        }
+                    } else {
+                        tempX = 8;
+                        tempY = -1; //wyjscie z while
+                    }
                 }
+
             } else if (direction == 1) {
+
                 while (tempX < 7  && tempY < 7) {
                     tempX++;
                     tempY++;
-                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                    if(isMovePossible(allOtherPieces, tempX, tempY)) {
+                        Move move = new Move(currentX, currentY, tempX, tempY);
+                        if(isMoveAttack(allOtherPieces, move)) {
+                            move.setAttack(true);
+                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            tempX = 8;
+                            tempY = 8; //wyjscie z while
+                        } else {
+                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                        }
+                    } else {
+                        tempX = 8;
+                        tempY = 8; //wyjscie z while
+                    }
                 }
+
             } else if (direction == 2) {
+
                 while (tempX > 0 && tempY < 7)  {
                     tempX--;
                     tempY++;
-                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                    if(isMovePossible(allOtherPieces, tempX, tempY)) {
+                        Move move = new Move(currentX, currentY, tempX, tempY);
+                        if(isMoveAttack(allOtherPieces, move)) {
+                            move.setAttack(true);
+                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            tempX = -1;
+                            tempY = 8; //wyjscie z while
+                        } else {
+                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                        }
+                    } else {
+                        tempX = -1;
+                        tempY = 8; //wyjscie z while
+                    }
                 }
+
             } else if (direction == 3) {
+
                 while (tempX > 0 && tempY > 0) {
                     tempX--;
                     tempY--;
-                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                    if(isMovePossible(allOtherPieces, tempX, tempY)) {
+                        Move move = new Move(currentX, currentY, tempX, tempY);
+                        if(isMoveAttack(allOtherPieces, move)) {
+                            move.setAttack(true);
+                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            tempX = -1;
+                            tempY = -1; //wyjscie z while
+                        } else {
+                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                        }
+                    } else {
+                        tempX = -1;
+                        tempY = -1; //wyjscie z while
+                    }
                 }
+
             }
         }
 
