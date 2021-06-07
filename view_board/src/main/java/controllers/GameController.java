@@ -26,6 +26,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import player.manager.LoginManager;
 
 import java.io.File;
@@ -52,6 +53,7 @@ public class GameController extends GridPane{
     public ImageView coverImageView;
 
 
+
     //public static ThreadStopwatch nts = new ThreadStopwatch();
 
     ImageView temp;
@@ -62,6 +64,7 @@ public class GameController extends GridPane{
     int oldY;
     int newX;
     int newY;
+    public boolean isWon = false;
     public void initialize() {
         move_counter = 0;
         if(LoginManager.getLoggedUser()!=null) {
@@ -98,14 +101,16 @@ public class GameController extends GridPane{
 
             }
         }
-            addGridEvent();
+
+                addGridEvent();
+
     }
     private void addGridEvent() {
         chessboardGridPane.getChildren().forEach(item -> {
            item.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    if (event.getClickCount() == 1) {
+                    if (event.getClickCount() == 1 && !isWon) {
                         clearHBox();
                         //pobranie źródła z gridpane (x,y)
                         Node source = (Node) event.getSource();
@@ -281,11 +286,13 @@ public class GameController extends GridPane{
         }
     }
     public void winOpen() throws IOException {
+        isWon = true;
         Stage stage = new Stage();
-        stage.getIcons().add(new Image("/images/chess.png"));
+        stage.getIcons().add(new Image("/images/cr.jpg"));
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane root = fxmlLoader.load(GameController.class.getResource("/fxml/winWindow.fxml").openStream());
         root.getStylesheets().add(getClass().getResource("/style/menustyl.css").toExternalForm());
+        //stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(new Scene(root));
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(gameAnchorPane.getScene().getWindow());
@@ -293,7 +300,6 @@ public class GameController extends GridPane{
         stage.setTitle("Win");
         stage.showAndWait();
 
-
-        //whoWon.setText("");
     }
+
 }
