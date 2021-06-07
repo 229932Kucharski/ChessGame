@@ -28,6 +28,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import player.manager.LoginManager;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,7 @@ public class GameController extends GridPane{
 
     public static ThreadStopwatch wts = new ThreadStopwatch();
     public static ThreadStopwatch bts = new ThreadStopwatch();
+    public ImageView coverImageView;
 
 
     //public static ThreadStopwatch nts = new ThreadStopwatch();
@@ -63,6 +65,9 @@ public class GameController extends GridPane{
     public void initialize() {
         if(LoginManager.getLoggedUser()!=null) {
             username.setText(LoginManager.getLoggedUser().getName());
+            File imageFile = new File("assets/cover/"+ LoginManager.getLoggedUser().getLogin() +".jpg");
+            Image image = new Image(imageFile.toURI().toString());
+            coverImageView.setImage(image);
         }
         cb.initBoard();
         //inicjalizacja hboxów na planszy

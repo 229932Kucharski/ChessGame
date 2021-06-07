@@ -65,7 +65,7 @@
                 <Image url="@../images/avatar.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="40.0" fitWidth="200.0" layoutX="112.0" layoutY="727.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="coverImageView" fitHeight="40.0" fitWidth="200.0" layoutX="112.0" layoutY="727.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../images/avatar.png" />
             </image>
