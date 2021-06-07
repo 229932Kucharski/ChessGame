@@ -31,7 +31,7 @@ public class UserDao implements Dao<User> {
     @Override
     public void add(User obj) throws SQLException {
         String addUser ="insert into player(name, login, password, boardDesign, pieceDesign, checkMate, " +
-                "staleMate, loses, played) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "staleMate, loses, played, cover) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement preparedStatement = connection.prepareStatement(addUser);
         preparedStatement.setString(1, obj.getName());
@@ -43,6 +43,7 @@ public class UserDao implements Dao<User> {
         preparedStatement.setInt(7, obj.getStatistic().getStaleMate());
         preparedStatement.setInt(8, obj.getStatistic().getLoses());
         preparedStatement.setInt(9, obj.getStatistic().getPlayed());
+        preparedStatement.setBytes(10, obj.getCover());
         preparedStatement.executeUpdate();
 
     }
@@ -63,8 +64,9 @@ public class UserDao implements Dao<User> {
             int staleMate = resultSet.getInt(8);
             int loses = resultSet.getInt(9);
             int played = resultSet.getInt(10);
+            byte[] cover = resultSet.getBytes(11);
             user = new User(null, FiguresStyle.fromString(pieceDesign), ChessboardStyle.fromString(boardDesign),
-                    0, name, login, password, checkMate, staleMate, loses, played);
+                    0, name, login, password, checkMate, staleMate, loses, played, cover);
         }
         return user;
     }
@@ -86,8 +88,9 @@ public class UserDao implements Dao<User> {
             int staleMate = resultSet.getInt(8);
             int loses = resultSet.getInt(9);
             int played = resultSet.getInt(10);
+            byte[] cover = resultSet.getBytes(11);
             user = new User(null, FiguresStyle.fromString(pieceDesign), ChessboardStyle.fromString(boardDesign),
-                    0, name, login, password, checkMate, staleMate, loses, played);
+                    0, name, login, password, checkMate, staleMate, loses, played, cover);
         }
         return user;
     }
@@ -108,8 +111,9 @@ public class UserDao implements Dao<User> {
             int staleMate = resultSet.getInt(8);
             int loses = resultSet.getInt(9);
             int played = resultSet.getInt(10);
+            byte[] cover = resultSet.getBytes(11);
             User user = new User(null, FiguresStyle.fromString(pieceDesign), ChessboardStyle.fromString(boardDesign),
-                    0, name, login, password, checkMate, staleMate, loses, played);
+                    0, name, login, password, checkMate, staleMate, loses, played, cover);
             users.add(user);
         }
         return users;
@@ -127,7 +131,7 @@ public class UserDao implements Dao<User> {
     @Override
     public void update(User obj) throws SQLException {
         String updateUser ="UPDATE player SET name = ?, boardDesign = ?, pieceDesign = ?, checkMate = ?," +
-                "staleMate = ?, loses = ?, played = ? WHERE login = ?";
+                "staleMate = ?, loses = ?, played = ?, cover = ? WHERE login = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(updateUser);
         preparedStatement.setString(1, obj.getName());
         preparedStatement.setString(2, obj.getBoardDesign().toString());
@@ -136,7 +140,8 @@ public class UserDao implements Dao<User> {
         preparedStatement.setInt(5, obj.getStatistic().getStaleMate());
         preparedStatement.setInt(6, obj.getStatistic().getLoses());
         preparedStatement.setInt(7, obj.getStatistic().getPlayed());
-        preparedStatement.setString(8, obj.getLogin());
+        preparedStatement.setBytes(8, obj.getCover());
+        preparedStatement.setString(9, obj.getLogin());
         preparedStatement.executeUpdate();
 
     }

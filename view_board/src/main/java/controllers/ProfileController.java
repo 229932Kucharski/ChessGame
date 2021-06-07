@@ -7,10 +7,15 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import player.User;
 import player.manager.LoginManager;
+
+import java.io.File;
+import java.io.IOException;
 
 public class ProfileController {
     final CategoryAxis xAxis = new CategoryAxis();
@@ -18,6 +23,7 @@ public class ProfileController {
     public BarChart<?, ?> chart = new BarChart<>(xAxis, yAxis);;
     public AnchorPane profileAnchorPane;
     public Text username;
+    public ImageView coverImageView;
 
     public void initialize() {
         username.setText(LoginManager.getLoggedUser().getName());
@@ -44,14 +50,47 @@ public class ProfileController {
         dataRem.getNode().setStyle("-fx-bar-fill: CHART_COLOR_2;");
         dataWygr.getNode().setStyle("-fx-bar-fill: CHART_COLOR_3;");
 
+        byte[] cover = LoginManager.getLoggedUser().getCover();
+        if(cover == null) {
+            coverImageView.setImage(new Image("/images/avatar.png"));
+        } else {
+            try {
+                ImageManager.byteArrayToImage(LoginManager.getLoggedUser().getLogin(), cover);
+                setCover();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
+        }
     }
 
-    public void back(ActionEvent actionEvent) {
+    public void changeCover() {
+        byte[] cover = null;
+        try{
+            cover = ImageManager.chooseCoverFromFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(cover == null) {
+            return;
+        }
+        setCover();
+        LoginManager.getLoggedUser().setCover(cover);
+        LoginManager.updateLoggedUser();
+    }
+
+    private void setCover() {
+        File imageFile = new File("assets/cover/"+ LoginManager.getLoggedUser().getLogin() +".jpg");
+        Image image = new Image(imageFile.toURI().toString());
+        coverImageView.setImage(image);
+    }
+
+    public void changeStyle() {
+        App.changeScene(profileAnchorPane,"styleWindow");
+    }
+
+    public void back() {
         App.changeScene(profileAnchorPane,"mainWindow");
     }
 
-    public void changeStyle(ActionEvent actionEvent) {
-        App.changeScene(profileAnchorPane,"styleWindow");
-    }
 }

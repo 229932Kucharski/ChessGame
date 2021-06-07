@@ -7,6 +7,8 @@
 # Modules
 view_board/*.iml
 LogicStructure/*.iml
+view_board/assets/*
+assets/*
 
 # Node artifact files
 node_modules/
