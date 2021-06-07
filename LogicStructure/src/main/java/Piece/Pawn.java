@@ -21,12 +21,16 @@ public class Pawn extends Piece {
             }
             return possibleMove;
         } else {
-            Move[] possibleMove = new Move[1];
+            Move[] possibleMove = new Move[3];
             if((pieceColor == PieceColor.BLACK) && currentY < 7) {
                 possibleMove[0] = new Move(currentX, currentY, currentX, currentY+1);
+                possibleMove[1] = new Move(currentX, currentY, currentX-1, currentY+1);
+                possibleMove[2] = new Move(currentX, currentY, currentX+1, currentY+1);
                 return possibleMove;
             } else if((pieceColor == PieceColor.WHITE) && currentY > 0) {
                 possibleMove[0] = new Move(currentX, currentY, currentX, currentY-1);
+                possibleMove[1] = new Move(currentX, currentY, currentX-1, currentY-1);
+                possibleMove[2] = new Move(currentX, currentY, currentX-1, currentY-1);
                 return possibleMove;
             } else {
                 return null;
