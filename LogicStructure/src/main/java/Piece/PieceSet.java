@@ -7,7 +7,7 @@ import java.util.List;
 public class PieceSet {
 
     private PieceColor pieceColor;
-    protected int whiteScore = 40, blackScore = 40;
+    protected int score = 40;
     protected List<Piece> pieces = new ArrayList<>();
     protected List<Move> possibleMoves = new ArrayList<>();
 
@@ -114,20 +114,12 @@ public class PieceSet {
         return null;
     }
 
-    public int getWhiteScore() {
-        return whiteScore;
-    }
-
-    public int getBlackScore() {
-        return blackScore;
+    public int getScore() {
+        return score;
     }
 
     public boolean removePiece(Piece piece) {
-        if(pieceColor == PieceColor.WHITE) {
-            whiteScore -= piece.getValue();
-        } else {
-            blackScore -= piece.getValue();
-        }
+        score -= piece.getValue();
         return pieces.remove(piece);
     }
 

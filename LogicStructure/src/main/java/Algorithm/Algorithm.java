@@ -4,7 +4,7 @@ import Piece.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Random;
 
 
 public abstract class Algorithm {
@@ -13,6 +13,9 @@ public abstract class Algorithm {
     protected String difficultyLevel;
 
     protected PieceSet gameSet;
+    protected PieceSet allySet;
+    protected PieceSet enemySet;
+    Random random = new Random();
 
 
 
@@ -48,13 +51,19 @@ public abstract class Algorithm {
 
     public String getDifficultyLevel() { return difficultyLevel; }
 
-    public int evaluate(PieceColor maximizing_color){
-        int currentScore;
-        if (maximizing_color == PieceColor.WHITE){
-            currentScore = gameSet.getWhiteScore() - gameSet.getBlackScore();
-        }else{
-            currentScore = gameSet.getBlackScore() - gameSet.getWhiteScore();
-        }
-        return currentScore;
+    public void setDifficultyLevel(String difficultyLevel) {
+        this.difficultyLevel = difficultyLevel;
+    }
+
+    public Move getRandomMove(List<Move> list){
+
+        int index = random.nextInt(allySet.getPossibleMoves().size());
+
+        return list.get(index);
+
+    }
+
+    public int evaluate(){
+        return allySet.getScore() - enemySet.getScore();
     }
 }
