@@ -4,6 +4,9 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 
 public class Move {
 
+//    Piece moveOwner;
+    private boolean attack = false;
+
     private final int currentX;
     private final int currentY;
 
@@ -50,6 +53,7 @@ public class Move {
                 .append(nextY, move.nextY)
                 .isEquals();
     }
+
     public boolean isDestination(Move move){
 
         if((currentX == move.nextX) && (currentY == move.nextY)){
@@ -58,4 +62,11 @@ public class Move {
         return false;
     }
 
+    public boolean isAttack() {
+        return attack;
+    }
+
+    public void setAttack(boolean attack) {
+        this.attack = attack;
+    }
 }
