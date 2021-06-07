@@ -23,6 +23,7 @@ public class ThreadStopwatch extends Thread{
 
    public Label timelabel;
    public GameController gameController;
+   public WinController winController;
 
 //    String seconds_string = String.format("%02d", seconds);
 //    String minutes_string = String.format("%02d", minutes);
@@ -55,7 +56,7 @@ public class ThreadStopwatch extends Thread{
     public void run() {
         while (!exit) {
             try {
-                sleep(1000);
+                sleep(300);
             } catch(InterruptedException exc) {
                 System.out.println("Wątek zliczania czasu zoostał przerwany.");
                 return;
@@ -85,6 +86,7 @@ public class ThreadStopwatch extends Thread{
                 if(LoginManager.getLoggedUser() != null) {
                     if(move_counter %2 == 0) {
                         LoginManager.getLoggedUser().getStatistic().setCheckMate(LoginManager.getLoggedUser().getStatistic().getCheckMate() + 1);
+
                     }
                     else {
                         LoginManager.getLoggedUser().getStatistic().setLoses(LoginManager.getLoggedUser().getStatistic().getLoses() + 1);
