@@ -14,7 +14,7 @@
     <children>
         <VBox layoutX="105.0" layoutY="159.0" prefHeight="133.0" prefWidth="219.0" spacing="10.0">
             <children>
-                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Podaj login lub nick:">
+                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Podaj login:">
                     <font>
                         <Font name="Times New Roman" size="12.0" />
                     </font>

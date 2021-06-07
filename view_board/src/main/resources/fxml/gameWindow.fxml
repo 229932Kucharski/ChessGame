@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="gameAnchorPane" minHeight="800.0" prefHeight="800.0" prefWidth="980" style="-fx-background-color: #562837;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameController">
+<AnchorPane fx:id="gameAnchorPane" minHeight="800.0" prefHeight="800.0" prefWidth="980" style="-fx-background-color: #562837;" stylesheets="@../style/menustyl.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameController">
     <children>
         <ImageView fitHeight="616.0" fitWidth="613.0" layoutX="95.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -50,7 +50,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
         </GridPane>
-        <Text fx:id="username" fill="WHITE" layoutX="160.0" layoutY="752.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GUEST">
+        <Text fx:id="username" fill="WHITE" layoutX="164.0" layoutY="752.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GUEST">
             <font>
                 <Font name="Times New Roman" size="14.0" />
             </font></Text>
@@ -58,14 +58,9 @@
             <font>
                 <Font name="Times New Roman" size="14.0" />
             </font></Text>
-        <Circle fill="WHITE" layoutX="130.0" layoutY="72.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="WHITE" layoutX="132.0" layoutY="747.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+        <Circle fill="WHITE" layoutX="130.0" layoutY="72.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+        <Circle fill="WHITE" layoutX="132.0" layoutY="747.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
         <ImageView fitHeight="40.0" fitWidth="200.0" layoutX="110.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../images/avatar.png" />
-            </image>
-        </ImageView>
-        <ImageView fx:id="coverImageView" fitHeight="40.0" fitWidth="200.0" layoutX="112.0" layoutY="727.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../images/avatar.png" />
             </image>
@@ -80,19 +75,28 @@
                 <Font name="Times New Roman" size="12.0" />
             </font>
         </ToggleButton>
-        <HBox fx:id="f" layoutX="735.0" layoutY="105.0" prefHeight="100.0" prefWidth="200.0">
+        <HBox fx:id="f" alignment="CENTER" layoutX="759.0" layoutY="143.0" prefHeight="81.0" prefWidth="152.0">
          <children>
-            <Label fx:id="sPlayerLabel" contentDisplay="CENTER" prefHeight="103.0" prefWidth="200.0" text="--:--:---" textFill="#80ff80">
+            <Label fx:id="sPlayerLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="103.0" prefWidth="200.0" style="-fx-background-color: #222222; -fx-border-color: #ffffff;" text="--:--:--" textFill="WHITE">
                <font>
-                  <Font size="40.0" />
+                  <Font name="Courier New" size="27.0" />
                </font></Label>
          </children></HBox>
-        <HBox layoutX="735.0" layoutY="618.0" prefHeight="100.0" prefWidth="200.0">
+        <HBox alignment="CENTER" layoutX="759.0" layoutY="600.0" prefHeight="81.0" prefWidth="152.0" style="-fx-background-color: #222222; -fx-border-color: #ffffff;">
          <children>
-            <Label fx:id="fPlayerLabel" contentDisplay="CENTER" prefHeight="102.0" prefWidth="202.0" text="--:--:--" textFill="#80ff80">
+            <Label fx:id="fPlayerLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="102.0" prefWidth="183.0" text="--:--:--" textFill="WHITE">
                <font>
-                  <Font size="40.0" />
+                  <Font name="Courier New" size="27.0" />
                </font></Label>
          </children></HBox>
+      <HBox alignment="CENTER" layoutX="110.0" layoutY="727.0" maxWidth="50.0" minHeight="40.0" minWidth="40.0" prefHeight="40.0" prefWidth="40.0">
+         <children>
+              <ImageView fx:id="coverImageView" fitHeight="40.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                      <Image url="@../images/avatar.png" />
+                  </image>
+              </ImageView>
+         </children>
+      </HBox>
     </children>
 </AnchorPane>
