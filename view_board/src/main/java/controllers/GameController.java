@@ -197,6 +197,8 @@ public class GameController extends GridPane{
                             move_counter++;
                         }
                     }
+                    isHighlighted = true;
+                    tempHb = null;
                 }
                 if(move_counter %2 == 0) {
                     wts.setYes();

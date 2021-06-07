@@ -89,19 +89,22 @@ public class PieceSet {
 
     public  boolean move(Move move, PieceSet enemyPiece) {
         calculatePossibleMoves(enemyPiece);
-        for(Piece piece : pieces) {
+        //for(Piece piece : pieces) {
 
-//            Move[] moves = piece.getPossibleMoves();
+        //Move[] moves = piece.getPossibleMoves();
 
             for(Move possibleMove : possibleMoves) {
 
                 if(possibleMove.equals(move)) {
+                    Piece piece = this.getPiece(move.getCurrentX(), move.getCurrentY());
                     piece.move(move.getNextX(), move.getNextY());
+                    if(move.isAttack()) {
+                        enemyPiece.removePiece(enemyPiece.getPiece(move.getNextX(), move.getNextY()));
+                    }
                     return true;
                 }
-
             }
-        }
+        //}
         return false;
     }
 
