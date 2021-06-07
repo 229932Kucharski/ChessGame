@@ -24,6 +24,7 @@ public class ProfileController {
     public AnchorPane profileAnchorPane;
     public Text username;
     public ImageView coverImageView;
+    public Text playedGames;
 
     public void initialize() {
         username.setText(LoginManager.getLoggedUser().getName());
@@ -33,7 +34,8 @@ public class ProfileController {
         int loses = LoginManager.getLoggedUser().getStatistic().getLoses();
         int wins = LoginManager.getLoggedUser().getStatistic().getCheckMate();
         int draws = LoginManager.getLoggedUser().getStatistic().getStaleMate();
-
+        int played = LoginManager.getLoggedUser().getStatistic().getPlayed();
+        playedGames.setText(Integer.toString(played));
         final XYChart.Data<String, Number> dataPrzegr = new XYChart.Data("Przegrane", loses);
         final XYChart.Data<String, Number> dataRem = new XYChart.Data("Remisy", draws);
         final XYChart.Data<String, Number> dataWygr = new XYChart.Data("Wygrane", wins);

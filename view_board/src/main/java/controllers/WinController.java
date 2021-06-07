@@ -3,8 +3,10 @@ package controllers;
 import app.App;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 
 public class WinController {
@@ -12,6 +14,7 @@ public class WinController {
     public Text whoWon;
     public AnchorPane winBg;
     public Text reasonText;
+    public Button closeButton;
     GameController gameController;
 
     public void initialize() {
@@ -28,9 +31,15 @@ public class WinController {
 
     }
 
-    public void back(ActionEvent actionEvent) {
-          // Platform.exit();
-//        App.changeScene(gameController.gameAnchorPane, "mainWindow");
-
+    public void back(ActionEvent actionEvent){
+        // get a handle to the stage
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        // do what you have to do
+        stage.close();
     }
+//    public void back(ActionEvent actionEvent) {
+//          // Platform.exit();
+////        App.changeScene(gameController.gameAnchorPane, "mainWindow");
+//
+//    }
 }
