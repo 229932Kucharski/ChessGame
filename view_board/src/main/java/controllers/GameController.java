@@ -92,7 +92,9 @@ public class GameController extends GridPane{
                 chessboardGridPane.add(hb, i, j);
 
                 wts.setLabel(fPlayerLabel);
+                wts.setGameController(this);
                 bts.setLabel(sPlayerLabel);
+                bts.setGameController(this);
 
             }
         }
@@ -282,13 +284,15 @@ public class GameController extends GridPane{
         Stage stage = new Stage();
         stage.getIcons().add(new Image("/images/chess.png"));
         FXMLLoader fxmlLoader = new FXMLLoader();
-        Pane root = fxmlLoader.load(getClass().getResource("/fxml/winWindow.fxml").openStream());
+        Pane root = fxmlLoader.load(GameController.class.getResource("/fxml/winWindow.fxml").openStream());
+        root.getStylesheets().add(getClass().getResource("/style/menustyl.css").toExternalForm());
         stage.setScene(new Scene(root));
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(gameAnchorPane.getScene().getWindow());
         stage.setResizable(false);
         stage.setTitle("Win");
         stage.showAndWait();
+
 
         //whoWon.setText("");
     }
