@@ -64,4 +64,25 @@ public abstract class Piece {
     public void setDanger(boolean danger) {
         this.danger = danger;
     }
+
+    protected boolean isMovePossible(List<Piece> allOtherPieces, int newX, int newY) {
+        for(Piece piece : allOtherPieces) {
+            boolean samePosition = (piece.currentX == newX) && (piece.currentY == newY);
+            if( samePosition && (piece.getPieceColor() == this.getPieceColor()) ){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    protected boolean isMoveAttack(List<Piece> allOtherPieces, Move move) {
+        for(Piece piece : allOtherPieces) {
+            boolean samePosition = (piece.currentX == move.getNextX()) && (piece.currentY == move.getNextY());
+            if ( samePosition && (piece.getPieceColor() != this.getPieceColor() ) ) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
