@@ -21,8 +21,18 @@
             </Text>
          </children>
       </HBox>
-      <ImageView fx:id="figureImage" fitHeight="150.0" fitWidth="200.0" layoutX="364.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="chessImage" fitHeight="150.0" fitWidth="200.0" layoutX="364.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="figureImage" fitHeight="114.0" fitWidth="103.0" layoutX="379.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="chessImage" fitHeight="136.0" fitWidth="168.0" layoutX="346.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" />
       <ToggleButton layoutX="39.0" layoutY="368.0" mnemonicParsing="false" onAction="#back" prefHeight="37.0" prefWidth="70.0" text="Powrót" />
+      <Text fill="WHITE" layoutX="40.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zmień styl figur">
+         <font>
+            <Font name="Century" size="13.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="40.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zmień styl planszy">
+         <font>
+            <Font name="Century" size="13.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

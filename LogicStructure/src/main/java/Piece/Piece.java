@@ -1,5 +1,7 @@
 package Piece;
 
+import java.util.List;
+
 public abstract class Piece {
 
     private boolean danger = false;
@@ -12,7 +14,7 @@ public abstract class Piece {
     protected String id;
     private boolean isOnBoard = true;
 
-    public abstract Move[] getPossibleMoves();
+    public abstract Move[] getPossibleMoves(List<Piece> allOtherPieces);
 
     public Piece(int x, int y, PieceColor color, int value, String id) {
         currentX = x;
@@ -62,4 +64,25 @@ public abstract class Piece {
     public void setDanger(boolean danger) {
         this.danger = danger;
     }
+
+    protected boolean isMovePossible(List<Piece> allOtherPieces, int newX, int newY) {
+        for(Piece piece : allOtherPieces) {
+            boolean samePosition = (piece.currentX == newX) && (piece.currentY == newY);
+            if( samePosition && (piece.getPieceColor() == this.getPieceColor()) ){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    protected boolean isMoveAttack(List<Piece> allOtherPieces, Move move) {
+        for(Piece piece : allOtherPieces) {
+            boolean samePosition = (piece.currentX == move.getNextX()) && (piece.currentY == move.getNextY());
+            if ( samePosition && (piece.getPieceColor() != this.getPieceColor() ) ) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

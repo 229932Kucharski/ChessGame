@@ -1,10 +1,9 @@
 package player.enums;
 
 public enum FiguresStyle {
-    menu("Wybierz styl figur"),
     classic("klasyczny"),
-    wooden("drewniany"),
-    marble("marmurowy");
+    wooden("drewniany");
+    //marble("marmurowy");
     private String fig;
     FiguresStyle(String s) {
         fig = s;

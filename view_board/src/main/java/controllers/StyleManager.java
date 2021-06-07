@@ -22,9 +22,6 @@ public class StyleManager {
         if(fs.equals(FiguresStyle.classic)) {
             figuresStyle = "classic";
         }
-        else if(fs.equals(FiguresStyle.marble)) {
-            figuresStyle = "marble";
-        }
         else if(fs.equals(FiguresStyle.wooden)) {
             figuresStyle = "wooden";
         }

@@ -15,8 +15,8 @@
 
 <AnchorPane id="bg" fx:id="profileAnchorPane" prefHeight="800.0" prefWidth="980.0" stylesheets="@../style/menustyl.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfileController">
     <children>
-        <Circle fill="WHITE" layoutX="229.0" layoutY="161.0" radius="89.0" stroke="BLACK" strokeType="INSIDE" />
-        <ImageView fx:id="coverImageView" fitHeight="178.0" fitWidth="184.0" layoutX="140.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+        <Circle fill="WHITE" layoutX="229.0" layoutY="161.0" radius="89.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+        <ImageView fx:id="coverImageView" fitHeight="152.0" fitWidth="166.0" layoutX="153.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../images/avatar.png" />
             </image>

@@ -12,7 +12,7 @@ public class Rook extends Piece {
     }
 
     @Override
-    public Move[] getPossibleMoves() {
+    public Move[] getPossibleMoves(List<Piece> allOtherPieces) {
         List<Move> listPossibleMoves = new ArrayList<>();
         int tempX = 0;
         int tempY = 0;
@@ -22,25 +22,77 @@ public class Rook extends Piece {
             tempY = currentY;
 
             if(direction == 0) {
+
                 while(tempX < 7) {
                     tempX++;
-                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                    if(isMovePossible(allOtherPieces, tempX, tempY)) {
+                        Move move = new Move(currentX, currentY, tempX, tempY);
+                        if(isMoveAttack(allOtherPieces, move)) {
+                            move.setAttack(true);
+                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            tempX = 8; //wyjscie z while
+                        } else {
+                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                        }
+                    } else {
+                        tempX = 8; //wyjscie z while
+                    }
                 }
+
             } else if(direction == 1) {
+
                 while(tempX > 0) {
                     tempX--;
-                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                    if(isMovePossible(allOtherPieces, tempX, tempY)) {
+                        Move move = new Move(currentX, currentY, tempX, tempY);
+                        if(isMoveAttack(allOtherPieces, move)) {
+                            move.setAttack(true);
+                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            tempX = -1; //wyjscie z while
+                        } else {
+                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                        }
+                    } else {
+                        tempX = -1; //wyjscie z while
+                    }
                 }
+
             } else if(direction == 2) {
+
                 while(tempY < 7) {
                     tempY++;
-                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                    if(isMovePossible(allOtherPieces, tempX, tempY)) {
+                        Move move = new Move(currentX, currentY, tempX, tempY);
+                        if(isMoveAttack(allOtherPieces, move)) {
+                            move.setAttack(true);
+                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            tempY = 8; //wyjscie z while
+                        } else {
+                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                        }
+                    } else {
+                        tempY = 8; //wyjscie z while
+                    }
                 }
+
             } else if(direction == 3) {
+
                 while(tempY > 0) {
                     tempY--;
-                    listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                    if(isMovePossible(allOtherPieces, tempX, tempY)) {
+                        Move move = new Move(currentX, currentY, tempX, tempY);
+                        if(isMoveAttack(allOtherPieces, move)) {
+                            move.setAttack(true);
+                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            tempY = -1; //wyjscie z while
+                        } else {
+                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                        }
+                    } else {
+                        tempY = -1; //wyjscie z while
+                    }
                 }
+
             }
         }
 

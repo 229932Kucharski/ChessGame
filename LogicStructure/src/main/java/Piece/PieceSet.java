@@ -70,30 +70,41 @@ public class PieceSet {
 
     }
 
-    private void calculatePossibleMoves(){
+    private void calculatePossibleMoves(PieceSet enemyPiece){
         for(Piece piece : pieces){
-            Move[] moves = piece.getPossibleMoves();
+            List<Piece> allOtherPieces = new ArrayList<>();
+            allOtherPieces.addAll(enemyPiece.getPieces());
+            for(int i = 0; i < pieces.size(); i++) {
+                if(pieces.get(i) != piece) {
+                    allOtherPieces.add(pieces.get(i));
+                }
+            }
 
+            Move[] moves = piece.getPossibleMoves(allOtherPieces);
             possibleMoves.addAll(Arrays.asList(moves));
             
         }
 
     }
 
-    public  boolean move(Move move) {
-        for(Piece piece : pieces) {
+    public  boolean move(Move move, PieceSet enemyPiece) {
+        calculatePossibleMoves(enemyPiece);
+        //for(Piece piece : pieces) {
 
-            Move[] moves = piece.getPossibleMoves();
+        //Move[] moves = piece.getPossibleMoves();
 
-            for(Move possibleMove : moves) {
+            for(Move possibleMove : possibleMoves) {
 
                 if(possibleMove.equals(move)) {
+                    Piece piece = this.getPiece(move.getCurrentX(), move.getCurrentY());
                     piece.move(move.getNextX(), move.getNextY());
+                    if(move.isAttack()) {
+                        enemyPiece.removePiece(enemyPiece.getPiece(move.getNextX(), move.getNextY()));
+                    }
                     return true;
                 }
-
             }
-        }
+        //}
         return false;
     }
 
@@ -121,6 +132,10 @@ public class PieceSet {
     public boolean removePiece(Piece piece) {
         score -= piece.getValue();
         return pieces.remove(piece);
+    }
+
+    public List<Piece> getPieces() {
+        return pieces;
     }
 
     public boolean isCastlingAvailable() {

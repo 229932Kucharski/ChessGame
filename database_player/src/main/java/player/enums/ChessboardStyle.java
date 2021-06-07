@@ -1,7 +1,6 @@
 package player.enums;
 
 public enum ChessboardStyle {
-    menu("Wybierz styl szachownicy"),
     classic("klasyczny"),
     wooden("drewniany"),
     marble("marmurowy");

@@ -12,7 +12,7 @@ public class King extends Piece {
     }
 
     @Override
-    public Move[] getPossibleMoves() {
+    public Move[] getPossibleMoves(List<Piece> allOtherPieces) {
         List<Move> listPossibleMoves = new ArrayList<>();
         int tempX = 0;
         int tempY = 0;
@@ -67,10 +67,17 @@ public class King extends Piece {
                 }
             }
         }
+        List<Move> retList = new ArrayList<>();
+        for(Move move : listPossibleMoves) {
+            if(isMovePossible(allOtherPieces, move.getNextX(), move.getNextY())) {
+                move.setAttack(isMoveAttack(allOtherPieces, move));
+                retList.add(move);
+            }
+        }
 
-        Move[] possibleMoves = new Move[listPossibleMoves.size()];
-        for(int i = 0; i < listPossibleMoves.size(); i++) {
-            possibleMoves[i] = listPossibleMoves.get(i);
+        Move[] possibleMoves = new Move[retList.size()];
+        for(int i = 0; i < retList.size(); i++) {
+            possibleMoves[i] = retList.get(i);
         }
         return possibleMoves;
     }
