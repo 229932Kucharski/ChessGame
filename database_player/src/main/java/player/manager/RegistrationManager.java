@@ -4,6 +4,7 @@ import dao.UserDao;
 import player.User;
 import player.enums.ChessboardStyle;
 import player.enums.FiguresStyle;
+import player.exception.PasswordException;
 
 import java.sql.SQLException;
 
@@ -36,6 +37,8 @@ public class RegistrationManager {
     public static void registerUser(String name, String login, String pass) throws SQLException {
         if (!isLoginFree(login)) {
             throw new IllegalArgumentException("Login is already in use");
+        } else if(pass.length() < 6) {
+            throw new PasswordException("Password is too short");
         }
         User user = new User(null, FiguresStyle.classic, ChessboardStyle.classic,
                 0, name, login, pass, 0, 0, 0, 0, null);
