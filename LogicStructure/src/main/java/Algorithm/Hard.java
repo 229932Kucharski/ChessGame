@@ -18,7 +18,7 @@ public class Hard extends Algorithm {
 
     public double minimax(PieceSet pieceSet, int depth, PieceColor maximizing_color, boolean maximizing_player){
         if (depth == 0){
-            evaluate();
+            //evaluate();
             return 0;
         }
          List<Move> moves = allySet.getPossibleMoves();

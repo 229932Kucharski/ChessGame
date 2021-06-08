@@ -68,9 +68,7 @@ public class GameController extends GridPane{
         move_counter = 0;
         if(LoginManager.getLoggedUser()!=null) {
             username.setText(LoginManager.getLoggedUser().getName());
-            File imageFile = new File("assets/cover/"+ LoginManager.getLoggedUser().getLogin() +".jpg");
-            Image image = new Image(imageFile.toURI().toString());
-            coverImageView.setImage(image);
+            setCover();
         }
         cb.initBoard();
         //inicjalizacja hboxów na planszy
@@ -322,5 +320,18 @@ public class GameController extends GridPane{
         stage.showAndWait();
 
     }
-
+    private void setCover() {
+        if(LoginManager.getLoggedUser().getCover() == null) {
+            coverImageView.setImage(new Image("/images/avatar.png"));
+            return;
+        }
+        try {
+            ImageManager.byteArrayToImage(LoginManager.getLoggedUser().getLogin(), LoginManager.getLoggedUser().getCover());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        File imageFile = new File("assets/cover/"+ LoginManager.getLoggedUser().getLogin() +".jpg");
+        Image image = new Image(imageFile.toURI().toString());
+        coverImageView.setImage(image);
+    }
 }

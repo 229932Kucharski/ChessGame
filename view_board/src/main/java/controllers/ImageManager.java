@@ -33,7 +33,7 @@ public class ImageManager {
         int index = fileName.lastIndexOf('.');
         if(index > 0) {
             String extension = fileName.substring(index + 1);
-            if(!extension.equals("jpg") && !extension.equals("jpeg")) {
+            if(!extension.toLowerCase().equals("jpg") && !extension.toLowerCase().equals("jpeg")) {
                 return null;
             }
         }
