@@ -99,19 +99,19 @@
               </ImageView>
          </children>
       </HBox>
-      <Line endX="671.0" endY="211.5" startX="131.99998474121094" startY="211.49998474121094"  />
-      <Line endX="663.0" endY="269.0" layoutX="10.0" layoutY="10.0" startX="122.0" startY="268.0" />
-      <Line endX="650.0" endY="325.0" layoutX="20.0" layoutY="21.0" startX="110.0" startY="324.0" />
-      <Line endX="642.0" endY="383.0" layoutX="30.0" layoutY="31.0" startX="102.0" startY="381.0" />
-      <Line endX="632.0" endY="439.0" layoutX="40.0" layoutY="41.0" startX="92.0" startY="439.0" />
-      <Line endX="622.0" endY="495.0" layoutX="50.0" layoutY="52.0" startX="82.0" startY="495.0" />
-      <Line endX="613.0" endY="553.0" layoutX="60.0" layoutY="61.0" startX="72.0" startY="553.0" />
-      <Line endX="189.0" endY="671.0" layoutX="10.0" layoutY="10.0" startX="189.0" startY="134.0" />
-      <Line endX="246.0" endY="661.0" layoutX="20.0" layoutY="20.0" startX="246.0" startY="123.0" />
-      <Line endX="300.0" endY="648.0" layoutX="33.0" layoutY="30.0" startX="300.0" startY="114.0" />
-      <Line endX="358.5" endY="641.0" layoutX="42.0" layoutY="40.0" startX="358.5" startY="103.0" />
-      <Line endX="415.0" endY="631.0" layoutX="52.0" layoutY="50.0" startX="415.0" startY="93.0" />
-      <Line endX="472.0" endY="621.0" layoutX="63.0" layoutY="60.0" startX="472.0" startY="83.0" />
-      <Line endX="531.0" endY="611.0" layoutX="72.0" layoutY="70.0" startX="531.0" startY="73.0" />
+<!--      <Line endX="671.0" endY="211.5" startX="131.99998474121094" startY="211.49998474121094"  />-->
+<!--      <Line endX="663.0" endY="269.0" layoutX="10.0" layoutY="10.0" startX="122.0" startY="268.0" />-->
+<!--      <Line endX="650.0" endY="325.0" layoutX="20.0" layoutY="21.0" startX="110.0" startY="324.0" />-->
+<!--      <Line endX="642.0" endY="383.0" layoutX="30.0" layoutY="31.0" startX="102.0" startY="381.0" />-->
+<!--      <Line endX="632.0" endY="439.0" layoutX="40.0" layoutY="41.0" startX="92.0" startY="439.0" />-->
+<!--      <Line endX="622.0" endY="495.0" layoutX="50.0" layoutY="52.0" startX="82.0" startY="495.0" />-->
+<!--      <Line endX="613.0" endY="553.0" layoutX="60.0" layoutY="61.0" startX="72.0" startY="553.0" />-->
+<!--      <Line endX="189.0" endY="671.0" layoutX="10.0" layoutY="10.0" startX="189.0" startY="134.0" />-->
+<!--      <Line endX="246.0" endY="661.0" layoutX="20.0" layoutY="20.0" startX="246.0" startY="123.0" />-->
+<!--      <Line endX="300.0" endY="648.0" layoutX="33.0" layoutY="30.0" startX="300.0" startY="114.0" />-->
+<!--      <Line endX="358.5" endY="641.0" layoutX="42.0" layoutY="40.0" startX="358.5" startY="103.0" />-->
+<!--      <Line endX="415.0" endY="631.0" layoutX="52.0" layoutY="50.0" startX="415.0" startY="93.0" />-->
+<!--      <Line endX="472.0" endY="621.0" layoutX="63.0" layoutY="60.0" startX="472.0" startY="83.0" />-->
+<!--      <Line endX="531.0" endY="611.0" layoutX="72.0" layoutY="70.0" startX="531.0" startY="73.0" />-->
     </children>
 </AnchorPane>

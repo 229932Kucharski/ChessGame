@@ -153,7 +153,7 @@ public class GameController extends GridPane{
                                 Move[] moves = piece.getPossibleMoves(cb.getPsb().getPieces());
                                 for (Move move : moves) {
                                     HBox hBox = (HBox) getNodeByXY(chessboardGridPane, move.getNextY(), move.getNextX());
-                                    glowUp(hBox, Color.rgb(255, 100, 100, 0.4), 1);
+                                    glowUp(hBox, Color.rgb(255, 100, 100, 0.6), 1);
                                 }
                                 glowUp(hb, Color.YELLOW,1);
                             }
@@ -162,7 +162,7 @@ public class GameController extends GridPane{
                                 Move[] moves = piece.getPossibleMoves(cb.getPs().getPieces());
                                 for (Move move : moves) {
                                     HBox hBox = (HBox) getNodeByXY(chessboardGridPane, move.getNextY(), move.getNextX());
-                                    glowUp(hBox, Color.rgb(255, 100, 100, 0.4), 1);
+                                    glowUp(hBox, Color.rgb(255, 100, 100, 0.6), 1);
                                 }
                                 glowUp(hb, Color.YELLOW, 1);
                             }
