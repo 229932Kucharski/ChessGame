@@ -91,7 +91,8 @@ public class PieceSet {
                     }
                     for (Move kingsMove : kingsMoves){
                         if((kingsMove.getNextX() == hostileMove.getNextX()) && ((kingsMove.getNextY() == hostileMove.getNextY()))){
-                            int doDokonczenia =0;
+                            possibleMoves.addAll(Arrays.asList(kingsMoves));
+                            possibleMoves.remove(kingsMove);
                         }
                     }
                 }
