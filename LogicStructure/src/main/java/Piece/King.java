@@ -6,6 +6,7 @@ import java.util.List;
 public class King extends Piece {
 
     private boolean moved = false;
+    private boolean danger = false;
 
     public King(int x, int y, PieceColor color, int value, String id) {
         super(x, y, color, value, id);
@@ -90,10 +91,18 @@ public class King extends Piece {
         return moved;
     }
 
+    public boolean isDanger() {
+        return danger;
+    }
+
+    public void setDanger(boolean danger) {
+        this.danger = danger;
+    }
     @Override
     public void move(int newX, int newY) {
         super.move(newX, newY);
         setMovedTrue();
     }
+
 
 }

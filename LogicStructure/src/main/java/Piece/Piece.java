@@ -4,8 +4,6 @@ import java.util.List;
 
 public abstract class Piece {
 
-    private boolean danger = false;
-
     protected int currentX;
     protected int currentY;
 
@@ -55,14 +53,6 @@ public abstract class Piece {
 
     public String getId() {
         return id;
-    }
-
-    public boolean isDanger() {
-        return danger;
-    }
-
-    public void setDanger(boolean danger) {
-        this.danger = danger;
     }
 
     protected boolean isMovePossible(List<Piece> allOtherPieces, int newX, int newY) {

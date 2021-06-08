@@ -81,6 +81,7 @@ public class PieceSet {
                 if(pieces.get(i) != piece) {
                     allOtherPieces.add(pieces.get(i));
                 }
+//                if (piece == typeof(King))
             }
 
             Move[] moves = piece.getPossibleMoves(allOtherPieces);
@@ -112,6 +113,7 @@ public class PieceSet {
         //}
         return false;
     }
+
 
     public void unmakeMove(PieceSet enemyPiece){
         int i = possibleMoves.size();
