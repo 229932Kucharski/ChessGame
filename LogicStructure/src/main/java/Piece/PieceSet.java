@@ -72,7 +72,7 @@ public class PieceSet {
 
     }
 
-    private void calculatePossibleMoves(PieceSet enemyPiece){
+    public void calculatePossibleMoves(PieceSet enemyPiece){
         possibleMoves.clear();
         for(Piece piece : pieces){
             List<Piece> allOtherPieces = new ArrayList<>();
@@ -102,7 +102,7 @@ public class PieceSet {
                     previousMoves.add(move);
                     Piece piece = this.getPiece(move.getCurrentX(), move.getCurrentY());
                     piece.move(move.getNextX(), move.getNextY());
-                    if(move.isAttack()) {
+                    if(possibleMove.isAttack()) {
                         removedPieces.add(enemyPiece.getPiece(move.getNextX(), move.getNextY()));
                         enemyPiece.removePiece(enemyPiece.getPiece(move.getNextX(), move.getNextY()));
                     }

@@ -132,7 +132,7 @@ public class GameController extends GridPane{
                         isHighlighted = false;
                         //przenoszenie pionka w inne miejsce
                         if(tempHb != null) {
-                            System.out.println("old: " + oldX + " " + oldY + ", new: " + newX + " " + newY);
+                            //System.out.println("old: " + oldX + " " + oldY + ", new: " + newX + " " + newY);
                             if (move_counter % 2 == 0 ) {
                                 if(cb.getPs().move(new Move(oldY, oldX, newY, newX),cb.getPsb())) {
                                     moveFigure(hb, cb.getPiece(oldY, oldX).getPieceColor());
@@ -184,6 +184,8 @@ public class GameController extends GridPane{
         oldX = move.getCurrentY();
         newY = move.getNextX();
         newX = move.getNextY();
+        System.out.println("AIO - " + oldY + ", " + oldX + "\n"
+        + "AIN - " + newY + ", " + newX + "\n");
         tempHb = (HBox) getNodeByXY(chessboardGridPane, oldX, oldY);
         temp = (ImageView) tempHb.getChildren().get(0);
         HBox hb = (HBox) getNodeByXY(chessboardGridPane, newX, newY);
