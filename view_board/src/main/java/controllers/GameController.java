@@ -2,6 +2,7 @@ package controllers;
 
 import Algorithm.Algorithm;
 import Algorithm.Easy;
+import Algorithm.Hard;
 import Piece.Move;
 import Piece.Piece;
 import Piece.PieceColor;

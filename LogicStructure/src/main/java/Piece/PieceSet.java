@@ -6,7 +6,7 @@ import java.util.List;
 
 public class PieceSet {
 
-    private PieceColor pieceColor;
+    private final PieceColor pieceColor;
     protected int score = 40;
     protected List<Piece> pieces = new ArrayList<>();
     protected List<Piece> removedPieces = new ArrayList<>();
@@ -81,11 +81,26 @@ public class PieceSet {
                 if(pieces.get(i) != piece) {
                     allOtherPieces.add(pieces.get(i));
                 }
-//                if (piece == typeof(King))
             }
+            if(piece instanceof King){
+                Move[] kingsMoves = piece.getPossibleMoves(allOtherPieces);
+                List<Move> hostileMoves = new ArrayList<>(enemyPiece.possibleMoves);
+                for (Move hostileMove : hostileMoves){
+                    if((hostileMove.getNextX() == piece.currentX)&&(hostileMove.getNextY() == piece.currentY)){
+                        ((King) piece).setDanger(true);
+                    }
+                    for (Move kingsMove : kingsMoves){
+                        if((kingsMove.getNextX() == hostileMove.getNextX()) && ((kingsMove.getNextY() == hostileMove.getNextY()))){
+                            int doDokonczenia =0;
+                        }
+                    }
+                }
+            }else {
 
-            Move[] moves = piece.getPossibleMoves(allOtherPieces);
-            possibleMoves.addAll(Arrays.asList(moves));
+
+                Move[] moves = piece.getPossibleMoves(allOtherPieces);
+                possibleMoves.addAll(Arrays.asList(moves));
+            }
             
         }
 
@@ -100,9 +115,9 @@ public class PieceSet {
             for(Move possibleMove : possibleMoves) {
 
                 if(possibleMove.equals(move)) {
-                    previousMoves.add(move);
                     Piece piece = this.getPiece(move.getCurrentX(), move.getCurrentY());
                     piece.move(move.getNextX(), move.getNextY());
+                    previousMoves.add(possibleMove);
                     if(possibleMove.isAttack()) {
                         removedPieces.add(enemyPiece.getPiece(move.getNextX(), move.getNextY()));
                         enemyPiece.removePiece(enemyPiece.getPiece(move.getNextX(), move.getNextY()));
@@ -116,8 +131,8 @@ public class PieceSet {
 
 
     public void unmakeMove(PieceSet enemyPiece){
-        int i = possibleMoves.size();
-        Move move = possibleMoves.get(i -1);
+        int i = previousMoves.size();
+        Move move = previousMoves.get(i -1);
         Piece piece  = this.getPiece(move.getNextX(), move.getNextY());
         piece.move(move.getCurrentX(),move.getCurrentY());
         if (move.isAttack()){
@@ -137,6 +152,25 @@ public class PieceSet {
         return pieces.size();
     }
 
+    public boolean isCheck(){
+        for(Piece piece : pieces) {
+            if ((piece instanceof King) && (((King) piece).isDanger())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isCheckMate(){
+        if(getPieceSetSize() == 1){
+            if(pieces.get(0) instanceof King){
+                return possibleMoves.equals(0);
+            }
+        }
+        return false;
+    }
+
+
     public Piece getPiece(int x, int y) {
         for(Piece piece : pieces) {
             if( (piece.getCurrentX() == x) && (piece.getCurrentY() == y) ) {
@@ -150,6 +184,8 @@ public class PieceSet {
 
         return  score;
     }
+
+
 
     public boolean removePiece(Piece piece) {
         score -= piece.getValue();
