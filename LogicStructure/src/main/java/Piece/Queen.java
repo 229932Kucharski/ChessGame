@@ -14,10 +14,10 @@ public class Queen extends Piece {
             Move move = new Move(currentX, currentY, tempX, tempY);
             if(isMoveAttack(allOtherPieces, move)) {
                 move.setAttack(true);
-                listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                listPossibleMoves.add(move);
                 return true;
             } else {
-                listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                listPossibleMoves.add(move);
                 return false;
             }
         } else {
