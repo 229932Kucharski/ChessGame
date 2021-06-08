@@ -28,11 +28,11 @@ public class Bishop extends Piece{
                         Move move = new Move(currentX, currentY, tempX, tempY);
                         if(isMoveAttack(allOtherPieces, move)) {
                             move.setAttack(true);
-                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            listPossibleMoves.add(move);
                             tempX = 8;
                             tempY = -1; //wyjscie z while
                         } else {
-                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            listPossibleMoves.add(move);
                         }
                     } else {
                         tempX = 8;
@@ -49,11 +49,11 @@ public class Bishop extends Piece{
                         Move move = new Move(currentX, currentY, tempX, tempY);
                         if(isMoveAttack(allOtherPieces, move)) {
                             move.setAttack(true);
-                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            listPossibleMoves.add(move);
                             tempX = 8;
                             tempY = 8; //wyjscie z while
                         } else {
-                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            listPossibleMoves.add(move);
                         }
                     } else {
                         tempX = 8;
@@ -70,11 +70,11 @@ public class Bishop extends Piece{
                         Move move = new Move(currentX, currentY, tempX, tempY);
                         if(isMoveAttack(allOtherPieces, move)) {
                             move.setAttack(true);
-                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            listPossibleMoves.add(move);
                             tempX = -1;
                             tempY = 8; //wyjscie z while
                         } else {
-                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            listPossibleMoves.add(move);
                         }
                     } else {
                         tempX = -1;
@@ -91,11 +91,11 @@ public class Bishop extends Piece{
                         Move move = new Move(currentX, currentY, tempX, tempY);
                         if(isMoveAttack(allOtherPieces, move)) {
                             move.setAttack(true);
-                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            listPossibleMoves.add(move);
                             tempX = -1;
                             tempY = -1; //wyjscie z while
                         } else {
-                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            listPossibleMoves.add(move);
                         }
                     } else {
                         tempX = -1;
