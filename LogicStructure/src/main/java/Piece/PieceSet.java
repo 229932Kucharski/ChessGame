@@ -72,7 +72,8 @@ public class PieceSet {
 
     }
 
-    public void calculatePossibleMoves(PieceSet enemyPiece){
+    private void calculatePossibleMoves(PieceSet enemyPiece){
+        possibleMoves.clear();
         for(Piece piece : pieces){
             List<Piece> allOtherPieces = new ArrayList<>();
             allOtherPieces.addAll(enemyPiece.getPieces());
