@@ -23,6 +23,7 @@ public class MainController {
     public ChoiceBox<GameMode> modeChoiceBox;
     public Button showProfileButton;
     public Button logInButton;
+    public static String gameModeChoice;
 
     public void initialize() {
         showProfileButton.setDisable(LoginManager.getLoggedUser() == null);
@@ -137,6 +138,18 @@ public class MainController {
                 GameController.bts.setTime(2);
                 GameController.bts.setIncrement(5);
             }
+        }
+    }
+
+    public void setMode(ActionEvent actionEvent) {
+        switch (modeChoiceBox.getValue().getMode()) {
+            case "Graj z komputerem" -> {
+                gameModeChoice = GameMode.GraczKomputer.getMode();
+            }
+            case "Graj z innym graczem" -> {
+                gameModeChoice = GameMode.GraczGracz.getMode();
+            }
+
         }
     }
 }

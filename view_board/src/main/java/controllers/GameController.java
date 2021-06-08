@@ -9,6 +9,8 @@ import Piece.PieceColor;
 import app.App;
 import code.CheckerBoard;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -27,6 +29,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import player.enums.GameMode;
 import player.manager.LoginManager;
 
 import java.io.File;
@@ -112,7 +115,7 @@ public class GameController extends GridPane{
                 public void handle(MouseEvent event) {
                     if (event.getClickCount() == 1 && !isWon) {
 
-                        clearHBox(Color.YELLOW);
+                        clearHBox(Color.rgb(255,255,0,0.6));
                         //pobranie źródła z gridpane (x,y)
                         Node source = (Node) event.getSource();
                         Integer colIndex = GridPane.getColumnIndex(source);
@@ -137,7 +140,26 @@ public class GameController extends GridPane{
                             if (move_counter % 2 == 0 ) {
                                 if(cb.getPs().move(new Move(oldY, oldX, newY, newX),cb.getPsb())) {
                                     moveFigure(hb, cb.getPiece(oldY, oldX).getPieceColor());
-                                    aiMove();
+
+                                    if(MainController.gameModeChoice.equals(GameMode.GraczKomputer.getMode())) {
+                                        Task<Void> sleeper = new Task<Void>() {
+                                            @Override
+                                            protected Void call() throws Exception {
+                                                try {
+                                                    Thread.sleep(600);
+                                                } catch (InterruptedException ignored) {
+                                                }
+                                                return null;
+                                            }
+                                        };
+                                        sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                                            @Override
+                                            public void handle(WorkerStateEvent event) {
+                                                aiMove();
+                                            }
+                                        });
+                                        new Thread(sleeper).start();
+                                    }
                                 }
                             } else {
                                if(cb.getPsb().move(new Move(oldY, oldX, newY, newX),cb.getPs())) {
@@ -155,7 +177,7 @@ public class GameController extends GridPane{
                                     HBox hBox = (HBox) getNodeByXY(chessboardGridPane, move.getNextY(), move.getNextX());
                                     glowUp(hBox, Color.rgb(255, 100, 100, 0.6), 1);
                                 }
-                                glowUp(hb, Color.YELLOW,1);
+                                glowUp(hb, Color.rgb(255,255,0,0.6),1);
                             }
                             else if (move_counter%2 == 1 && cb.getPiece(newY, newX).getPieceColor() == PieceColor.BLACK) {
                                 Piece piece = cb.getPiece(newY, newX);
@@ -164,7 +186,7 @@ public class GameController extends GridPane{
                                     HBox hBox = (HBox) getNodeByXY(chessboardGridPane, move.getNextY(), move.getNextX());
                                     glowUp(hBox, Color.rgb(255, 100, 100, 0.6), 1);
                                 }
-                                glowUp(hb, Color.YELLOW, 1);
+                                glowUp(hb, Color.rgb(255,255,0,0.6), 1);
                             }
 
                             tempHb = hb;
