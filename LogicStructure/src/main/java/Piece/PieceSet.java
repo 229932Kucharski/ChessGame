@@ -84,6 +84,7 @@ public class PieceSet {
             }
             if(piece instanceof King){
                 Move[] kingsMoves = piece.getPossibleMoves(allOtherPieces);
+                possibleMoves.addAll(Arrays.asList(kingsMoves));
                 List<Move> hostileMoves = new ArrayList<>(enemyPiece.possibleMoves);
                 for (Move hostileMove : hostileMoves){
                     if((hostileMove.getNextX() == piece.currentX)&&(hostileMove.getNextY() == piece.currentY)){
@@ -91,7 +92,6 @@ public class PieceSet {
                     }
                     for (Move kingsMove : kingsMoves){
                         if((kingsMove.getNextX() == hostileMove.getNextX()) && ((kingsMove.getNextY() == hostileMove.getNextY()))){
-                            possibleMoves.addAll(Arrays.asList(kingsMoves));
                             possibleMoves.remove(kingsMove);
                         }
                     }
