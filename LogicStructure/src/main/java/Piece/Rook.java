@@ -29,10 +29,10 @@ public class Rook extends Piece {
                         Move move = new Move(currentX, currentY, tempX, tempY);
                         if(isMoveAttack(allOtherPieces, move)) {
                             move.setAttack(true);
-                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            listPossibleMoves.add(move);
                             tempX = 8; //wyjscie z while
                         } else {
-                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            listPossibleMoves.add(move);
                         }
                     } else {
                         tempX = 8; //wyjscie z while
@@ -47,10 +47,10 @@ public class Rook extends Piece {
                         Move move = new Move(currentX, currentY, tempX, tempY);
                         if(isMoveAttack(allOtherPieces, move)) {
                             move.setAttack(true);
-                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            listPossibleMoves.add(move);
                             tempX = -1; //wyjscie z while
                         } else {
-                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            listPossibleMoves.add(move);
                         }
                     } else {
                         tempX = -1; //wyjscie z while
@@ -65,10 +65,10 @@ public class Rook extends Piece {
                         Move move = new Move(currentX, currentY, tempX, tempY);
                         if(isMoveAttack(allOtherPieces, move)) {
                             move.setAttack(true);
-                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            listPossibleMoves.add(move);
                             tempY = 8; //wyjscie z while
                         } else {
-                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            listPossibleMoves.add(move);
                         }
                     } else {
                         tempY = 8; //wyjscie z while
@@ -83,10 +83,10 @@ public class Rook extends Piece {
                         Move move = new Move(currentX, currentY, tempX, tempY);
                         if(isMoveAttack(allOtherPieces, move)) {
                             move.setAttack(true);
-                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            listPossibleMoves.add(move);
                             tempY = -1; //wyjscie z while
                         } else {
-                            listPossibleMoves.add(new Move(currentX, currentY, tempX, tempY));
+                            listPossibleMoves.add(move);
                         }
                     } else {
                         tempY = -1; //wyjscie z while
