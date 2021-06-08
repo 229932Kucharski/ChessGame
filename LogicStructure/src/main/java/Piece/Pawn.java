@@ -74,9 +74,19 @@ public class Pawn extends Piece {
 
             if(isMovePossible(allOtherPieces, currentX, currentY+1)) {
                 Move shortMove = new Move(currentX, currentY, currentX, currentY+1);
-                shortMove.setAttack(isMoveAttack(allOtherPieces, shortMove));
-                listPossibleMoves.add(shortMove);
+
+                if(!isMoveAttack(allOtherPieces, shortMove)) {
+                    listPossibleMoves.add(shortMove);
+
+                    if( firstMove && isMovePossible(allOtherPieces, currentX, currentY+2) ) {
+                        Move longMove = new Move(currentX, currentY, currentX, currentY+2);
+                        if(!isMoveAttack(allOtherPieces, longMove)) {
+                            listPossibleMoves.add(longMove);
+                        }
+                    }
+                }
             }
+
             Move[] attacks = new Move[2];
             attacks[0] = new Move(currentX, currentY, currentX-1, currentY+1);
             attacks[1] = new Move(currentX, currentY, currentX+1, currentY+1);
@@ -87,19 +97,24 @@ public class Pawn extends Piece {
                 }
 
             }
-            if(firstMove && isMovePossible(allOtherPieces, currentX, currentY+2)) {
-                Move longMove = new Move(currentX, currentY, currentX, currentY+2);
-                longMove.setAttack(isMoveAttack(allOtherPieces, longMove));
-                listPossibleMoves.add(longMove);
-            }
 
         } else if ( (pieceColor == PieceColor.WHITE) && currentY > 0 ) {
 
             if(isMovePossible(allOtherPieces, currentX, currentY-1)) {
                 Move shortMove = new Move(currentX, currentY, currentX, currentY-1);
-                shortMove.setAttack(isMoveAttack(allOtherPieces, shortMove));
-                listPossibleMoves.add(shortMove);
+
+                if(!isMoveAttack(allOtherPieces, shortMove)) {
+                    listPossibleMoves.add(shortMove);
+
+                    if( firstMove && isMovePossible(allOtherPieces, currentX, currentY-2) ) {
+                        Move longMove = new Move(currentX, currentY, currentX, currentY-2);
+                        if(!isMoveAttack(allOtherPieces, longMove)) {
+                            listPossibleMoves.add(longMove);
+                        }
+                    }
+                }
             }
+
             Move[] attacks = new Move[2];
             attacks[0] = new Move(currentX, currentY, currentX-1, currentY-1);
             attacks[1] = new Move(currentX, currentY, currentX+1, currentY-1);
@@ -110,11 +125,28 @@ public class Pawn extends Piece {
                 }
 
             }
-            if(firstMove && isMovePossible(allOtherPieces, currentX, currentY-2)) {
-                Move longMove = new Move(currentX, currentY, currentX, currentY-2);
-                longMove.setAttack(isMoveAttack(allOtherPieces, longMove));
-                listPossibleMoves.add(longMove);
-            }
+
+
+//            if(isMovePossible(allOtherPieces, currentX, currentY-1)) {
+//                Move shortMove = new Move(currentX, currentY, currentX, currentY-1);
+//                shortMove.setAttack(isMoveAttack(allOtherPieces, shortMove));
+//                listPossibleMoves.add(shortMove);
+//            }
+//            Move[] attacks = new Move[2];
+//            attacks[0] = new Move(currentX, currentY, currentX-1, currentY-1);
+//            attacks[1] = new Move(currentX, currentY, currentX+1, currentY-1);
+//            for(Move attack : attacks) {
+//                if(isMoveAttack(allOtherPieces, attack)) {
+//                    attack.setAttack(true);
+//                    listPossibleMoves.add(attack);
+//                }
+//
+//            }
+//            if(firstMove && isMovePossible(allOtherPieces, currentX, currentY-2)) {
+//                Move longMove = new Move(currentX, currentY, currentX, currentY-2);
+//                longMove.setAttack(isMoveAttack(allOtherPieces, longMove));
+//                listPossibleMoves.add(longMove);
+//            }
         }
 
         Move[] possibleMoves = new Move[listPossibleMoves.size()];
