@@ -63,4 +63,9 @@ public abstract class Algorithm {
 
     }
 
+    public int evaluate(PieceColor maximizing_color){
+        if(maximizing_color == PieceColor.BLACK)
+            return allySet.getScore() - enemySet.getScore();
+        else return enemySet.getScore() - allySet.getScore();
+    }
 }
