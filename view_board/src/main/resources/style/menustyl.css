@@ -26,7 +26,10 @@
     -fx-background-image: url("../images/cr.jpg");
     -fx-background-size: 100% 100%;
 }
-.toggle-button, .button{
+.toggle-button, .button, .choice-box{
     -fx-accent: brown;
     -fx-focus-color: brown;
+}
+.line {
+    -fx-stroke: rgba(128,128,128,0.3)
 }

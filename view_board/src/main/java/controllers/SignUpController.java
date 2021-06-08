@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import player.exception.PasswordException;
 import player.manager.RegistrationManager;
 import java.sql.SQLException;
 
@@ -25,6 +26,9 @@ public class SignUpController {
 
         try {
             RegistrationManager.registerUser(nick, login, password);
+        } catch (PasswordException e) {
+            setWarning("Haslo jest za krotkie");
+            return;
         } catch (IllegalArgumentException e) {
             setWarning("Login jest juz zajety");
             return;
