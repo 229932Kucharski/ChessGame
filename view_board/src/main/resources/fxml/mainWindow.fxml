@@ -20,7 +20,7 @@
                         <ColorAdjust brightness="-0.05" />
                     </effect>
                 </Button>
-            <ChoiceBox fx:id="modeChoiceBox" prefHeight="40.0" prefWidth="355.0" style="-fx-base: #562837;" />
+            <ChoiceBox fx:id="modeChoiceBox" onAction="#setMode" prefHeight="40.0" prefWidth="355.0" style="-fx-base: #562837;" />
             <ChoiceBox fx:id="paceChoiceBox" layoutX="10.0" layoutY="95.0" onAction="#setPace" prefHeight="40.0" prefWidth="356.0" style="-fx-base: #562837;" />
                 <Button fx:id="logInButton" mnemonicParsing="false" onAction="#logIn" prefHeight="55.0" prefWidth="360.0" style="-fx-base: #562837;" text="Zaloguj">
                     <font>
