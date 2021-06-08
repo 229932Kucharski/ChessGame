@@ -151,24 +151,20 @@ public class GameController extends GridPane{
                             if(move_counter %2 == 0 && cb.getPiece(newY, newX).getPieceColor() == PieceColor.WHITE) {
                                 Piece piece = cb.getPiece(newY, newX);
                                 Move[] moves = piece.getPossibleMoves(cb.getPsb().getPieces());
-                                for(int i = 0; i < moves.length; i++) {
-                                    HBox hBox = (HBox) getNodeByXY(chessboardGridPane,moves[i].getNextY(), moves[i].getNextX());
-                                    glowUp(hBox, Color.ORANGE);
+                                for (Move move : moves) {
+                                    HBox hBox = (HBox) getNodeByXY(chessboardGridPane, move.getNextY(), move.getNextX());
+                                    glowUp(hBox, Color.rgb(255, 100, 100, 0.4), 1);
                                 }
-//                                for (HBox hBox : hBoxList) {
-//                                      if(hBox.getChildren().isEmpty())
-//                                        drawEllipse(hBox);
-//                                }
-                                glowUp(hb, Color.YELLOW);
+                                glowUp(hb, Color.YELLOW,1);
                             }
                             else if (move_counter%2 == 1 && cb.getPiece(newY, newX).getPieceColor() == PieceColor.BLACK) {
                                 Piece piece = cb.getPiece(newY, newX);
                                 Move[] moves = piece.getPossibleMoves(cb.getPs().getPieces());
-                                for(int i = 0; i < moves.length; i++) {
-                                    HBox hBox = (HBox) getNodeByXY(chessboardGridPane,moves[i].getNextY(), moves[i].getNextX());
-                                    glowUp(hBox, Color.ORANGE);
+                                for (Move move : moves) {
+                                    HBox hBox = (HBox) getNodeByXY(chessboardGridPane, move.getNextY(), move.getNextX());
+                                    glowUp(hBox, Color.rgb(255, 100, 100, 0.4), 1);
                                 }
-                                glowUp(hb, Color.YELLOW);
+                                glowUp(hb, Color.YELLOW, 1);
                             }
 
                             tempHb = hb;
@@ -182,9 +178,11 @@ public class GameController extends GridPane{
             });
         });
     }
-    public void glowUp(HBox hb, Color color) {
+    public void glowUp(HBox hb, Color color, double opac) {
         hb.setBorder(new Border(new BorderStroke(color,
-                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(5))));
+                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(36))));
+
+
     }
     public void moveFigure(HBox hb, PieceColor pc) {
 

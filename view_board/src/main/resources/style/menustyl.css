@@ -30,3 +30,6 @@
     -fx-accent: brown;
     -fx-focus-color: brown;
 }
+.line {
+    -fx-stroke: rgba(128,128,128,0.3)
+}
