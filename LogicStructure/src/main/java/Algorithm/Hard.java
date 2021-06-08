@@ -53,7 +53,7 @@ public class Hard extends Algorithm {
     }
 
     @Override
-    public void makeMove() {
-
+    public Move makeMove() {
+        return null;
     }
 }
