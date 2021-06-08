@@ -1,5 +1,7 @@
 package controllers;
 
+import Algorithm.Algorithm;
+import Algorithm.Easy;
 import Piece.Move;
 import Piece.Piece;
 import Piece.PieceColor;
@@ -21,8 +23,6 @@ import javafx.scene.layout.*;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -42,6 +42,7 @@ public class GameController extends GridPane{
     public Text username;
     public Label sPlayerLabel;
     public Label fPlayerLabel;
+    public Algorithm algorithm = new Easy();
 
     public Text whoWon;
     public HBox reasonWin;
@@ -50,8 +51,6 @@ public class GameController extends GridPane{
     public static ThreadStopwatch wts = new ThreadStopwatch();
     public static ThreadStopwatch bts = new ThreadStopwatch();
     public ImageView coverImageView;
-
-
 
     //public static ThreadStopwatch nts = new ThreadStopwatch();
 
@@ -64,7 +63,12 @@ public class GameController extends GridPane{
     int newX;
     int newY;
     public boolean isWon = false;
+
     public void initialize() {
+
+        algorithm.setAllySet(cb.getPsb());
+        algorithm.setEnemySet(cb.getPs());
+
         move_counter = 0;
         if(LoginManager.getLoggedUser()!=null) {
             username.setText(LoginManager.getLoggedUser().getName());
@@ -98,9 +102,7 @@ public class GameController extends GridPane{
 
             }
         }
-
-                addGridEvent();
-
+        addGridEvent();
     }
     private void addGridEvent() {
         chessboardGridPane.getChildren().forEach(item -> {
@@ -130,14 +132,13 @@ public class GameController extends GridPane{
                         isHighlighted = false;
                         //przenoszenie pionka w inne miejsce
                         if(tempHb != null) {
-                            System.out.println("old: " + oldX + " " + oldY + ", new: " + newX + " " + newY);
+                            //System.out.println("old: " + oldX + " " + oldY + ", new: " + newX + " " + newY);
                             if (move_counter % 2 == 0 ) {
-
                                 if(cb.getPs().move(new Move(oldY, oldX, newY, newX),cb.getPsb())) {
                                     moveFigure(hb, cb.getPiece(oldY, oldX).getPieceColor());
+                                    aiMove();
                                 }
                             } else {
-
                                if(cb.getPsb().move(new Move(oldY, oldX, newY, newX),cb.getPs())) {
                                    moveFigure(hb, cb.getPiece(oldY, oldX).getPieceColor());
                                }
@@ -176,12 +177,28 @@ public class GameController extends GridPane{
             });
         });
     }
+
+    private void aiMove() {
+        Move move = algorithm.makeMove();
+        oldY = move.getCurrentX();
+        oldX = move.getCurrentY();
+        newY = move.getNextX();
+        newX = move.getNextY();
+        System.out.println("AIO - " + oldY + ", " + oldX + "\n"
+        + "AIN - " + newY + ", " + newX + "\n");
+        tempHb = (HBox) getNodeByXY(chessboardGridPane, oldX, oldY);
+        temp = (ImageView) tempHb.getChildren().get(0);
+        HBox hb = (HBox) getNodeByXY(chessboardGridPane, newX, newY);
+        moveFigure(hb, PieceColor.BLACK);
+    }
+
     public void glowUp(HBox hb, Color color, double opac) {
         hb.setBorder(new Border(new BorderStroke(color,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(36))));
 
 
     }
+
     public void moveFigure(HBox hb, PieceColor pc) {
 
             if (tempHb.getChildren().get(0) == temp && cb.getPiece(oldY, oldX).getPieceColor() == pc ) {
@@ -297,13 +314,6 @@ public class GameController extends GridPane{
             });
         }
 
-    public void drawEllipse(HBox hb) {
-        if(hb.getChildren().isEmpty()) {
-            Circle circle = new Circle(20, Paint.valueOf("grey"));
-            circle.setId("circle");
-            hb.getChildren().add(circle);
-        }
-    }
     public void winOpen() throws IOException {
         isWon = true;
         Stage stage = new Stage();

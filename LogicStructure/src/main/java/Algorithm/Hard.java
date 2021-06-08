@@ -67,8 +67,9 @@ public class Hard extends Algorithm {
     }
 
     @Override
-    public void makeMove() {
+    public Move makeMove() {
         minimax(allySet, 4, allySet.getPieceColor(), true);
         allySet.move(best_move,enemySet);
+        return null;
     }
 }
