@@ -9,7 +9,9 @@ public class PieceSet {
     private PieceColor pieceColor;
     protected int score = 40;
     protected List<Piece> pieces = new ArrayList<>();
+    protected List<Piece> removedPieces = new ArrayList<>();
     protected List<Move> possibleMoves = new ArrayList<>();
+    protected List<Move> previousMoves = new ArrayList<>();
 
     public List<Move> getPossibleMoves() {
         return possibleMoves;
@@ -97,9 +99,11 @@ public class PieceSet {
             for(Move possibleMove : possibleMoves) {
 
                 if(possibleMove.equals(move)) {
+                    previousMoves.add(move);
                     Piece piece = this.getPiece(move.getCurrentX(), move.getCurrentY());
                     piece.move(move.getNextX(), move.getNextY());
                     if(move.isAttack()) {
+                        removedPieces.add(enemyPiece.getPiece(move.getNextX(), move.getNextY()));
                         enemyPiece.removePiece(enemyPiece.getPiece(move.getNextX(), move.getNextY()));
                     }
                     return true;
@@ -107,6 +111,20 @@ public class PieceSet {
             }
         //}
         return false;
+    }
+
+    public void unmakeMove(PieceSet enemyPiece){
+        int i = possibleMoves.size();
+        Move move = possibleMoves.get(i -1);
+        Piece piece  = this.getPiece(move.getNextX(), move.getNextY());
+        piece.move(move.getCurrentX(),move.getCurrentY());
+        if (move.isAttack()){
+            int j = removedPieces.size();
+            enemyPiece.pieces.add(removedPieces.get(j-1));
+            removedPieces.remove(removedPieces.get(j-1));
+        }
+
+
     }
 
     public PieceColor getPieceColor() {
@@ -127,8 +145,8 @@ public class PieceSet {
     }
 
     public int getScore() {
-        int finalScore = 40;
-        return finalScore - score;
+
+        return  score;
     }
 
     public boolean removePiece(Piece piece) {
@@ -182,5 +200,6 @@ public class PieceSet {
             }
         }
     }
+
 
 }
