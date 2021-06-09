@@ -257,6 +257,7 @@ public class GameController extends GridPane{
                     isHighlighted = true;
                     tempHb = null;
                 }
+
                 if(move_counter %2 == 0) {
                     wts.setYes();
                     bts.setNot();
@@ -297,8 +298,6 @@ public class GameController extends GridPane{
     }
 
     public void back(ActionEvent actionEvent) {
-        bts.setZero();
-        wts.setZero();
         App.changeScene(gameAnchorPane,"mainWindow");
     }
     public static List<HBox> gethBoxList() {
@@ -327,6 +326,7 @@ public class GameController extends GridPane{
                             }
                             LoginManager.updateLoggedUser();
                         }
+
                         App.changeScene(gameAnchorPane, "mainWindow");
                     } catch (Exception e) {
                         e.printStackTrace();

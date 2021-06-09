@@ -20,8 +20,10 @@ public class ThreadStopwatch extends Thread{
     int hours = 0;
     boolean exit = false;
 
+    public void setSeconds(int seconds) { this.seconds = seconds; }
+    public int getSeconds() { return seconds; }
 
-   public Label timelabel;
+    public Label timelabel;
    public GameController gameController;
    public WinController winController;
 
@@ -130,6 +132,11 @@ public class ThreadStopwatch extends Thread{
 
     public void setZero(){
         this.setTime(0);
+        this.setIncrement(0);
         this.setElapsedTime(0);
+    }
+
+    public void stopStopwatch(){
+        this.suspend();
     }
 }

@@ -38,6 +38,8 @@ public class MainController {
         paceChoiceBox.setValue(Pace.menu);
 
         setLoginButton();
+        GameController.wts.stopStopwatch();
+        GameController.bts.stopStopwatch();
     }
 
     public void setLoginButton() {
@@ -76,7 +78,9 @@ public class MainController {
             GameController.bts.start();
         }
         catch (Exception e){}
-        GameController.bts.suspend();
+        GameController.wts.stopStopwatch();
+        GameController.bts.setElapsedTime(0-GameController.bts.getIncrement());
+        GameController.bts.stopStopwatch();
     }
 
     public void setPace(ActionEvent actionEvent) {
