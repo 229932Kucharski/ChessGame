@@ -57,8 +57,6 @@ public class Hard extends Algorithm {
             }
 
         }
-
-
         return 0;
     }
 

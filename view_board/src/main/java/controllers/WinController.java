@@ -1,7 +1,5 @@
 package controllers;
 
-import app.App;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;

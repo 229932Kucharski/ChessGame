@@ -48,15 +48,9 @@ public class GameController extends GridPane{
     public Label fPlayerLabel;
     public Algorithm algorithm = new Easy();
 
-    public Text whoWon;
-    public HBox reasonWin;
-    public AnchorPane winBg;
-
     public static ThreadStopwatch wts = new ThreadStopwatch();
     public static ThreadStopwatch bts = new ThreadStopwatch();
     public ImageView coverImageView;
-
-    //public static ThreadStopwatch nts = new ThreadStopwatch();
 
     ImageView temp;
     HBox tempHb;
@@ -300,6 +294,7 @@ public class GameController extends GridPane{
     public void back(ActionEvent actionEvent) {
         App.changeScene(gameAnchorPane,"mainWindow");
     }
+
     public static List<HBox> gethBoxList() {
         return hBoxList;
     }

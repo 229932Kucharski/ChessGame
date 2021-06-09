@@ -109,10 +109,6 @@ public class PieceSet {
 
     public  boolean move(Move move, PieceSet enemyPiece) {
         calculatePossibleMoves(enemyPiece);
-        //for(Piece piece : pieces) {
-
-        //Move[] moves = piece.getPossibleMoves();
-
             for(Move possibleMove : possibleMoves) {
 
                 if(possibleMove.equals(move)) {
@@ -126,7 +122,6 @@ public class PieceSet {
                     return true;
                 }
             }
-        //}
         return false;
     }
 

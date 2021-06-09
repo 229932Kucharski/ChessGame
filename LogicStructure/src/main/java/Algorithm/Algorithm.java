@@ -17,32 +17,13 @@ public abstract class Algorithm {
     protected PieceSet enemySet;
     Random random = new Random();
 
-
-
     protected PieceColor maximizing_color;
 
     public abstract Move makeMove();
 
-
-
     public Algorithm() {
-//            switch (difficultyLevel) {
-//
-//                case "Algorithm.Easy":
-//                    System.out.println("Algorithm.Easy");
-//                    makeMove();
-//                    break;
-//                case "Normal":
-//                    System.out.println("Normal");
-//                    makeMove();
-//                    break;
-//                case "Hard":
-//                    System.out.println("Hard");
-//                    makeMove();
-//                    break;
-//
-//            }
     }
+
     public Move  getNextMove() { return nextMove; }
 
     public String getDifficultyLevel() { return difficultyLevel; }

@@ -24,12 +24,8 @@ public class ThreadStopwatch extends Thread{
     public int getSeconds() { return seconds; }
 
     public Label timelabel;
-   public GameController gameController;
-   public WinController winController;
-
-//    String seconds_string = String.format("%02d", seconds);
-//    String minutes_string = String.format("%02d", minutes);
-//    String hours_string = String.format("%02d", hours);
+    public GameController gameController;
+    public WinController winController;
 
     public int getTime() { return Time; }
     public void setTime(int time) { Time = time; }
@@ -46,14 +42,6 @@ public class ThreadStopwatch extends Thread{
 
     public int getElapsedTime() { return elapsedTime; }
     public void setElapsedTime(int elapsedTime) { this.elapsedTime = elapsedTime; }
-
-//    public int getSeconds() {return seconds; }
-//    public int getMinutes() {return minutes; }
-//    public int getHours() {return hours; }
-//
-//    public String getSeconds_string() { return seconds_string; }
-//    public String getMinutes_string() { return minutes_string; }
-//    public String getHours_string() { return hours_string; }
 
     public void run() {
         while (!exit) {
@@ -111,11 +99,6 @@ public class ThreadStopwatch extends Thread{
             }
         }
     }
-
-// public static void main(String[] args) {
-//        ThreadStopwatch ts = new ThreadStopwatch();
-//        ts.start();
-//    }
 
     public void setLabel(Label lab){
         timelabel = lab;
